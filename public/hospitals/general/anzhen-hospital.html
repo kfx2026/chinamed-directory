@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Beijing Anzhen Hospital — ChinaMed Directory</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a365d;--navy-light:#2a4a7f;--blue:#3182ce;--blue-light:#ebf4fb;--gray-50:#f7f9fb;--gray-100:#edf2f7;--gray-200:#e2e8f0;--gray-500:#718096;--gray-700:#4a5568;--gray-900:#1a202c;--white:#fff;--radius:12px;--radius-sm:8px;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{font-family:var(--font);color:var(--gray-900);background:var(--gray-50);line-height:1.7;-webkit-font-smoothing:antialiased}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--gray-200);height:64px}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:18px;font-weight:700;color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:8px}
+.nav-logo-icon{width:32px;height:32px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--gray-700);font-size:13px;padding:8px 12px;border-radius:6px}
+.nav-links a:hover{background:var(--gray-100)}
+.lang-bar{display:flex;gap:3px;align-items:center;flex-wrap:wrap}
+.lang-btn{background:var(--white);border:1px solid var(--gray-200);padding:4px 8px;border-radius:5px;font-size:11px;cursor:pointer;color:var(--gray-700);min-width:28px;text-align:center}
+.lang-btn:hover{border-color:var(--navy);color:var(--navy)}
+.lang-btn.selected{border-color:var(--navy);background:var(--blue-light);color:var(--navy);font-weight:600}
+.breadcrumb{margin-top:64px;padding:16px 0 0;max-width:960px;margin-left:auto;margin-right:auto;padding-left:24px;padding-right:24px}
+.breadcrumb a{font-size:13px;color:var(--gray-500);text-decoration:none}
+.breadcrumb span{font-size:13px;color:var(--gray-300);margin:0 8px}
+.hospital-header{max-width:960px;margin:0 auto;padding:32px 24px 24px}
+.hospital-badge{display:inline-block;background:var(--navy);color:white;font-size:11px;font-weight:700;padding:4px 12px;border-radius:4px;letter-spacing:.5px;margin-bottom:12px}
+.hospital-name{font-size:34px;font-weight:800;color:var(--navy);line-height:1.3;margin-bottom:4px;letter-spacing:-.5px}
+.hospital-name-en{font-size:17px;color:var(--gray-500);font-weight:400;margin-bottom:16px}
+.hospital-meta{display:flex;flex-wrap:wrap;gap:12px}
+.hospital-meta span{font-size:13px;color:var(--gray-500);display:flex;align-items:center;gap:6px}
+.content{max-width:960px;margin:0 auto;padding:0 24px 48px}
+.module{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:28px 32px;margin-bottom:20px}
+.module-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--gray-100)}
+.module-icon{width:40px;height:40px;background:var(--blue-light);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.module-title{font-size:18px;font-weight:700;color:var(--navy)}
+.module-sub{font-size:13px;color:var(--gray-500);margin-top:2px}
+.info-row{display:flex;padding:14px 0;border-bottom:1px solid var(--gray-100)}
+.info-row:last-child{border-bottom:0}
+.info-label{width:160px;flex-shrink:0;font-size:13px;font-weight:600;color:var(--gray-700)}
+.info-value{font-size:14px;color:var(--gray-900);line-height:1.8}
+.contact-highlight{background:var(--navy);color:white;border-radius:var(--radius);padding:28px 32px;margin-bottom:20px}
+.contact-highlight .module-title{color:white}
+.contact-highlight .module-sub{color:rgba(255,255,255,.7)}
+.contact-highlight .module-header{border-bottom-color:rgba(255,255,255,.15)}
+.contact-highlight .module-icon{background:rgba(255,255,255,.15)}
+.contact-phone{font-size:24px;font-weight:700;color:white;letter-spacing:.5px}
+.contact-email{font-size:15px;color:rgba(255,255,255,.85);margin-top:8px}
+.contact-card{display:flex;gap:32px;flex-wrap:wrap}
+.specialty-tags{display:flex;flex-wrap:wrap;gap:8px}
+.specialty-tag{background:var(--blue-light);color:var(--navy);font-size:14px;font-weight:600;padding:8px 16px;border-radius:6px;cursor:pointer;transition:all .15s;user-select:none;position:relative}
+.specialty-tag:hover{background:var(--navy);color:white}
+.specialty-tag.expanded{background:var(--navy);color:white;border-radius:6px 6px 0 0}
+.specialty-desc{display:none;background:var(--white);border:1px solid var(--navy);border-top:0;border-radius:0 0 8px 8px;padding:14px 18px;margin-top:-1px;margin-bottom:12px;font-size:13px;color:var(--gray-700);line-height:1.7;width:100%}
+.specialty-desc.show{display:block}
+.specialty-desc .desc-zh{color:var(--navy);font-weight:600;margin-bottom:4px}
+.specialty-desc .desc-en{color:var(--gray-500)}
+.insurance-list{display:flex;flex-wrap:wrap;gap:8px}
+.insurance-item{background:var(--gray-100);padding:6px 14px;border-radius:6px;font-size:13px;color:var(--gray-700);font-weight:500}
+.steps-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{padding:20px;border:1px solid var(--gray-200);border-radius:var(--radius-sm);text-align:center}
+.step-num{width:36px;height:36px;background:var(--navy);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;margin:0 auto 12px}
+.step-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.step-desc{font-size:13px;color:var(--gray-500);line-height:1.7}
+.map-links{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.map-card{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-sm);padding:20px;text-align:center}
+.map-card h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.map-card p{font-size:12px;color:var(--gray-500);margin-bottom:12px}
+.map-link{display:inline-block;background:var(--navy);color:white;padding:8px 20px;border-radius:6px;text-decoration:none;font-size:13px;font-weight:600}
+.map-link:hover{background:var(--navy-light)}
+.overview-text{font-size:15px;color:var(--gray-900);line-height:1.9;white-space:pre-line}
+.footer{background:var(--navy);color:rgba(255,255,255,.85);padding:48px 24px 32px;margin-top:48px}
+.footer-inner{max-width:960px;margin:0 auto}
+.footer h3{font-size:14px;font-weight:700;color:white;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.footer p,.footer a{font-size:13px;line-height:1.8;color:rgba(255,255,255,.7);text-decoration:none}
+.footer a:hover{color:white;text-decoration:underline}
+.footer-divider{border:0;border-top:1px solid rgba(255,255,255,.15);margin:24px 0}
+.footer-legal{font-size:12px;color:rgba(255,255,255,.5);line-height:1.8}
+.disclaimer-box{border-left:3px solid var(--blue);padding-left:16px;font-size:13px;color:var(--gray-500);line-height:1.8;margin-top:20px}
+.ad-container{max-width:960px;margin:0 auto;padding:0 24px 20px;text-align:center}
+.ad-banner{background:var(--white,#fff);border:1px solid var(--gray-200,#e2e8f0);border-radius:12px;padding:16px 20px;display:inline-block;min-width:300px;max-width:728px;width:100%}
+.ad-label{font-size:10px;font-weight:600;color:var(--gray-500,#718096);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.ad-placeholder{background:linear-gradient(135deg,var(--blue-light,#ebf4fb),var(--gray-50,#f7f9fb));border-radius:8px;padding:14px;text-align:center;color:var(--gray-500,#718096);font-size:13px;font-weight:500}
+.ad-inline{max-width:960px;margin:28px auto;padding:0 24px}
+.ad-inline-box{background:var(--white,#fff);border:1px solid var(--gray-200,#e2e8f0);border-radius:12px;padding:18px 22px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.ad-inline-text{text-align:center;color:var(--gray-500,#718096);font-size:13px}
+.ad-inline-btn{background:var(--navy,#1a365d);color:white;font-size:12px;font-weight:600;padding:6px 14px;border-radius:6px;white-space:nowrap}
+.faq-item{margin-bottom:16px}.faq-q{font-weight:700;color:var(--navy);font-size:15px;margin-bottom:4px}.faq-a{font-size:14px;color:var(--gray-700);line-height:1.7}
+@media(max-width:768px){.nav-links{display:none}.hospital-name{font-size:26px}.info-row{flex-direction:column;gap:4px}.info-label{width:100%}.steps-row{grid-template-columns:1fr}.map-links{grid-template-columns:1fr}.contact-card{flex-direction:column;gap:16px}.module{padding:20px}.lang-bar{display:none}}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Hospital", "name": "Beijing Anzhen Hospital", "address": {"@type": "PostalAddress", "addressLocality": "Beijing", "addressCountry": "CN"}, "telephone": "+86-10-64456413", "availableLanguage": ["English"], "medicalSpecialty": ["Cardiovascular Surgery", "Cardiology"], "url": "https://www.anzhen.org/"}
+</script>
+</head><body>
+
+<nav class="nav"><div class="nav-inner">
+<a href="../../index.html" class="nav-logo" id="homeLink"><span class="nav-logo-icon">CM</span>ChinaMed Directory</a>
+<ul class="nav-links">
+<li><a href="../../index.html" id="navHome" data-key="nav_home"></a></li>
+<li><a href="../../general-hospitals.html" id="navGeneral" data-key="nav_general"></a></li>
+<li><a href="../../specialty-hospitals.html" id="navSpecialty" data-key="nav_specialty"></a></li>
+<li><a href="../../about.html" id="navAbout" data-key="nav_about"></a></li>
+<li><a href="../../contact.html" id="navContact" data-key="nav_contact"></a></li>
+<li><a href="../../legal-notice.html" id="navLegal" data-key="nav_legal"></a></li>
+</ul>
+<div class="lang-bar" id="langBar"></div></div></nav>
+
+<div class="breadcrumb">
+<a href="../../index.html" data-key="bread_home">Home</a><span>/</span>
+<a href="../../general-hospitals.html" data-key="bread_list">General Hospitals</a><span>/</span>
+<span id="breadName">北京安贞医院</span>
+</div>
+
+<header class="hospital-header">
+<div class="hospital-badge" id="categoryBadge">综合医院 · 三级甲等</div>
+<h1 class="hospital-name" id="hospNameZh">北京安贞医院</h1>
+<p class="hospital-name-en" id="hospNameEn">Beijing Anzhen Hospital</p>
+<div class="hospital-meta" id="hospMeta"></div>
+</header>
+
+<!-- AD Slot 1: Below header -->
+<div class="ad-container"><div class="ad-banner">
+<div class="ad-label">Sponsored</div>
+<div class="ad-placeholder">📢 Ad Space Available — Contact for Placement</div>
+</div></div>
+
+<div class="content">
+
+<!-- Module 1: Basic Info -->
+<div class="module">
+  <div class="module-header"><div class="module-icon">&#x1F3E5;</div><div><div class="module-title" data-key="mod_info">Basic Information</div><div class="module-sub" data-key="mod_info_sub">Hospital profile and location</div></div></div>
+  <div id="infoRows"></div>
+</div>
+
+<!-- Module 2: Contact (highlight) -->
+<div class="contact-highlight">
+  <div class="module-header"><div class="module-icon">&#x260E;</div><div><div class="module-title" id="intlDeptName"></div><div class="module-sub" data-key="mod_contact_sub">Direct call. No intermediaries. English-speaking staff.</div></div></div>
+  <div class="contact-card" id="contactCards"></div>
+</div>
+
+<!-- Module 3: Languages & Insurance -->
+<div class="module">
+  <div class="module-header"><div class="module-icon">&#x1F30D;</div><div><div class="module-title" data-key="mod_lang">Languages &amp; Insurance</div><div class="module-sub" data-key="mod_lang_sub">International service information</div></div></div>
+  <div id="langRows"></div>
+</div>
+
+<!-- Module 4: Key Specialties -->
+<div class="module">
+  <div class="module-header"><div class="module-icon">&#x2B50;</div><div><div class="module-title" data-key="mod_spec">Key Specialties</div><div class="module-sub" data-key="mod_spec_sub">Recognized clinical departments</div></div></div>
+  <div class="specialty-tags" id="specTags"></div>
+</div>
+
+<!-- Module 5: Transport -->
+<div class="module">
+  <div class="module-header"><div class="module-icon">&#x1F698;</div><div><div class="module-title" data-key="mod_transport">Transport &amp; Navigation</div><div class="module-sub" data-key="mod_transport_sub">Dual-map: Google Maps + Baidu Maps</div></div></div>
+  <div class="map-links" id="mapCards"></div>
+  <div id="transportNote"></div>
+</div>
+
+<!-- Module 6: Visit Process -->
+<div class="module">
+  <div class="module-header"><div class="module-icon">&#x2713;</div><div><div class="module-title" data-key="mod_process">Visit Process</div><div class="module-sub" data-key="mod_process_sub">3-step guide for intl. patients</div></div></div>
+  <div class="steps-row" id="processSteps"></div>
+</div>
+
+<!-- Module 7: Overview -->
+<div class="module">
+  <div class="module-header"><div class="module-icon">&#x1F4CB;</div><div><div class="module-title" data-key="mod_overview">Hospital Overview</div><div class="module-sub" data-key="mod_overview_sub"></div></div></div>
+  <div class="overview-text" id="overviewText"></div>
+  <div class="disclaimer-box" id="disclaimerText"></div>
+</div>
+
+<!-- Module 8: Why Choose -->
+<div class="module" id="modWhyChoose">
+  <div class="module-header"><div class="module-icon">&#x1F3C6;</div><div><div class="module-title" data-key="mod_why">Why This Hospital</div></div></div>
+  <div id="whyChooseText" class="overview-text"></div>
+</div>
+
+<!-- Module 9: Arrival Guide -->
+<div class="module" id="modArrival">
+  <div class="module-header"><div class="module-icon">&#x2708;</div><div><div class="module-title" data-key="mod_arrival">Arrival Guide</div></div></div>
+  <div id="arrivalText" class="overview-text"></div>
+</div>
+
+<!-- Module 10: Payment -->
+<div class="module" id="modPayment">
+  <div class="module-header"><div class="module-icon">&#x1F4B0;</div><div><div class="module-title" data-key="mod_payment">Cost &amp; Payment</div></div></div>
+  <div id="paymentText" class="overview-text"></div>
+</div>
+
+<!-- Module 11: Nearby Hotels -->
+<div class="module" id="modNearby">
+  <div class="module-header"><div class="module-icon">&#x1F3E8;</div><div><div class="module-title" data-key="mod_nearby">Nearby Hotels</div></div></div>
+  <div id="nearbyText" class="overview-text"></div>
+</div>
+
+<!-- Module 12: Cultural Tips -->
+<div class="module" id="modCultural">
+  <div class="module-header"><div class="module-icon">&#x1F31F;</div><div><div class="module-title" data-key="mod_cultural">Cultural Tips</div><div class="module-sub" data-key="mod_cultural_sub">What to know at Chinese hospitals</div></div></div>
+  <div id="culturalText" class="overview-text"></div>
+</div>
+
+<!-- Module 13: Emergency -->
+<div class="module" id="modEmergency">
+  <div class="module-header"><div class="module-icon">&#x1F691;</div><div><div class="module-title" data-key="mod_emergency">Emergency</div></div></div>
+  <div id="emergencyText" class="overview-text"></div>
+</div>
+
+<!-- Module 14: FAQ -->
+<div class="module" id="modFaq">
+  <div class="module-header"><div class="module-icon">&#x2753;</div><div><div class="module-title" data-key="mod_faq">FAQ</div></div></div>
+  <div id="faqList"></div>
+</div>
+
+</div><!-- end .content -->
+
+<!-- AD Slot 2: Mid-page -->
+<div class="ad-inline"><div class="ad-inline-box">
+<div class="ad-label">Sponsored</div>
+<div class="ad-inline-text">📢 Your Ad Here — Reach International Patients</div>
+<div class="ad-inline-btn">Inquire →</div>
+</div></div>
+
+<footer class="footer"><div class="footer-inner" id="footerContent"></div></footer>
+
+<script>
+// === Hospital Data (populated by Python) ===
+var H = {"zh": {"name": "北京安贞医院", "name_zh": "北京安贞医院", "name_en": "Beijing Anzhen Hospital", "city": "北京", "city_zh": "北京", "level": "三级甲等，大学附属医院", "address": "北京市朝阳区安贞路2号", "established": "", "beds": "", "dept_name": "国际医疗中心", "phone": "+86-10-64456413", "email": "contact@chinamed.directory (forwarded)", "website": "https://www.anzhen.org/", "languages": "English", "insurance": [], "specialties": [{"name": "心脏外科", "standing": ""}, {"name": "心血管内科", "standing": ""}], "google_maps": "https://maps.google.com/?q=Beijing+Anzhen+Hospital", "baidu_maps": "https://map.baidu.com/search/北京安贞医院", "airport": "北京首都国际机场", "metro": "地铁10号线安贞门站", "steps": [{"title": "通过电话或邮箱联系国际医疗中心预约。提供护照信息和既往病历。", "desc": "通过电话或邮箱联系国际医疗中心预约。提供护照信息和既往病历。"}, {"title": "准备材料：护照、既往病历（英文或翻译件）、影像资料、国际保险卡。", "desc": "准备材料：护照、既往病历（英文或翻译件）、影像资料、国际保险卡。"}, {"title": "抵达医院国际医疗中心，英文工作人员将全程引导就诊。", "desc": "抵达医院国际医疗中心，英文工作人员将全程引导就诊。"}], "overview": "北京安贞医院是首都医科大学附属医院，中国心血管疾病诊疗的顶级中心。以世界级心脏外科闻名，每年完成数千例复杂心脏手术，在先天性心脏病、冠心病、主动脉疾病治疗方面全国领先。", "why_choose_zh": "该院为中国最负盛名的公立医疗机构之一，拥有先进医疗技术、国际培训背景的专家团队，以及配备英语工作人员的专属国际医疗中心。患者可享受世界级医疗服务，费用远低于西方国家。", "arrival_info_zh": "抵达后请直接前往国际医疗中心（通常位于独立楼栋或楼层）。请携带护照、病历、影像资料和国际保险卡。英文协调员将协助您完成挂号登记。无需中文能力——国际医疗中心工作人员均可用英语沟通。", "payment_info_zh": "支付方式：国际信用卡（Visa、Mastercard）、银联卡、微信支付、支付宝及现金（人民币）。多数国际医疗中心支持主流国际保险直付——就诊前请与保险公司确认。门诊挂号费约 ¥200-800（约$30-110）。住院手术可能需缴纳预付款。", "nearby_info_zh": "医院步行或短途出租车范围内有多家国际标准酒店、服务式公寓和经济型旅馆。许多酒店为患者及家属提供折扣价格。请向国际医疗中心工作人员咨询推荐。Booking.com、Trip.com 等主流订房平台可查询附近住宿。", "cultural_tips_zh": "• 中国不要求也不期待给小费——医院亦然。\n• 排队方式不同：患者按号码叫号，无需排队等候。您的协调员会帮您处理。\n• 下载翻译App（Google翻译或DeepSeek）——方便识别标识、菜单及院外基础沟通。\n• 自带舒适的拖鞋和外套——病房空调可能较冷。\n• 自来水不可直接饮用——请使用瓶装水。\n• 医院餐食以中餐为主，国际选择有限。可考虑使用美团、饿了么等外卖App或周边餐厅。", "emergency_info_zh": "• 医疗急救：拨打 120（全国救护车）。说 'English' 可接通英语接线员。\n• 医院急诊科 24 小时开放。\n• 最近 24 小时药房：位于医院院内或 500 米范围内。\n• 报警：110 | 火警：119\n• 大使馆/领事馆：如需协助请联系本国使领馆。", "faq_zh": [{"q": "需要会说中文吗？", "a": "不需要。国际医疗中心有英语工作人员，将全程协助您就诊。"}, {"q": "如何预约？", "a": "直接拨打上方国际医疗中心电话，或访问医院官网。无需通过中介。"}, {"q": "需要带什么材料？", "a": "护照、既往病历（英文或翻译件）、影像资料/光盘、国际保险卡、当前用药清单。"}, {"q": "可以用国际医保吗？", "a": "多数国际保险公司均可使用。就诊前请与保险公司和医院双方确认。主流保险公司支持直付。"}, {"q": "费用大概多少？", "a": "费用因手术类型而异。参考：中国公立医院费用通常比美国/欧洲低 50-80%。就诊前可向国际医疗中心索取费用预估。"}], "updated": "2026-05-31"}, "en": {"name": "Beijing Anzhen Hospital", "name_zh": "北京安贞医院", "name_en": "Beijing Anzhen Hospital", "city": "Beijing", "city_zh": "北京", "level": "Tertiary A (Grade 3A), University-Affiliated", "address": "No.2 Anzhen Road, Chaoyang District, Beijing 100029, China", "established": "", "beds": "", "dept_name": "International Medical Center", "phone": "+86-10-64456413", "email": "contact@chinamed.directory (forwarded)", "website": "https://www.anzhen.org/", "languages": "English", "insurance": [], "specialties": [{"name": "Cardiovascular Surgery", "standing": ""}, {"name": "Cardiology", "standing": ""}], "google_maps": "https://maps.google.com/?q=Beijing+Anzhen+Hospital", "baidu_maps": "https://map.baidu.com/search/北京安贞医院", "airport": "Beijing Capital International Airport (PEK)", "metro": "Line 10, Anzhenmen Station", "steps": [{"title": "Contact the International Medical Center by phone or email to pre-register. Provide your passport information and medical records.", "desc": "Contact the International Medical Center by phone or email to pre-register. Provide your passport information and medical records."}, {"title": "Prepare: passport, previous medical records (English or translated), imaging films, and international insurance card.", "desc": "Prepare: passport, previous medical records (English or translated), imaging films, and international insurance card."}, {"title": "Arrive at the hospital International Medical Center. English-speaking staff will guide you through the visit.", "desc": "Arrive at the hospital International Medical Center. English-speaking staff will guide you through the visit."}], "overview": "Beijing Anzhen Hospital, affiliated with Capital Medical University, is China's premier center for cardiovascular medicine and surgery. Known for its world-class heart surgery program conducting thousands of complex cardiac procedures annually, it leads the nation in the treatment of congenital heart disease, coronary artery disease, and aortic conditions.", "why_choose_en": "This hospital is among the most prestigious public medical institutions in China. It offers advanced medical technology, internationally trained specialists, and a dedicated International Medical Center with English-speaking staff. Patients benefit from China's combination of world-class expertise at a fraction of Western costs.", "arrival_info_en": "Upon arrival, proceed directly to the International Medical Center (IMC), typically located in a dedicated building or floor. Bring your passport, medical records, imaging films, and international insurance card. English-speaking coordinators will assist with registration. No Chinese language skills required — hospital staff at the IMC speak English.", "payment_info_en": "Payment methods: International credit cards (Visa, Mastercard), UnionPay, WeChat Pay, Alipay, and cash (RMB). Most international medical centers accept direct billing from major international insurers — confirm with your provider before your visit. Typical consultation fee: ¥200-800 (≈$30-110). Deposit may be required for inpatient procedures.", "nearby_info_en": "International-standard hotels, serviced apartments, and affordable guesthouses are available within walking distance or a short taxi ride from the hospital. Many offer discounted rates for patients and families. Ask the International Medical Center staff for recommendations. Major hotel booking platforms (Booking.com, Trip.com) list nearby options.", "cultural_tips_en": "• Tipping is NOT expected or required in China — including at hospitals. \n• Queue culture is different: patients are called by number, not by waiting in line. Your coordinator will handle this. \n• Download a translation app (Google Translate or DeepSeek) — helpful for signs, menus, and basic communication outside the hospital. \n• Bring comfortable slippers and a jacket — hospital rooms can be cool. \n• Tap water is NOT drinkable — use bottled water. \n• Hospital food is Chinese-style; international options may be limited. Consider food delivery apps (Meituan, Ele.me) or nearby restaurants.", "emergency_info_en": "• Medical Emergency: Dial 120 (national ambulance). Say 'English' for an English-speaking operator. \n• The hospital emergency department is open 24/7. \n• Nearest 24-hour pharmacy: available on hospital campus or within 500m. \n• Police: 110 | Fire: 119 \n• Your embassy/consulate: contact for assistance if needed.", "faq_en": [{"q": "Do I need to speak Chinese?", "a": "No. The International Medical Center has English-speaking staff who will assist you throughout your visit."}, {"q": "How do I make an appointment?", "a": "Call the International Medical Center directly using the phone number above, or visit the hospital's official website. No intermediary needed."}, {"q": "What documents should I bring?", "a": "Passport, previous medical records (English or translated), imaging films/CDs, international insurance card, and a list of current medications."}, {"q": "Can I use my international health insurance?", "a": "Many international insurers are accepted. Confirm with both your insurance provider and the hospital before your visit. Direct billing is available with major insurers."}, {"q": "How much will it cost?", "a": "Costs vary by procedure. As a reference, prices in Chinese public hospitals are typically 50-80% lower than in the US/Europe. Request a cost estimate from the International Medical Center before treatment."}], "updated": "2026-05-31"}};
+var CAT = "general";
+var CAT_LABELS = {"zh": "综合医院 · 三级甲等", "en": "General Hospital · Tertiary A"};
+
+// === UI i18n (8 languages) ===
+var I = {
+zh: {
+  nav_home:"首页",nav_general:"综合医院",nav_specialty:"专科医院",nav_about:"关于我们",nav_contact:"联系我们",nav_legal:"法律声明",
+  bread_home:"首页",bread_list_general:"综合医院",bread_list_specialty:"专科医院",
+  mod_info:"基本信息",mod_info_sub:"医院基本信息与地址",
+  mod_contact_sub:"直接拨打，无需中介。支持英文沟通。",
+  mod_lang:"语言与保险",mod_lang_sub:"国际服务信息",
+  mod_spec:"重点专科",mod_spec_sub:"国家级与省级重点临床科室",
+  mod_transport:"交通与导航",mod_transport_sub:"双地图方案（谷歌地图+百度地图）",
+  mod_process:"就诊流程",mod_process_sub:"国际患者三步指南",
+  mod_overview:"医院简介",mod_overview_sub:"",
+  mod_why:"为什么选择这家医院",mod_arrival:"抵达须知",mod_payment:"费用与支付",mod_nearby:"周边住宿",
+  mod_cultural:"文化贴士",mod_cultural_sub:"在中国的医院就诊须知",mod_emergency:"紧急情况",mod_faq:"常见问题",
+  info_level:"医院等级",info_address:"地址",info_city:"所在城市",info_established:"建院年份",info_beds:"床位数",
+  info_languages:"服务语言",info_insurance:"保险直付",info_insurance_note:"就诊前请与国际医疗中心确认保险直付政策。",
+  phone_label:"国际直拨电话",
+  email_label:"邮箱 / 官网",
+  work_hours_default:"周一至周五 08:00-17:00",
+  map_before_title:"出发前规划",map_before_desc:"海外用户使用谷歌地图规划路线",map_before_btn:"谷歌地图",
+  map_after_title:"抵达后导航",map_after_desc:"百度地图支持英文界面，建议提前下载",map_after_btn:"百度地图",
+  transport_airport:"最近机场",transport_metro:"地铁",
+  step1_t:"联系预约",step1_d:"通过电话或邮箱联系国际医疗中心预约。",
+  step2_t:"准备材料",step2_d:"准备护照、既往病历、影像资料和国际保险卡。",
+  step3_t:"到院就诊",step3_d:"抵达医院国际医疗中心，工作人员全程引导就诊。",
+  process_default:"建议直接联系医院国际部获取详细流程。",
+  overview_default:"请参考医院官网或直接联系国际部了解详情。",
+  disclaimer:"<strong>信息来源：</strong>医院官方网站及公开渠道。本页面仅供信息参考，不提供医疗建议、诊断或治疗方案。就诊前请直接与医院核实所有信息。数据更新日期：%(updated)s。",
+  footer_desc:"公益性信息平台 · 免费使用 · 无广告 · 无中介",
+  footer_links:"快速链接",footer_legal:"法律声明",
+  footer_disclaimer:"<strong>医疗免责声明：</strong>本站所有内容仅供参考，不构成医疗建议。就诊前请与医院核实。<br><br>&copy; 2026 ChinaMed Directory.",
+  city_fmt:"%(city)s，中国",
+  no_phone:"请查看医院官网",no_email:"请查看医院官网",no_website:"",website_btn:"医院官网",
+  beds_fmt:"%(beds)s 张床位",est_fmt:"建院 %(est)s 年"
+},
+en: {
+  nav_home:"Home",nav_general:"General Hospitals",nav_specialty:"Specialty Hospitals",nav_about:"About Us",nav_contact:"Contact",nav_legal:"Legal Notice",
+  bread_home:"Home",bread_list_general:"General Hospitals",bread_list_specialty:"Specialty Hospitals",
+  mod_info:"Basic Information",mod_info_sub:"Hospital profile and location",
+  mod_contact_sub:"Call or email directly. No intermediaries. English-speaking staff available.",
+  mod_lang:"Languages & Insurance",mod_lang_sub:"International service information",
+  mod_spec:"Key Specialties",mod_spec_sub:"Recognized clinical departments",
+  mod_transport:"Transport & Navigation",mod_transport_sub:"Dual-map: Google Maps + Baidu Maps",
+  mod_process:"Visit Process",mod_process_sub:"3-step guide for intl. patients",
+  mod_overview:"Hospital Overview",mod_overview_sub:"",
+  mod_why:"Why This Hospital",mod_arrival:"Arrival Guide",mod_payment:"Cost & Payment",mod_nearby:"Nearby Hotels",
+  mod_cultural:"Cultural Tips",mod_cultural_sub:"What to know at Chinese hospitals",mod_emergency:"Emergency Info",mod_faq:"FAQ",
+  info_level:"Hospital Level",info_address:"Address",info_city:"City",info_established:"Established",info_beds:"Hospital Beds",
+  info_languages:"Languages",info_insurance:"Insurance Direct Billing",info_insurance_note:"Please confirm with International Medical Center before your visit.",
+  phone_label:"International Direct Line",
+  email_label:"Email / Website",
+  work_hours_default:"Mon-Fri 08:00-17:00 (typical)",
+  map_before_title:"Route Planning",map_before_desc:"Use Google Maps from abroad",map_before_btn:"Google Maps",
+  map_after_title:"In China",map_after_desc:"Baidu Maps supports English UI",map_after_btn:"Baidu Maps",
+  transport_airport:"Nearest Airport",transport_metro:"Metro",
+  step1_t:"Contact & Pre-register",step1_d:"Contact the International Medical Center by phone/email to pre-register.",
+  step2_t:"Prepare Documents",step2_d:"Prepare passport, medical records, imaging films, and insurance card.",
+  step3_t:"Arrive & Visit",step3_d:"Arrive at the hospital International Medical Center. Staff will guide you.",
+  process_default:"Please contact hospital International Department directly for detailed process.",
+  overview_default:"Please refer to hospital website or contact International Department.",
+  disclaimer:"<strong>Information Source:</strong> Hospital official website and public channels. For informational reference only. Not medical advice. Verify with hospital before visiting. Last updated: %(updated)s.",
+  footer_desc:"A public-service information platform. Free. No ads. No intermediaries.",
+  footer_links:"Quick Links",footer_legal:"Legal",
+  footer_disclaimer:"<strong>Medical Disclaimer:</strong> All content is for informational reference only. Not medical advice. Verify with hospital before visiting.<br><br>&copy; 2026 ChinaMed Directory.",
+  city_fmt:"%(city)s, China",
+  no_phone:"Please check hospital website",no_email:"Please check hospital website",no_website:"",website_btn:"Hospital Website",
+  beds_fmt:"~%(beds)s Beds",est_fmt:"Est. %(est)s"
+},
+fr: {
+  nav_home:"Accueil",nav_general:"Hopitaux Generaux",nav_specialty:"Hopitaux Specialises",nav_about:"A propos",nav_contact:"Contact",nav_legal:"Mentions legales",
+  bread_home:"Accueil",bread_list_general:"Hopitaux Generaux",bread_list_specialty:"Hopitaux Specialises",
+  mod_info:"Informations",mod_info_sub:"Profil et adresse de l'hopital",
+  mod_contact_sub:"Appelez directement. Sans intermediaire. Personnel anglophone.",
+  mod_lang:"Langues & Assurance",mod_lang_sub:"Informations sur les services internationaux",
+  mod_spec:"Specialites Cles",mod_spec_sub:"Departements cliniques reconnus",
+  mod_transport:"Transport & Navigation",mod_transport_sub:"Double carte: Google Maps + Baidu Maps",
+  mod_process:"Processus de Visite",mod_process_sub:"Guide en 3 etapes",
+  mod_overview:"Apercu",mod_overview_sub:"",
+  mod_why:"Pourquoi cet hopital",mod_arrival:"Arrivee",mod_payment:"Couts",mod_nearby:"Hotels",
+  mod_cultural:"Conseils",mod_cultural_sub:"",mod_emergency:"Urgences",mod_faq:"FAQ",
+  info_level:"Niveau",info_address:"Adresse",info_city:"Ville",info_established:"Fonde",info_beds:"Lits",
+  info_languages:"Langues",info_insurance:"Facturation Directe",info_insurance_note:"Veuillez confirmer aupres du Centre Medical International.",
+  phone_label:"Ligne Directe Internationale",
+  email_label:"E-mail / Site web",
+  work_hours_default:"Lun-Ven 08:00-17:00",
+  map_before_title:"Planification",map_before_desc:"Utilisez Google Maps depuis l'etranger",map_before_btn:"Google Maps",
+  map_after_title:"En Chine",map_after_desc:"Baidu Maps avec interface anglaise",map_after_btn:"Baidu Maps",
+  transport_airport:"Aeroport le plus proche",transport_metro:"Metro",
+  step1_t:"Contact & Pre-inscription",step1_d:"Contactez le Centre Medical International pour vous pre-inscrire.",
+  step2_t:"Preparer les documents",step2_d:"Preparez passeport, dossier medical, imagerie et carte d'assurance.",
+  step3_t:"Arrivee & Visite",step3_d:"Rendez-vous au Centre Medical International. Le personnel vous guidera.",
+  process_default:"Veuillez contacter le departement international pour plus de details.",
+  overview_default:"Veuillez consulter le site web de l'hopital.",
+  disclaimer:"<strong>Source:</strong> Site officiel de l'hopital. Reference seulement. Verifiez avant la visite. Derniere mise a jour: %(updated)s.",
+  footer_desc:"Plateforme de service public. Gratuit. Sans pub. Sans intermediaire.",
+  footer_links:"Liens Rapides",footer_legal:"Mentions Legales",
+  footer_disclaimer:"<strong>Avertissement:</strong> Contenu informatif uniquement. Verifiez aupres de l'hopital.<br><br>&copy; 2026 ChinaMed Directory.",
+  city_fmt:"%(city)s, Chine",no_phone:"Consultez le site web",no_email:"Consultez le site web",no_website:"",website_btn:"Site de l'hopital",beds_fmt:"~%(beds)s lits",est_fmt:"Fonde %(est)s"
+},
+de: {
+  nav_home:"Startseite",nav_general:"Allg. Krankenhauser",nav_specialty:"Fachkrankenhauser",nav_about:"Uber uns",nav_contact:"Kontakt",nav_legal:"Rechtliches",
+  bread_home:"Startseite",bread_list_general:"Allg. Krankenhauser",bread_list_specialty:"Fachkrankenhauser",
+  mod_info:"Basisinformationen",mod_info_sub:"Krankenhausprofil und Adresse",
+  mod_contact_sub:"Direkt anrufen. Keine Vermittler. Englischsprachiges Personal.",
+  mod_lang:"Sprachen & Versicherung",mod_lang_sub:"Internationale Service-Informationen",
+  mod_spec:"Schwerpunkte",mod_spec_sub:"Anerkannte klinische Abteilungen",
+  mod_transport:"Transport & Navigation",mod_transport_sub:"Doppelte Karte: Google Maps + Baidu Maps",
+  mod_process:"Besuchsablauf",mod_process_sub:"3-Schritte-Anleitung",
+  mod_overview:"Ubersicht",mod_overview_sub:"",
+  mod_why:"Warum dieses KH",mod_arrival:"Ankunft",mod_payment:"Kosten",mod_nearby:"Hotels",
+  mod_cultural:"Tipps",mod_cultural_sub:"",mod_emergency:"Notfall",mod_faq:"FAQ",
+  info_level:"Krankenhausstufe",info_address:"Adresse",info_city:"Stadt",info_established:"Gegrundet",info_beds:"Betten",
+  info_languages:"Sprachen",info_insurance:"Direktabrechnung",info_insurance_note:"Bitte bestatigen Sie dies beim International Medical Center.",
+  phone_label:"Internationale Direktleitung",
+  email_label:"E-Mail / Website",
+  work_hours_default:"Mo-Fr 08:00-17:00",
+  map_before_title:"Routenplanung",map_before_desc:"Google Maps aus dem Ausland nutzen",map_before_btn:"Google Maps",
+  map_after_title:"In China",map_after_desc:"Baidu Maps mit englischer Oberflache",map_after_btn:"Baidu Maps",
+  transport_airport:"Nachster Flughafen",transport_metro:"U-Bahn",
+  step1_t:"Kontakt & Voranmeldung",step1_d:"Kontaktieren Sie das International Medical Center zur Voranmeldung.",
+  step2_t:"Dokumente vorbereiten",step2_d:"Reisepass, Krankenakten, Bildgebung und Versicherungskarte bereithalten.",
+  step3_t:"Ankunft & Besuch",step3_d:"Gehen Sie zum International Medical Center. Das Personal wird Sie begleiten.",
+  process_default:"Bitte kontaktieren Sie die Internationale Abteilung fur Details.",
+  overview_default:"Bitte besuchen Sie die Krankenhaus-Website.",
+  disclaimer:"<strong>Quelle:</strong> Offizielle Website. Nur zur Referenz. Vor Besuch uberprufen. Aktualisiert: %(updated)s.",
+  footer_desc:"Offentliche Informationsplattform. Kostenlos. Keine Werbung. Keine Vermittler.",
+  footer_links:"Schnelllinks",footer_legal:"Rechtliches",
+  footer_disclaimer:"<strong>Haftungsausschluss:</strong> Nur zu Informationszwecken. Vor Besuch uberprufen.<br><br>&copy; 2026 ChinaMed Directory.",
+  city_fmt:"%(city)s, China",no_phone:"Website prufen",no_email:"Website prufen",no_website:"",website_btn:"Krankenhaus-Website",beds_fmt:"~%(beds)s Betten",est_fmt:"Gegr. %(est)s"
+},
+es: {
+  nav_home:"Inicio",nav_general:"Hospitales Generales",nav_specialty:"Hospitales Especializados",nav_about:"Sobre Nosotros",nav_contact:"Contacto",nav_legal:"Aviso Legal",
+  bread_home:"Inicio",bread_list_general:"Hospitales Generales",bread_list_specialty:"Hospitales Especializados",
+  mod_info:"Informacion Basica",mod_info_sub:"Perfil y direccion del hospital",
+  mod_contact_sub:"Llame directamente. Sin intermediarios. Personal que habla ingles.",
+  mod_lang:"Idiomas y Seguro",mod_lang_sub:"Informacion de servicios internacionales",
+  mod_spec:"Especialidades Clave",mod_spec_sub:"Departamentos clinicos reconocidos",
+  mod_transport:"Transporte y Navegacion",mod_transport_sub:"Doble mapa: Google Maps + Baidu Maps",
+  mod_process:"Proceso de Visita",mod_process_sub:"Guia de 3 pasos",
+  mod_overview:"Resena",mod_overview_sub:"",
+  mod_why:"Por que aqui",mod_arrival:"Llegada",mod_payment:"Costos",mod_nearby:"Hoteles",
+  mod_cultural:"Consejos",mod_cultural_sub:"",mod_emergency:"Emergencia",mod_faq:"FAQ",
+  info_level:"Nivel",info_address:"Direccion",info_city:"Ciudad",info_established:"Fundado",info_beds:"Camas",
+  info_languages:"Idiomas",info_insurance:"Facturacion Directa",info_insurance_note:"Confirme con el Centro Medico Internacional antes de su visita.",
+  phone_label:"Linea Directa Internacional",
+  email_label:"Correo / Sitio web",
+  work_hours_default:"Lun-Vie 08:00-17:00",
+  map_before_title:"Planificacion",map_before_desc:"Use Google Maps desde el extranjero",map_before_btn:"Google Maps",
+  map_after_title:"En China",map_after_desc:"Baidu Maps con interfaz en ingles",map_after_btn:"Baidu Maps",
+  transport_airport:"Aeropuerto mas cercano",transport_metro:"Metro",
+  step1_t:"Contacto y Pre-registro",step1_d:"Contacte al Centro Medico Internacional para pre-registrarse.",
+  step2_t:"Preparar Documentos",step2_d:"Prepare pasaporte, historial medico, imagenes y tarjeta de seguro.",
+  step3_t:"Llegada y Visita",step3_d:"Dirijase al Centro Medico Internacional. El personal lo guiara.",
+  process_default:"Contacte al departamento internacional para mas detalles.",
+  overview_default:"Consulte el sitio web del hospital.",
+  disclaimer:"<strong>Fuente:</strong> Sitio oficial del hospital. Solo referencia. Verifique antes de visitar. Actualizado: %(updated)s.",
+  footer_desc:"Plataforma de servicio publico. Gratis. Sin anuncios. Sin intermediarios.",
+  footer_links:"Enlaces Rapidos",footer_legal:"Aviso Legal",
+  footer_disclaimer:"<strong>Aviso:</strong> Solo fines informativos. Verifique con el hospital.<br><br>&copy; 2026 ChinaMed Directory.",
+  city_fmt:"%(city)s, China",no_phone:"Consulte el sitio web",no_email:"Consulte el sitio web",no_website:"",website_btn:"Sitio del hospital",beds_fmt:"~%(beds)s camas",est_fmt:"Fundado %(est)s"
+},
+ru: {
+  nav_home:"Glavnaya",nav_general:"Obshchie bolnitsy",nav_specialty:"Spetsializ. bolnitsy",nav_about:"O nas",nav_contact:"Kontakty",nav_legal:"Yurid. informatsiya",
+  bread_home:"Glavnaya",bread_list_general:"Obshchie bolnitsy",bread_list_specialty:"Spetsializ. bolnitsy",
+  mod_info:"Osnovnaya informatsiya",mod_info_sub:"Profil i adres bolnitsy",
+  mod_contact_sub:"Zvonite napryamuyu. Bez posrednikov. Personal govorit po-angliyski.",
+  mod_lang:"Yazyki i Strakhovanie",mod_lang_sub:"Informatsiya o mezhdunarodnykh uslugakh",
+  mod_spec:"Klyuchevye spetsialnosti",mod_spec_sub:"Priznannye klinicheskie otdeleniya",
+  mod_transport:"Transport i Navigatsiya",mod_transport_sub:"Dve karty: Google Maps + Baidu Maps",
+  mod_process:"Protsess posesheniya",mod_process_sub:"Rukovodstvo iz 3 shagov",
+  mod_overview:"Obzor",mod_overview_sub:"",
+  mod_why:"Pochemu",mod_arrival:"Pribytie",mod_payment:"Oplata",mod_nearby:"Oteli",
+  mod_cultural:"Sovety",mod_cultural_sub:"",mod_emergency:"Ekstr.",mod_faq:"ChAVO",
+  info_level:"Uroven",info_address:"Adres",info_city:"Gorod",info_established:"Osnovan",info_beds:"Koek",
+  info_languages:"Yazyki",info_insurance:"Pryamaya oplata",info_insurance_note:"Podtverdite v Mezhdunarodnom meditsinskom tsentre.",
+  phone_label:"Mezhdunarodnaya liniya",
+  email_label:"Email / Sayt",
+  work_hours_default:"Pn-Pt 08:00-17:00",
+  map_before_title:"Planirovanie",map_before_desc:"Ispolzuyte Google Maps iz-za granitsy",map_before_btn:"Google Maps",
+  map_after_title:"V Kitae",map_after_desc:"Baidu Maps s angliyskim interfeysom",map_after_btn:"Baidu Maps",
+  transport_airport:"Blizhayshiy aeroport",transport_metro:"Metro",
+  step1_t:"Kontakt i Predvaritelnaya zapis",step1_d:"Svyazhites s Mezhdunarodnym tsentrom dlya predvaritelnoy zapisi.",
+  step2_t:"Podgotovka dokumentov",step2_d:"Pasport, meditsinskie dokumenty, snimki i strakhovoy polis.",
+  step3_t:"Pribytie i Poseshchenie",step3_d:"Otpravlyaytes v Mezhdunarodnyy tsentr. Personal vas provodit.",
+  process_default:"Obratites v mezhdunarodnyy otdel dlya podrobnostey.",
+  overview_default:"Posetite sayt bolnitsy.",
+  disclaimer:"<strong>Istochnik:</strong> Ofitsialnyy sayt. Tolko dlya spravki. Proverte pered posesheniem. Obnovleno: %(updated)s.",
+  footer_desc:"Obshestvennaya platforma. Besplatno. Bez reklamy. Bez posrednikov.",
+  footer_links:"Bystrye ssylki",footer_legal:"Yurid. informatsiya",
+  footer_disclaimer:"<strong>Otvetstvennost:</strong> Tolko v informatsionnykh tselyakh. Proverte v bolnitse.<br><br>&copy; 2026 ChinaMed Directory.",
+  city_fmt:"%(city)s, Kitay",no_phone:"Proverte sayt",no_email:"Proverte sayt",no_website:"",website_btn:"Sayt bolnitsy",beds_fmt:"~%(beds)s koek",est_fmt:"Osn. %(est)s"
+},
+ko: {
+  nav_home:"홈",nav_general:"종합병원",nav_specialty:"전문병원",nav_about:"소개",nav_contact:"연락처",nav_legal:"법적 고지",
+  bread_home:"홈",bread_list_general:"종합병원",bread_list_specialty:"전문병원",
+  mod_info:"기본 정보",mod_info_sub:"병원 프로필 및 주소",
+  mod_contact_sub:"직접 전화하세요. 중개인 없음. 영어 가능 직원.",
+  mod_lang:"언어 및 보험",mod_lang_sub:"국제 서비스 정보",
+  mod_spec:"주요 전문과",mod_spec_sub:"인정된 임상 부서",
+  mod_transport:"교통 및 내비게이션",mod_transport_sub:"이중 지도: Google Maps + Baidu Maps",
+  mod_process:"방문 절차",mod_process_sub:"3단계 가이드",
+  mod_overview:"개요",mod_overview_sub:"",
+  mod_why:"선택 이유",mod_arrival:"도착 안내",mod_payment:"비용",mod_nearby:"숙소",
+  mod_cultural:"팁",mod_cultural_sub:"",mod_emergency:"응급",mod_faq:"FAQ",
+  info_level:"병원 등급",info_address:"주소",info_city:"도시",info_established:"설립",info_beds:"병상",
+  info_languages:"언어",info_insurance:"보험 직접 청구",info_insurance_note:"방문 전 국제의료센터에 확인하세요.",
+  phone_label:"국제 직통 전화",
+  email_label:"이메일 / 웹사이트",
+  work_hours_default:"월-금 08:00-17:00",
+  map_before_title:"경로 계획",map_before_desc:"해외에서 Google Maps 사용",map_before_btn:"Google Maps",
+  map_after_title:"중국 내",map_after_desc:"Baidu Maps 영어 인터페이스 지원",map_after_btn:"Baidu Maps",
+  transport_airport:"가장 가까운 공항",transport_metro:"지하철",
+  step1_t:"연락 및 사전 등록",step1_d:"국제의료센터에 연락하여 사전 등록하세요.",
+  step2_t:"서류 준비",step2_d:"여권, 진료 기록, 영상 자료, 보험 카드를 준비하세요.",
+  step3_t:"도착 및 방문",step3_d:"국제의료센터로 가세요. 직원이 안내합니다.",
+  process_default:"자세한 내용은 국제부에 문의하세요.",
+  overview_default:"병원 웹사이트를 참조하세요.",
+  disclaimer:"<strong>출처:</strong> 병원 공식 웹사이트. 참고용입니다. 방문 전 확인하세요. 업데이트: %(updated)s.",
+  footer_desc:"공공 서비스 플랫폼. 무료. 광고 없음. 중개인 없음.",
+  footer_links:"빠른 링크",footer_legal:"법적 고지",
+  footer_disclaimer:"<strong>면책 조항:</strong> 정보 제공 목적으로만 사용됩니다. 병원에 확인하세요.<br><br>&copy; 2026 ChinaMed Directory.",
+  city_fmt:"%(city)s, 중국",no_phone:"웹사이트 확인",no_email:"웹사이트 확인",no_website:"",website_btn:"병원 웹사이트",beds_fmt:"~%(beds)s 병상",est_fmt:"설립 %(est)s"
+},
+ar: {
+  nav_home:"الرئيسية",nav_general:"مستشفيات عامة",nav_specialty:"مستشفيات تخصصية",nav_about:"من نحن",nav_contact:"اتصل بنا",nav_legal:"إشعار قانوني",
+  bread_home:"الرئيسية",bread_list_general:"مستشفيات عامة",bread_list_specialty:"مستشفيات تخصصية",
+  mod_info:"معلومات اساسية",mod_info_sub:"ملف المستشفى والعنوان",
+  mod_contact_sub:"اتصل مباشرة. بدون وسطاء. موظفون يتحدثون الانجليزية.",
+  mod_lang:"اللغات والتامين",mod_lang_sub:"معلومات الخدمات الدولية",
+  mod_spec:"التخصصات الرئيسية",mod_spec_sub:"الاقسام السريرية المعترف بها",
+  mod_transport:"النقل والملاحة",mod_transport_sub:"خريطتان: Google Maps + Baidu Maps",
+  mod_process:"عملية الزيارة",mod_process_sub:"دليل من 3 خطوات",
+  mod_overview:"نظرة عامة",mod_overview_sub:"",
+  mod_why:"لماذا هنا",mod_arrival:"الوصول",mod_payment:"التكاليف",mod_nearby:"فنادق",
+  mod_cultural:"نصائح",mod_cultural_sub:"",mod_emergency:"طوارئ",mod_faq:"اسئلة",
+  info_level:"المستوى",info_address:"العنوان",info_city:"المدينة",info_established:"تاسست",info_beds:"الاسرة",
+  info_languages:"اللغات",info_insurance:"الفوترة المباشرة",info_insurance_note:"يرجى التاكد مع المركز الطبي الدولي قبل زيارتك.",
+  phone_label:"الخط الدولي المباشر",
+  email_label:"البريد الالكتروني / الموقع",
+  work_hours_default:"الاثنين-الجمعة 08:00-17:00",
+  map_before_title:"تخطيط المسار",map_before_desc:"استخدم Google Maps من الخارج",map_before_btn:"Google Maps",
+  map_after_title:"في الصين",map_after_desc:"Baidu Maps بواجهة انجليزية",map_after_btn:"Baidu Maps",
+  transport_airport:"اقرب مطار",transport_metro:"مترو",
+  step1_t:"الاتصال والتسجيل المسبق",step1_d:"اتصل بالمركز الطبي الدولي للتسجيل المسبق.",
+  step2_t:"تحضير المستندات",step2_d:"جهز جواز السفر والسجلات الطبية والصور وبطاقة التامين.",
+  step3_t:"الوصول والزيارة",step3_d:"توجه الى المركز الطبي الدولي. سيرشدك الموظفون.",
+  process_default:"يرجى الاتصال بالقسم الدولي للحصول على التفاصيل.",
+  overview_default:"يرجى الرجوع الى موقع المستشفى.",
+  disclaimer:"<strong>المصدر:</strong> الموقع الرسمي للمستشفى. للمرجعية فقط. تحقق قبل الزيارة. اخر تحديث: %(updated)s.",
+  footer_desc:"منصة خدمة عامة. مجانية. بدون اعلانات. بدون وسطاء.",
+  footer_links:"روابط سريعة",footer_legal:"قانوني",
+  footer_disclaimer:"<strong>اخطار:</strong> للمعلومات فقط. تحقق مع المستشفى قبل الزيارة.<br><br>&copy; 2026 ChinaMed Directory.",
+  city_fmt:"%(city)s، الصين",no_phone:"راجع الموقع",no_email:"راجع الموقع",no_website:"",website_btn:"موقع المستشفى",beds_fmt:"~%(beds)s سرير",est_fmt:"تاسست %(est)s"
+}
+};
+
+// === Specialty Glossary ===
+var GLOSSARY = {"呼吸与危重症医学科": {"zh": "呼吸与危重症医学科", "en": "Respiratory & Critical Care Medicine", "desc_zh": "诊治肺炎、哮喘、慢阻肺(COPD)、肺癌、呼吸衰竭等呼吸系统疾病及危重症的综合科室。", "desc_en": "Diagnosis and treatment of pneumonia, asthma, COPD, lung cancer, respiratory failure and critical care."}, "心血管内科": {"zh": "心血管内科", "en": "Cardiology", "desc_zh": "冠心病、高血压、心律失常、心力衰竭等心血管疾病的药物与介入治疗。", "desc_en": "Medical and interventional treatment of coronary artery disease, hypertension, arrhythmia, and heart failure."}, "心脏外科": {"zh": "心脏外科", "en": "Cardiac Surgery", "desc_zh": "冠状动脉搭桥、心脏瓣膜置换/修复、先天性心脏病矫正等心脏外科手术。", "desc_en": "Coronary bypass grafting, heart valve repair/replacement, congenital heart defect correction."}, "神经内科": {"zh": "神经内科", "en": "Neurology", "desc_zh": "诊治脑卒中(中风)、癫痫、帕金森病、阿尔茨海默病、头痛、周围神经病变等神经系统疾病。", "desc_en": "Diagnosis and treatment of stroke, epilepsy, Parkinson's disease, Alzheimer's, headache, and peripheral neuropathy."}, "神经外科": {"zh": "神经外科", "en": "Neurosurgery", "desc_zh": "脑肿瘤切除、脑血管畸形手术、颅脑外伤、脊柱脊髓手术、功能神经外科(帕金森DBS等)。", "desc_en": "Brain tumor resection, cerebrovascular surgery, traumatic brain injury, spinal surgery, functional neurosurgery (DBS for Parkinson's etc.)."}, "消化内科": {"zh": "消化内科", "en": "Gastroenterology", "desc_zh": "胃炎、溃疡、炎症性肠病、肝硬化、胰腺炎等消化道疾病的诊治，开展胃镜、肠镜等内镜检查与治疗。", "desc_en": "Diagnosis and treatment of gastritis, ulcers, IBD, liver cirrhosis, pancreatitis, with endoscopy services."}, "肾脏内科": {"zh": "肾脏内科", "en": "Nephrology", "desc_zh": "肾小球肾炎、肾病综合征、慢性肾衰竭、血液透析、腹膜透析等肾脏疾病的诊治。", "desc_en": "Treatment of glomerulonephritis, nephrotic syndrome, chronic kidney failure, hemodialysis and peritoneal dialysis."}, "血液科": {"zh": "血液科", "en": "Hematology", "desc_zh": "白血病、淋巴瘤、多发性骨髓瘤、贫血、血小板减少等血液系统疾病的化疗、靶向治疗及造血干细胞移植。", "desc_en": "Chemotherapy, targeted therapy and stem cell transplantation for leukemia, lymphoma, multiple myeloma, anemia."}, "内分泌科": {"zh": "内分泌科", "en": "Endocrinology", "desc_zh": "糖尿病、甲状腺疾病、垂体肾上腺疾病、骨质疏松、肥胖症等内分泌代谢疾病的诊治。", "desc_en": "Diagnosis and treatment of diabetes, thyroid disorders, pituitary/adrenal diseases, osteoporosis, and obesity."}, "内分泌代谢科": {"zh": "内分泌代谢科", "en": "Endocrinology & Metabolism", "desc_zh": "糖尿病、甲状腺疾病、垂体肾上腺疾病、骨质疏松、肥胖症等内分泌代谢疾病的诊治。", "desc_en": "Diagnosis and treatment of diabetes, thyroid disorders, pituitary/adrenal diseases, osteoporosis, and obesity."}, "风湿免疫科": {"zh": "风湿免疫科", "en": "Rheumatology & Immunology", "desc_zh": "类风湿关节炎、系统性红斑狼疮、强直性脊柱炎、痛风、干燥综合征等自身免疫性疾病的诊治。", "desc_en": "Treatment of rheumatoid arthritis, systemic lupus erythematosus, ankylosing spondylitis, gout, and autoimmune diseases."}, "肿瘤科": {"zh": "肿瘤科", "en": "Oncology", "desc_zh": "恶性肿瘤的综合治疗，包括化疗、靶向治疗、免疫治疗、姑息治疗等。", "desc_en": "Comprehensive cancer treatment including chemotherapy, targeted therapy, immunotherapy, and palliative care."}, "肿瘤内科": {"zh": "肿瘤内科", "en": "Medical Oncology", "desc_zh": "恶性肿瘤的化疗、靶向治疗、免疫治疗、内分泌治疗等内科综合治疗。", "desc_en": "Medical treatment of cancer including chemotherapy, targeted therapy, immunotherapy, and hormonal therapy."}, "肿瘤外科": {"zh": "肿瘤外科", "en": "Surgical Oncology", "desc_zh": "各类实体肿瘤(胃肠道、乳腺、甲状腺、软组织等)的外科手术治疗。", "desc_en": "Surgical treatment of solid tumors including gastrointestinal, breast, thyroid, and soft tissue cancers."}, "放射治疗科": {"zh": "放射治疗科", "en": "Radiation Oncology", "desc_zh": "利用高能射线(直线加速器、伽玛刀等)精准照射肿瘤，实现根治性或姑息性放疗。", "desc_en": "Precision radiation therapy using linear accelerators and Gamma Knife for curative or palliative treatment."}, "骨科": {"zh": "骨科", "en": "Orthopedics", "desc_zh": "骨折创伤、关节置换(髋/膝)、脊柱退变性疾病、运动损伤、骨肿瘤等骨骼肌肉系统疾病的手术与康复治疗。", "desc_en": "Surgery and rehabilitation for fractures, joint replacement (hip/knee), spinal disorders, sports injuries, and bone tumors."}, "运动医学": {"zh": "运动医学", "en": "Sports Medicine", "desc_zh": "运动损伤(韧带撕裂、半月板损伤、肩袖损伤等)的关节镜微创手术与运动康复。", "desc_en": "Arthroscopic minimally invasive surgery and rehabilitation for sports injuries like ligament tears, meniscus injury, rotator cuff tears."}, "脊柱外科": {"zh": "脊柱外科", "en": "Spinal Surgery", "desc_zh": "颈椎病、腰椎间盘突出、脊柱侧弯、脊柱骨折、椎管狭窄等脊柱疾病的手术治疗。", "desc_en": "Surgical treatment of cervical spondylosis, lumbar disc herniation, scoliosis, spinal fractures, and spinal stenosis."}, "泌尿外科": {"zh": "泌尿外科", "en": "Urology", "desc_zh": "肾结石、前列腺疾病(增生/癌)、膀胱癌、肾癌、肾上腺肿瘤等泌尿生殖系统疾病的微创与开放手术。", "desc_en": "Minimally invasive and open surgery for kidney stones, prostate diseases, bladder/ kidney cancer, and adrenal tumors."}, "妇产科": {"zh": "妇产科", "en": "Obstetrics & Gynecology", "desc_zh": "产前检查与分娩、妇科肿瘤(宫颈癌/卵巢癌/子宫内膜癌)、盆底疾病、不孕不育的诊治。", "desc_en": "Prenatal care and delivery, gynecologic oncology (cervical/ovarian/endometrial cancer), pelvic floor disorders, infertility treatment."}, "儿科": {"zh": "儿科", "en": "Pediatrics", "desc_zh": "儿童常见疾病、新生儿疾病、儿童生长发育、儿童神经系统疾病等0-18岁疾病诊疗。", "desc_en": "Diagnosis and treatment of childhood diseases, neonatal conditions, developmental disorders for ages 0-18."}, "小儿外科": {"zh": "小儿外科", "en": "Pediatric Surgery", "desc_zh": "儿童先天性畸形矫正、小儿创伤、小儿普外/泌尿/胸外等外科手术治疗。", "desc_en": "Surgical correction of congenital anomalies, pediatric trauma, general/urological/thoracic surgery for children."}, "新生儿科": {"zh": "新生儿科", "en": "Neonatology", "desc_zh": "新生儿(出生至28天)危重症救治，包括早产儿管理、新生儿窒息复苏、新生儿黄疸等。", "desc_en": "Critical care for newborns (birth to 28 days), including premature infant care, neonatal resuscitation, and jaundice management."}, "眼科": {"zh": "眼科", "en": "Ophthalmology", "desc_zh": "白内障超声乳化、青光眼手术、视网膜疾病(糖尿病视网膜病变/黄斑病变)、屈光矫正(近视激光手术)等。", "desc_en": "Cataract surgery, glaucoma treatment, retinal diseases (diabetic retinopathy, macular degeneration), and refractive surgery (LASIK)."}, "耳鼻喉科": {"zh": "耳鼻喉科", "en": "ENT (Otolaryngology)", "desc_zh": "中耳炎、鼻窦炎、声带息肉、扁桃体疾病、头颈部肿瘤等耳鼻咽喉疾病的诊治。", "desc_en": "Diagnosis and treatment of otitis media, sinusitis, vocal cord polyps, tonsil disorders, and head/neck tumors."}, "皮肤科": {"zh": "皮肤科", "en": "Dermatology", "desc_zh": "银屑病(牛皮癣)、湿疹、痤疮、皮肤肿瘤、性传播疾病、医学美容(激光/注射)等诊治。", "desc_en": "Treatment of psoriasis, eczema, acne, skin tumors, STDs, and medical aesthetics (laser/injectables)."}, "整形外科": {"zh": "整形外科", "en": "Plastic Surgery", "desc_zh": "烧伤后修复、先天性畸形矫正(唇腭裂等)、创伤后重建、美容外科(隆鼻/隆胸/吸脂等)。", "desc_en": "Burn repair, congenital deformity correction (cleft lip/palate), post-traumatic reconstruction, and aesthetic surgery."}, "口腔颌面外科": {"zh": "口腔颌面外科", "en": "Oral & Maxillofacial Surgery", "desc_zh": "口腔癌、颌面部骨折、唇腭裂修复、种植牙、颞下颌关节疾病的手术治疗。", "desc_en": "Surgical treatment of oral cancer, maxillofacial fractures, cleft lip/palate repair, dental implants, and TMJ disorders."}, "口腔医学": {"zh": "口腔医学", "en": "Stomatology", "desc_zh": "牙齿疾病治疗、牙周病、口腔黏膜病、牙齿修复与正畸、种植牙等综合口腔医疗服务。", "desc_en": "Comprehensive dental care including restorative dentistry, periodontics, orthodontics, and dental implants."}, "感染科": {"zh": "感染科", "en": "Infectious Diseases", "desc_zh": "病毒性肝炎、结核病、艾滋病、发热待查、耐药菌感染、新发传染病等感染性疾病的诊治。", "desc_en": "Diagnosis and treatment of viral hepatitis, tuberculosis, HIV/AIDS, fever of unknown origin, and emerging infectious diseases."}, "肝病科": {"zh": "肝病科", "en": "Hepatology", "desc_zh": "病毒性肝炎、酒精性肝病、脂肪肝、肝硬化、肝癌的早期筛查与综合治疗。", "desc_en": "Early screening and comprehensive treatment of viral hepatitis, alcoholic liver disease, fatty liver, cirrhosis, and liver cancer."}, "肝病中心": {"zh": "肝病中心", "en": "Liver Disease Center", "desc_zh": "病毒性肝炎、肝硬化、肝癌等多学科联合诊疗(MDT)，整合内科、外科、介入治疗。", "desc_en": "Multidisciplinary diagnosis and treatment of liver diseases integrating medicine, surgery, and interventional therapy."}, "肝外科": {"zh": "肝外科", "en": "Hepatic Surgery", "desc_zh": "肝癌切除、肝血管瘤手术、肝移植、复杂肝内胆管结石的外科治疗。", "desc_en": "Liver cancer resection, hepatic hemangioma surgery, liver transplantation, and complex hepatolithiasis surgery."}, "肝胆外科": {"zh": "肝胆外科", "en": "Hepatobiliary Surgery", "desc_zh": "肝癌、胆囊癌、胆管癌、胆结石、胰腺肿瘤等肝胆胰系统疾病的外科手术与微创治疗。", "desc_en": "Surgery and minimally invasive treatment for liver, gallbladder, bile duct, and pancreatic diseases."}, "器官移植": {"zh": "器官移植", "en": "Organ Transplantation", "desc_zh": "肾移植、肝移植、心脏移植、肺移植、胰腺移植等终末期器官衰竭的移植手术治疗与术后管理。", "desc_en": "Kidney, liver, heart, lung, and pancreas transplantation for end-stage organ failure, including post-transplant management."}, "普外科": {"zh": "普外科", "en": "General Surgery", "desc_zh": "甲状腺、乳腺、胃肠道、阑尾、疝气等常见疾病的外科手术治疗，涵盖开放与腹腔镜微创手术。", "desc_en": "Surgical treatment of thyroid, breast, gastrointestinal, appendiceal, and hernia conditions, including laparoscopic surgery."}, "胸外科": {"zh": "胸外科", "en": "Thoracic Surgery", "desc_zh": "肺癌、食管癌、纵隔肿瘤、气胸、胸壁畸形等胸部疾病的手术治疗，以胸腔镜微创手术为特色。", "desc_en": "Surgical treatment of lung cancer, esophageal cancer, mediastinal tumors, pneumothorax, with VATS minimally invasive techniques."}, "麻醉科": {"zh": "麻醉科", "en": "Anesthesiology", "desc_zh": "手术麻醉、无痛分娩、无痛胃肠镜、术后镇痛、危重病人监护与复苏等。", "desc_en": "Surgical anesthesia, painless delivery, sedation for endoscopy, postoperative pain management, and critical care."}, "重症医学": {"zh": "重症医学", "en": "Critical Care Medicine (ICU)", "desc_zh": "严重感染/脓毒症、多器官功能衰竭、重大手术后监护、心肺复苏后管理等危重症综合救治。", "desc_en": "Comprehensive critical care for severe sepsis, multi-organ failure, post-major surgery monitoring, and post-resuscitation management."}, "急诊医学": {"zh": "急诊医学", "en": "Emergency Medicine", "desc_zh": "急性心肌梗死、脑卒中、严重创伤、中毒、急性腹痛等急危重症的快速评估与紧急处置。", "desc_en": "Rapid assessment and emergency treatment of acute MI, stroke, severe trauma, poisoning, and acute abdomen."}, "康复医学": {"zh": "康复医学", "en": "Rehabilitation Medicine", "desc_zh": "脑卒中后康复、骨折术后康复、脊髓损伤康复、心肺康复、运动损伤康复等综合康复治疗。", "desc_en": "Comprehensive rehabilitation after stroke, fracture surgery, spinal cord injury, cardiac/pulmonary conditions, and sports injuries."}, "精神医学科": {"zh": "精神医学科", "en": "Psychiatry", "desc_zh": "抑郁症、焦虑症、双相情感障碍、精神分裂症、睡眠障碍等精神心理疾病的药物与心理治疗。", "desc_en": "Pharmacological and psychological treatment of depression, anxiety, bipolar disorder, schizophrenia, and sleep disorders."}, "心理卫生中心": {"zh": "心理卫生中心", "en": "Mental Health Center", "desc_zh": "抑郁症、焦虑症、双相情感障碍、精神分裂症、睡眠障碍等精神心理疾病的综合诊治与心理咨询。", "desc_en": "Comprehensive diagnosis, treatment and counseling for depression, anxiety, bipolar disorder, schizophrenia, and sleep disorders."}, "老年医学科": {"zh": "老年医学科", "en": "Geriatrics", "desc_zh": "老年人多病共存(高血压+糖尿病+冠心病等)、老年综合征(跌倒/痴呆/营养不良)的综合评估与管理。", "desc_en": "Comprehensive assessment and management of multimorbidity and geriatric syndromes (falls, dementia, malnutrition) in the elderly."}, "烧伤外科": {"zh": "烧伤外科", "en": "Burn Surgery", "desc_zh": "大面积烧伤救治、烧伤后瘢痕整形、慢性创面(糖尿病足/压疮)修复与植皮手术。", "desc_en": "Treatment of extensive burns, post-burn scar reconstruction, chronic wound repair (diabetic foot/pressure ulcers), and skin grafting."}, "核医学": {"zh": "核医学", "en": "Nuclear Medicine", "desc_zh": "PET-CT全身肿瘤筛查、SPECT功能显像、放射性碘治疗甲亢与甲状腺癌、骨转移瘤核素治疗。", "desc_en": "PET-CT cancer screening, SPECT functional imaging, radioactive iodine therapy for hyperthyroidism/thyroid cancer, and radionuclide therapy for bone metastases."}, "生殖医学": {"zh": "生殖医学", "en": "Reproductive Medicine", "desc_zh": "不孕不育诊治、体外受精-胚胎移植(试管婴儿)、人工授精、胚胎遗传学筛查等辅助生殖技术。", "desc_en": "Diagnosis and treatment of infertility, IVF-ET, artificial insemination, and preimplantation genetic screening."}, "变态反应科": {"zh": "变态反应科", "en": "Allergy & Immunology", "desc_zh": "过敏性鼻炎、哮喘、食物过敏、药物过敏、荨麻疹、特应性皮炎等变态反应性疾病的诊治。", "desc_en": "Diagnosis and treatment of allergic rhinitis, asthma, food/drug allergies, urticaria, and atopic dermatitis."}, "中医综合": {"zh": "中医综合", "en": "Traditional Chinese Medicine (TCM)", "desc_zh": "运用中药、针灸、推拿、拔罐等传统中医疗法，结合现代医学诊治各类慢性病与功能性疾病。", "desc_en": "Integration of herbal medicine, acupuncture, tuina massage, and cupping with modern medicine for chronic and functional disorders."}, "微创外科": {"zh": "微创外科", "en": "Minimally Invasive Surgery", "desc_zh": "腹腔镜、胸腔镜、机器人辅助手术等微创技术，创伤小、恢复快，涵盖普外/泌尿/妇科等领域。", "desc_en": "Laparoscopic, thoracoscopic, and robotic-assisted minimally invasive surgery with smaller incisions and faster recovery."}, "口腔颌面外科与整形外科": {"zh": "口腔颌面外科与整形外科", "en": "Oral & Maxillofacial / Plastic Surgery", "desc_zh": "口腔颌面部肿瘤、创伤修复、先天畸形(唇腭裂)、正颌外科、颌面整形等综合外科治疗。", "desc_en": "Comprehensive surgical treatment of oral and maxillofacial tumors, trauma, congenital deformities, and aesthetic reconstruction."}, "心血管内科与心脏外科": {"zh": "心血管内科与心脏外科", "en": "Cardiology & Cardiac Surgery", "desc_zh": "冠心病、心力衰竭、心律失常、心脏瓣膜病的药物、介入与外科手术综合诊疗。", "desc_en": "Integrated medical, interventional, and surgical treatment of coronary artery disease, heart failure, arrhythmia, and valvular disease."}, "神经内科与神经外科": {"zh": "神经内科与神经外科", "en": "Neurology & Neurosurgery", "desc_zh": "脑卒中、脑肿瘤、癫痫、帕金森病等神经系统疾病的药物与手术综合诊疗。", "desc_en": "Integrated medical and surgical treatment of stroke, brain tumors, epilepsy, Parkinson's disease and other neurological disorders."}, "神经外科与神经内科": {"zh": "神经外科与神经内科", "en": "Neurosurgery & Neurology", "desc_zh": "脑肿瘤、脑卒中、癫痫、帕金森病等神经系统疾病的药物与手术综合诊疗。", "desc_en": "Integrated medical and surgical treatment of brain tumors, stroke, epilepsy, Parkinson's disease and other neurological disorders."}, "眼科与耳鼻喉科": {"zh": "眼科与耳鼻喉科", "en": "Ophthalmology & ENT", "desc_zh": "白内障、青光眼、视网膜疾病、中耳炎、鼻窦炎、声带疾病等眼耳鼻喉综合诊疗。", "desc_en": "Comprehensive diagnosis and treatment of eye and ENT conditions including cataract, glaucoma, retinal diseases, otitis media, and sinusitis."}, "眼科与视光学": {"zh": "眼科与视光学", "en": "Ophthalmology & Optometry", "desc_zh": "近视、远视、散光矫正，白内障、青光眼、眼底病诊治及视觉功能康复。", "desc_en": "Refractive error correction, cataract and glaucoma treatment, retinal disease management, and visual rehabilitation."}, "运动骨科与康复": {"zh": "运动骨科与康复", "en": "Sports Orthopedics & Rehabilitation", "desc_zh": "运动损伤的关节镜微创手术与系统康复训练，帮助患者恢复运动功能。", "desc_en": "Arthroscopic surgery and systematic rehabilitation for sports injuries, helping patients regain athletic function."}, "骨科(中西医结合)": {"zh": "骨科(中西医结合)", "en": "Orthopedics (Integrated TCM)", "desc_zh": "结合中医正骨手法、中药外敷与现代骨科手术，诊治骨折、关节病、颈肩腰腿痛等。", "desc_en": "Integration of TCM bone-setting, herbal medicine with modern orthopedic surgery for fractures, joint diseases, and musculoskeletal pain."}};
+
+// === Language labels ===
+var LANG_LABELS = {zh:"中",en:"EN",fr:"FR",de:"DE",es:"ES",ru:"RU",ko:"KO",ar:"AR"};
+
+function fmt(s, obj) {
+  if (!s) return "";
+  return s.replace(/%\(([^)]+)\)s/g, function(_, k) { return obj[k] !== undefined ? obj[k] : ""; });
+}
+
+function hospl(lang) {
+  var d = H[lang] || H["en"] || {};
+  if (!d || Object.keys(d).length === 0) d = H["en"] || {};
+  return d;
+}
+
+function render(lang) {
+  var d = I[lang] || I["en"];
+  var h = hospl(lang);
+  var isRTL = lang === "ar";
+  var city = h.city || (H["en"] && H["en"].city) || "";
+
+  document.documentElement.lang = isRTL ? "ar" : lang;
+  document.documentElement.dir = isRTL ? "rtl" : "ltr";
+  document.body.style.direction = isRTL ? "rtl" : "";
+
+  // Header
+  document.getElementById("hospNameZh").textContent = h.name || (H["en"] && H["en"].name) || "";
+  document.getElementById("hospNameEn").textContent = h.name_en || (H["en"] && H["en"].name) || "";
+  if (lang === "zh") {
+    document.getElementById("hospNameEn").style.display = "none";
+    document.getElementById("hospNameZh").textContent = h.name_zh || h.name || "";
+  } else if (lang === "en") {
+    document.getElementById("hospNameEn").textContent = h.name || "";
+    document.getElementById("hospNameEn").style.display = "";
+    document.getElementById("hospNameZh").textContent = h.name_zh || "";
+    document.getElementById("hospNameZh").style.fontSize = "20px";
+    document.getElementById("hospNameZh").style.fontWeight = "400";
+    document.getElementById("hospNameZh").style.color = "var(--gray-500)";
+  } else {
+    document.getElementById("hospNameEn").style.display = "none";
+    document.getElementById("hospNameZh").textContent = h.name || "";
+    document.getElementById("hospNameZh").style.fontSize = "34px";
+    document.getElementById("hospNameZh").style.fontWeight = "800";
+    document.getElementById("hospNameZh").style.color = "var(--navy)";
+  }
+
+  // Badge
+  document.getElementById("categoryBadge").textContent = lang === "zh" ? CAT_LABELS.zh : CAT_LABELS.en;
+
+  // Meta
+  var metaHtml = "";
+  if (h.city_zh && lang === "zh") metaHtml += "<span>" + h.city_zh + "，中国</span>";
+  else metaHtml += "<span>" + city + ", China</span>";
+  if (h.level) metaHtml += "<span>" + h.level + "</span>";
+  if (h.established) metaHtml += "<span>" + fmt(d.est_fmt, {est: h.established}) + "</span>";
+  if (h.beds) metaHtml += "<span>" + fmt(d.beds_fmt, {beds: h.beds}) + "</span>";
+  document.getElementById("hospMeta").innerHTML = metaHtml;
+
+  // Breadcrumb
+  document.getElementById("breadName").textContent = h.name || (H["en"] && H["en"].name) || "";
+  var blKey = "bread_list_" + CAT;
+  document.querySelector(".breadcrumb a[data-key=bread_list]").textContent = d[blKey] || d["bread_list_general"];
+
+  // Data-key elements
+  document.querySelectorAll("[data-key]").forEach(function(el) {
+    var k = el.dataset.key;
+    if (d[k]) el.innerHTML = d[k];
+  });
+
+  // Nav links with lang param
+  var pages = {
+    home: "../../index.html", navGeneral: "../../general-hospitals.html",
+    navSpecialty: "../../specialty-hospitals.html", navAbout: "../../about.html",
+    navContact: "../../contact.html", navLegal: "../../legal-notice.html"
+  };
+  for (var id in pages) {
+    var a = document.getElementById(id);
+    if (a) a.href = pages[id] + "?lang=" + lang;
+  }
+  var bcLinks = document.querySelectorAll(".breadcrumb a");
+  if (bcLinks.length >= 2) {
+    bcLinks[0].href = "../../index.html?lang=" + lang;
+    var listPage = CAT === "specialty" ? "../../specialty-hospitals.html" : "../../general-hospitals.html";
+    bcLinks[1].href = listPage + "?lang=" + lang;
+  }
+
+  // Info Rows
+  var rows = "";
+  if (h.level) rows += row(d.info_level, h.level);
+  if (h.address) rows += row(d.info_address, h.address);
+  if (city) rows += row(d.info_city, h.city_zh && lang === "zh" ? h.city_zh + "（" + city + "）" : city);
+  if (h.established) rows += row(d.info_established, h.established);
+  if (h.beds) rows += row(d.info_beds, h.beds);
+  document.getElementById("infoRows").innerHTML = rows || '<div class="info-row"><div class="info-label"></div><div class="info-value">—</div></div>';
+
+  // Contact
+  document.getElementById("intlDeptName").textContent = h.dept_name || "International Medical Center";
+  var cc = '<div style="flex:1"><div style="font-size:12px;color:rgba(255,255,255,.6);margin-bottom:4px">' + d.phone_label + '</div><div class="contact-phone">' + (h.phone || d.no_phone) + '</div><div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">' + (d.work_hours_default) + '</div></div>';
+  var ec = '<div style="flex:1"><div style="font-size:12px;color:rgba(255,255,255,.6);margin-bottom:4px">' + d.email_label + '</div><div class="contact-email">';
+  if (h.email) ec += '<a href="mailto:' + h.email + '" style="color:#63b3ed">' + h.email + '</a>';
+  else ec += d.no_email;
+  ec += '</div><div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">';
+  if (h.website) ec += '<a href="' + h.website + '" target="_blank" style="color:#63b3ed">' + (d.website_btn || "Website") + ' &#8599;</a>';
+  ec += '</div></div>';
+  document.getElementById("contactCards").innerHTML = cc + ec;
+
+  // Languages & Insurance
+  var lrows = "";
+  if (h.languages) lrows += row(d.info_languages, h.languages);
+  if (h.insurance && h.insurance.length > 0) {
+    var tags = h.insurance.map(function(i) { return '<span class="insurance-item">' + i + '</span>'; }).join("");
+    lrows += '<div class="info-row"><div class="info-label">' + d.info_insurance + '</div><div class="info-value"><div class="insurance-list">' + tags + '</div></div></div>';
+  } else {
+    lrows += '<div class="info-row"><div class="info-label">' + d.info_insurance + '</div><div class="info-value">' + d.info_insurance_note + '</div></div>';
+  }
+  document.getElementById("langRows").innerHTML = lrows;
+
+  // Specialties
+  var stags = "";
+  if (h.specialties && h.specialties.length > 0) {
+    stags = h.specialties.map(function(s, idx) {
+      var sname = s.name || s;
+      var standing = s.standing ? " · " + s.standing : "";
+      var g = (GLOSSARY && GLOSSARY[sname]) ? GLOSSARY[sname] : null;
+      if (g) {
+        var dZh = g.desc_zh || "";
+        var dEn = g.desc_en || "";
+        return '<span class="specialty-tag" onclick="toggleSpec(' + idx + ')" id="sptag_' + idx + '">' + sname + standing + '</span>' +
+               '<div class="specialty-desc" id="spdesc_' + idx + '">' +
+               (dZh ? '<div class="desc-zh">' + dZh + '</div>' : '') +
+               (dEn ? '<div class="desc-en">' + dEn + '</div>' : '') + '</div>';
+      }
+      return '<span class="specialty-tag">' + sname + standing + '</span>';
+    }).join("");
+  } else {
+    stags = '<span class="specialty-tag">—</span>';
+  }
+  document.getElementById("specTags").innerHTML = stags;
+
+  // Transport
+  var maps = '';
+  maps += '<div class="map-card"><h4>' + d.map_before_title + '</h4><p>' + d.map_before_desc + '</p><a class="map-link" href="' + (h.google_maps || "#") + '" target="_blank" rel="noopener">' + d.map_before_btn + ' &#8599;</a></div>';
+  maps += '<div class="map-card"><h4>' + d.map_after_title + '</h4><p>' + d.map_after_desc + '</p><a class="map-link" href="' + (h.baidu_maps || "#") + '" target="_blank" rel="noopener">' + d.map_after_btn + ' &#8599;</a></div>';
+  document.getElementById("mapCards").innerHTML = maps;
+
+  var tn = "";
+  if (h.airport || h.metro) {
+    tn = '<div style="font-size:12px;color:var(--gray-500);margin-top:16px;padding:12px;background:var(--gray-50);border-radius:6px">';
+    if (h.airport) tn += '<strong>' + d.transport_airport + ':</strong> ' + h.airport;
+    if (h.metro) tn += ' &nbsp;|&nbsp; <strong>' + d.transport_metro + ':</strong> ' + h.metro;
+    tn += '</div>';
+  }
+  document.getElementById("transportNote").innerHTML = tn;
+
+  // Visit Process
+  var steps = h.steps || [];
+  if (steps.length === 3) {
+    var sHtml = "";
+    for (var i = 0; i < 3; i++) {
+      var sd = steps[i];
+      sHtml += '<div class="step"><div class="step-num">' + (i+1) + '</div><div class="step-title">' + sd.title + '</div><div class="step-desc">' + sd.desc + '</div></div>';
+    }
+    document.getElementById("processSteps").innerHTML = sHtml;
+  } else {
+    var defSteps = [
+      {t: d.step1_t, d: d.step1_d},
+      {t: d.step2_t, d: d.step2_d},
+      {t: d.step3_t, d: d.step3_d}
+    ];
+    var sHtml = "";
+    for (var i = 0; i < 3; i++) {
+      sHtml += '<div class="step"><div class="step-num">' + (i+1) + '</div><div class="step-title">' + defSteps[i].t + '</div><div class="step-desc">' + defSteps[i].d + '</div></div>';
+    }
+    document.getElementById("processSteps").innerHTML = sHtml;
+  }
+
+  // Overview
+  document.getElementById("overviewText").textContent = h.overview || d.overview_default;
+
+  // Disclaimer
+  document.getElementById("disclaimerText").innerHTML = fmt(d.disclaimer, {updated: h.updated || "2026-05-31"});
+
+  // === NEW MODULES ===
+  // Why Choose
+  var w = lang==="zh" ? (h.why_choose_zh || h.why_choose_en || "") : (h.why_choose_en || "");
+  var we = document.getElementById("whyChooseText"); if(w&&we) we.innerHTML = w.replace(/\n/g,"<br>");
+
+  // Arrival Guide
+  w = lang==="zh" ? (h.arrival_info_zh || h.arrival_info_en || "") : (h.arrival_info_en || "");
+  we = document.getElementById("arrivalText"); if(w&&we) we.innerHTML = w.replace(/\n/g,"<br>");
+
+  // Payment
+  w = lang==="zh" ? (h.payment_info_zh || h.payment_info_en || "") : (h.payment_info_en || "");
+  we = document.getElementById("paymentText"); if(w&&we) we.innerHTML = w.replace(/\n/g,"<br>");
+
+  // Nearby
+  w = lang==="zh" ? (h.nearby_info_zh || h.nearby_info_en || "") : (h.nearby_info_en || "");
+  we = document.getElementById("nearbyText"); if(w&&we) we.innerHTML = w.replace(/\n/g,"<br>");
+
+  // Cultural Tips
+  w = lang==="zh" ? (h.cultural_tips_zh || h.cultural_tips_en || "") : (h.cultural_tips_en || "");
+  we = document.getElementById("culturalText"); if(w&&we) we.innerHTML = w.replace(/\n/g,"<br>");
+
+  // Emergency
+  w = lang==="zh" ? (h.emergency_info_zh || h.emergency_info_en || "") : (h.emergency_info_en || "");
+  we = document.getElementById("emergencyText"); if(w&&we) we.innerHTML = w.replace(/\n/g,"<br>");
+
+  // FAQ
+  var faqs = lang==="zh" ? (h.faq_zh || h.faq_en || []) : (h.faq_en || []);
+  var fh = "";
+  for(var fi=0; fi<faqs.length; fi++) {
+    fh += '<div class="faq-item"><div class="faq-q">' + faqs[fi].q + '</div><div class="faq-a">' + faqs[fi].a + '</div></div>';
+  }
+  document.getElementById("faqList").innerHTML = fh || "";
+
+  // Footer
+  var fh2 = '<h3>ChinaMed Directory</h3><p style="margin-bottom:16px">' + d.footer_desc + '</p>';
+  fh2 += '<div style="display:flex;gap:24px;flex-wrap:wrap">';
+  fh2 += '<a href="../../general-hospitals.html?lang=' + lang + '">' + d.nav_general + '</a>';
+  fh2 += '<a href="../../specialty-hospitals.html?lang=' + lang + '">' + d.nav_specialty + '</a>';
+  fh2 += '<a href="../../about.html?lang=' + lang + '">' + d.nav_about + '</a>';
+  fh2 += '<a href="../../legal-notice.html?lang=' + lang + '">' + d.nav_legal + '</a>';
+  fh2 += '</div><hr class="footer-divider"><div class="footer-legal">' + d.footer_disclaimer + '</div>';
+  document.getElementById("footerContent").innerHTML = fh2;
+}
+
+function row(label, value) {
+  return '<div class="info-row"><div class="info-label">' + label + '</div><div class="info-value">' + value + '</div></div>';
+}
+
+var _activeSpec = -1;
+function toggleSpec(idx) {
+  var tag = document.getElementById("sptag_" + idx);
+  var desc = document.getElementById("spdesc_" + idx);
+  if (!tag || !desc) return;
+  if (_activeSpec === idx) {
+    tag.classList.remove("expanded");
+    desc.classList.remove("show");
+    _activeSpec = -1;
+    return;
+  }
+  if (_activeSpec >= 0) {
+    var oldTag = document.getElementById("sptag_" + _activeSpec);
+    var oldDesc = document.getElementById("spdesc_" + _activeSpec);
+    if (oldTag) oldTag.classList.remove("expanded");
+    if (oldDesc) oldDesc.classList.remove("show");
+  }
+  tag.classList.add("expanded");
+  desc.classList.add("show");
+  _activeSpec = idx;
+}
+
+function buildLangBar(curLang) {
+  var html = "";
+  Object.keys(LANG_LABELS).forEach(function(l) {
+    html += '<button class="lang-btn' + (l === curLang ? ' selected' : '') + '" onclick="switchLang(\'' + l + '\')">' + LANG_LABELS[l] + '</button>';
+  });
+  document.getElementById("langBar").innerHTML = html;
+}
+
+function switchLang(lang) {
+  localStorage.setItem("chinamed_lang", lang);
+  render(lang);
+  buildLangBar(lang);
+}
+
+(function() {
+  var lang = localStorage.getItem("chinamed_lang") || (new URLSearchParams(location.search)).get("lang") || "zh";
+  if (!I[lang]) lang = "zh";
+  buildLangBar(lang);
+  render(lang);
+})();
+</script>
+</body></html>

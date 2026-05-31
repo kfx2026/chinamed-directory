@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Search Results — ChinaMed Directory</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a365d;--navy-light:#2a4a7f;--blue:#3182ce;--blue-light:#ebf4fb;--gray-50:#f7f9fb;--gray-100:#edf2f7;--gray-200:#e2e8f0;--gray-500:#718096;--gray-700:#4a5568;--gray-900:#1a202c;--white:#fff;--radius:12px;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{font-family:var(--font);color:var(--gray-700);background:var(--gray-50);line-height:1.6}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--gray-200);height:64px}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:18px;font-weight:700;color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:8px}
+.nav-logo-icon{width:32px;height:32px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--gray-700);font-size:13px;padding:8px 12px;border-radius:6px;white-space:nowrap}
+.nav-links a:hover{background:var(--gray-100)}
+.lang-bar{display:flex;gap:3px;align-items:center;flex-wrap:wrap}
+.lang-btn{background:var(--white);border:1px solid var(--gray-200);padding:4px 8px;border-radius:5px;font-size:11px;cursor:pointer;color:var(--gray-700);min-width:28px;text-align:center}
+.lang-btn:hover{border-color:var(--navy);color:var(--navy)}
+.lang-btn.selected{border-color:var(--navy);background:var(--blue-light);color:var(--navy);font-weight:600}
+.page-header{margin-top:64px;padding:40px 24px 28px;background:linear-gradient(180deg,var(--blue-light),var(--gray-50))}
+.page-header h1{font-size:28px;font-weight:800;color:var(--navy)}
+.page-header p{font-size:14px;color:var(--gray-500);margin-top:4px}
+.content{max-width:960px;margin:0 auto;padding:0 24px 64px}
+.search-bar{margin:20px 0;position:relative}
+.search-bar input{width:100%;padding:14px 50px 14px 18px;font-size:15px;font-family:var(--font);border:2px solid var(--gray-200);border-radius:12px;outline:none;color:var(--gray-900);background:var(--white)}
+.search-bar input:focus{border-color:var(--navy)}
+.search-bar button{position:absolute;right:6px;top:6px;width:38px;height:38px;background:var(--navy);border:none;border-radius:8px;color:white;font-size:16px;cursor:pointer}
+.region{margin-bottom:28px}
+.region-title{font-size:18px;font-weight:700;color:var(--navy);border-bottom:2px solid var(--blue);padding-bottom:8px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.region-count{font-size:13px;font-weight:400;color:var(--gray-500)}
+.hcard{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:16px 20px;margin-bottom:8px;transition:border-color .15s}
+.hcard:hover{border-color:var(--navy)}
+.hcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.hcard-name{font-size:15px;font-weight:700;color:var(--navy)}
+.hcard-name a{color:inherit;text-decoration:none}
+.hcard-name a:hover{text-decoration:underline}
+.hcard-info{font-size:12px;color:var(--gray-500);margin-top:2px}
+.hcard-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.hcard-tag{background:var(--blue-light);color:var(--navy);font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px}
+.hcard-arrow{font-size:12px;color:var(--blue);font-weight:600;white-space:nowrap}
+.highlight{background:#fff3cd;padding:0 2px;border-radius:2px}
+.no-result{padding:40px 20px;text-align:center;color:var(--gray-500)}
+.no-result h3{font-size:18px;color:var(--gray-700);margin-bottom:8px}
+.footer{background:var(--navy);color:rgba(255,255,255,.85);padding:48px 24px 32px;margin-top:48px}
+.footer-inner{max-width:960px;margin:0 auto}
+.footer h3{font-size:14px;font-weight:700;color:white;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.footer a{font-size:13px;line-height:1.8;color:rgba(255,255,255,.7);text-decoration:none}
+.footer a:hover{color:white;text-decoration:underline}
+.footer-divider{border:0;border-top:1px solid rgba(255,255,255,.15);margin:24px 0}
+.footer-legal{font-size:12px;color:rgba(255,255,255,.5);line-height:1.8}
+@media(max-width:768px){.nav-links{display:none}.lang-bar{display:none}.region-title{font-size:16px}}
+</style>
+</head><body>
+<nav class="nav"><div class="nav-inner">
+<a href="./index.html" class="nav-logo"><span class="nav-logo-icon">CM</span>ChinaMed Directory</a>
+<ul class="nav-links">
+<li><a href="./index.html" id="navHome" data-key="nav_home">Home</a></li>
+<li><a href="./general-hospitals.html" id="navGeneral" data-key="nav_general">General Hospitals</a></li>
+<li><a href="./specialty-hospitals.html" id="navSpecialty" data-key="nav_specialty">Specialty Hospitals</a></li>
+<li><a href="./about.html" id="navAbout" data-key="nav_about">About Us</a></li>
+<li><a href="./contact.html" id="navContact" data-key="nav_contact">Contact</a></li>
+<li><a href="./legal-notice.html" id="navLegal" data-key="nav_legal">Legal Notice</a></li>
+</ul>
+<div class="lang-bar" id="langBar"></div></div></nav>
+<header class="page-header">
+  <h1 data-key="search_title">Search Results</h1>
+  <p data-key="search_sub"></p>
+</header>
+<div style="max-width:960px;margin:0 auto;padding:0 24px 20px;text-align:center">
+<div style="background:var(--white,#fff);border:1px solid var(--gray-200,#e2e8f0);border-radius:12px;padding:16px 20px;display:inline-block;min-width:300px;max-width:728px;width:100%">
+<div style="font-size:10px;font-weight:600;color:var(--gray-500,#718096);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Sponsored</div>
+<div style="background:linear-gradient(135deg,var(--blue-light,#ebf4fb),var(--gray-50,#f7f9fb));border-radius:8px;padding:14px;text-align:center;color:var(--gray-500,#718096);font-size:13px;font-weight:500">📢 Ad Space Available — Contact for Placement</div>
+</div></div><div class="content">
+  <div class="search-bar">
+    <input type="text" id="searchQuery" placeholder="Search hospitals, specialties, cities…">
+    <button onclick="doSearch()">🔍</button>
+  </div>
+  <div id="results"></div>
+</div>
+<div style="max-width:960px;margin:28px auto;padding:0 24px">
+<div style="background:var(--white,#fff);border:1px solid var(--gray-200,#e2e8f0);border-radius:12px;padding:18px 22px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
+<div style="font-size:10px;font-weight:600;color:var(--gray-500,#718096);text-transform:uppercase;letter-spacing:1px;white-space:nowrap">Sponsored</div>
+<div style="text-align:center;color:var(--gray-500,#718096);font-size:13px">📢 Your Ad Here — Reach International Patients</div>
+<div style="background:var(--navy,#1a365d);color:white;font-size:12px;font-weight:600;padding:6px 14px;border-radius:6px;white-space:nowrap">Inquire →</div>
+</div></div><footer class="footer"><div class="footer-inner" id="footerContent"></div></footer>
+<script>
+var I18N={zh:{nav_home:"首页",nav_general:"综合医院",nav_specialty:"专科医院",nav_about:"关于我们",nav_contact:"联系我们",nav_legal:"法律声明",
+  search_title:"搜索结果",search_sub:"",search_placeholder:"搜索医院名、专科、城市…",searching:"搜索中…",no_result:"未找到匹配的医院，请尝试其他关键词",footer_desc:"公益性信息平台 · 免费使用 · 无广告 · 无中介",
+  footer_disclaimer:'<strong>医疗免责声明：</strong>本站所有内容仅供参考，不构成医疗建议。就诊前请与医院核实。<br><br>&copy; 2026 ChinaMed Directory.'
+},en:{nav_home:"Home",nav_general:"General Hospitals",nav_specialty:"Specialty Hospitals",nav_about:"About Us",nav_contact:"Contact",nav_legal:"Legal Notice",
+  search_title:"Search Results",search_sub:"",search_placeholder:"Search hospitals, specialties, cities…",searching:"Searching…",no_result:"No matching hospitals found. Try a different keyword.",footer_desc:"A public-service information platform. Free to use. No advertisements. No intermediaries.",
+  footer_disclaimer:'<strong>Medical Disclaimer:</strong> All content is for informational reference only. Not medical advice. Verify with hospital before visiting.<br><br>&copy; 2026 ChinaMed Directory.'
+},fr:{nav_home:"Accueil",nav_general:"Hopitaux Generaux",nav_specialty:"Hopitaux Specialises",nav_about:"A propos",nav_contact:"Contact",nav_legal:"Mentions legales",
+  search_title:"Resultats",search_placeholder:"Rechercher…",searching:"Recherche…",no_result:"Aucun hopital trouve. Essayez un autre mot-cle.",footer_desc:"Plateforme de service public. Gratuit.",
+  footer_disclaimer:'<strong>Avertissement:</strong> Contenu informatif uniquement.<br><br>&copy; 2026 ChinaMed Directory.'
+},de:{nav_home:"Startseite",nav_general:"Allg. Krankenhauser",nav_specialty:"Fachkrankenhauser",nav_about:"Uber uns",nav_contact:"Kontakt",nav_legal:"Rechtliches",
+  search_title:"Suchergebnisse",search_placeholder:"Suchen…",searching:"Suche…",no_result:"Keine Krankenhauser gefunden.",footer_desc:"Offentliche Plattform. Kostenlos.",
+  footer_disclaimer:'<strong>Haftungsausschluss:</strong> Nur zu Informationszwecken.<br><br>&copy; 2026 ChinaMed Directory.'
+},es:{nav_home:"Inicio",nav_general:"Hospitales Generales",nav_specialty:"Hospitales Especializados",nav_about:"Nosotros",nav_contact:"Contacto",nav_legal:"Legal",
+  search_title:"Resultados",search_placeholder:"Buscar…",searching:"Buscando…",no_result:"No se encontraron hospitales.",footer_desc:"Plataforma publica. Gratis.",
+  footer_disclaimer:'<strong>Aviso:</strong> Solo fines informativos.<br><br>&copy; 2026 ChinaMed Directory.'
+},ru:{nav_home:"Glavnaya",nav_general:"Obshchie",nav_specialty:"Spetsial.",nav_about:"O nas",nav_contact:"Kontakty",nav_legal:"Yurid.",
+  search_title:"Rezultaty",search_placeholder:"Poisk…",searching:"Poisk…",no_result:"Bolnitsy ne naideny.",footer_desc:"Obshchestvennaya platforma.",
+  footer_disclaimer:'<strong>Otvetstvennost:</strong> Tolko informatsionno.<br><br>&copy; 2026 ChinaMed Directory.'
+},ko:{nav_home:"홈",nav_general:"종합병원",nav_specialty:"전문병원",nav_about:"소개",nav_contact:"연락처",nav_legal:"법적 고지",
+  search_title:"검색 결과",search_placeholder:"검색…",searching:"검색 중…",no_result:"일치하는 병원이 없습니다.",footer_desc:"공공 서비스 플랫폼. 무료.",
+  footer_disclaimer:'<strong>면책 조항:</strong> 정보 제공 목적으로만 사용됩니다.<br><br>&copy; 2026 ChinaMed Directory.'
+},ar:{nav_home:"الرئيسية",nav_general:"مستشفيات عامة",nav_specialty:"مستشفيات تخصصية",nav_about:"من نحن",nav_contact:"اتصل بنا",nav_legal:"قانوني",
+  search_title:"نتائج البحث",search_placeholder:"ابحث…",searching:"جاري البحث…",no_result:"لم يتم العثور على مستشفيات.",footer_desc:"منصة خدمة عامة. مجانية.",
+  footer_disclaimer:'<strong>اخطار:</strong> للمعلومات فقط.<br><br>&copy; 2026 ChinaMed Directory.'
+}};
+var LANG_LABELS={zh:"中",en:"EN",fr:"FR",de:"DE",es:"ES",ru:"RU",ko:"KO",ar:"AR"};
+
+var curLang="zh";
+var searchIdx=null;
+
+function buildLangBar(cur){
+  var h="";Object.keys(LANG_LABELS).forEach(function(l){
+    h+='<button class="lang-btn'+(l===cur?' selected':'')+'" onclick="switchLang(\''+l+'\')">'+LANG_LABELS[l]+'</button>';
+  });document.getElementById("langBar").innerHTML=h;
+}
+
+function switchLang(lang){
+  curLang=lang;localStorage.setItem("chinamed_lang",lang);
+  var d=I18N[lang]||I18N["en"];
+  var isRTL=lang==="ar";
+  document.documentElement.lang=isRTL?"ar":lang;
+  document.documentElement.dir=isRTL?"rtl":"ltr";
+  document.body.style.direction=isRTL?"rtl":"";
+  document.title=(d.search_title||"Search")+" — ChinaMed Directory";
+  document.querySelectorAll("[data-key]").forEach(function(el){
+    var k=el.dataset.key;if(d[k])el.innerHTML=d[k];
+  });
+  document.getElementById("searchQuery").placeholder=d.search_placeholder||"Search…";
+  document.querySelectorAll("[id^='nav']").forEach(function(a){
+    var m={navHome:"./index.html",navGeneral:"./general-hospitals.html",navSpecialty:"./specialty-hospitals.html",navAbout:"./about.html",navContact:"./contact.html",navLegal:"./legal-notice.html"};
+    var p=m[a.id];if(p)a.href=p+"?lang="+lang;
+  });
+  var fh="<h3>ChinaMed Directory</h3><p style='margin-bottom:16px'>"+d.footer_desc+"</p>";
+  fh+="<div style='display:flex;gap:24px;flex-wrap:wrap'>";
+  fh+="<a href='./general-hospitals.html?lang="+lang+"'>"+d.nav_general+"</a>";
+  fh+="<a href='./specialty-hospitals.html?lang="+lang+"'>"+d.nav_specialty+"</a>";
+  fh+="<a href='./about.html?lang="+lang+"'>"+d.nav_about+"</a>";
+  fh+="<a href='./legal-notice.html?lang="+lang+"'>"+d.nav_legal+"</a>";
+  fh+="</div><hr class='footer-divider'><div class='footer-legal'>"+d.footer_disclaimer+"</div>";
+  document.getElementById("footerContent").innerHTML=fh;
+  buildLangBar(lang);
+  if(searchIdx)runSearch();
+}
+
+function doSearch(){
+  var q=document.getElementById("searchQuery").value.trim();
+  if(q)window.location.search="?q="+encodeURIComponent(q)+"&lang="+curLang;
+}
+
+document.getElementById("searchQuery").addEventListener("keydown",function(e){
+  if(e.key==="Enter")doSearch();
+});
+
+function runSearch(){
+  var params=new URLSearchParams(location.search);
+  var q=params.get("q")||"";
+  var lang=params.get("lang")||curLang||"zh";
+  if(lang&&I18N[lang]){curLang=lang;switchLang(lang);}
+  document.getElementById("searchQuery").value=q;
+  if(!q)return;
+  
+  var d=I18N[curLang]||I18N["en"];
+  document.getElementById("results").innerHTML='<div class="no-result"><h3>'+d.searching+'</h3></div>';
+  
+  if(!searchIdx){
+    fetch("./search-index.json").then(function(r){return r.json();}).then(function(data){
+      searchIdx=data;doSearchInternal(q,curLang);
+    });
+  }else{
+    doSearchInternal(q,curLang);
+  }
+}
+
+function doSearchInternal(q,lang){
+  var d=I18N[lang]||I18N["en"];
+  var ql=q.toLowerCase();
+  var results=[];
+  for(var i=0;i<searchIdx.length;i++){
+    var h=searchIdx[i];var score=0;
+    var nameCl=(h.name_en||"").toLowerCase(),nameZh=h.name_zh||"";
+    var cityCl=(h.city_en||"").toLowerCase(),cityZh=h.city_zh||"";
+    if(nameCl.indexOf(ql)>=0)score+=5;
+    if(nameZh.indexOf(q)>=0)score+=5;
+    if(cityCl.indexOf(ql)>=0)score+=3;
+    if(cityZh.indexOf(q)>=0)score+=3;
+    var tokens=h.tokens||[];
+    for(var j=0;j<tokens.length;j++){
+      if(tokens[j].indexOf(ql)>=0){score+=2;break;}
+    }
+    if(score>0)results.push({h:h,score:score});
+  }
+  results.sort(function(a,b){return b.score-a.score;});
+  
+  if(results.length===0){
+    document.getElementById("results").innerHTML='<div class="no-result"><h3>'+d.no_result+'</h3><p>'+d.search_placeholder+'</p></div>';
+    return;
+  }
+  
+  // Group by region
+  var regions={};
+  var regionOrder=["North China","East China","Central China","South China","Southwest","Northern Regions"];
+  var regionCities={
+    "North China":["Beijing"],
+    "East China":["Shanghai","Hangzhou","Nanjing","Jinan","Hefei","Fuzhou","Xiamen"],
+    "Central China":["Wuhan","Changsha","Zhengzhou","Nanchang"],
+    "South China":["Guangzhou","Haikou"],
+    "Southwest":["Chengdu","Chongqing","Kunming","Guiyang"],
+    "Northern Regions":["Tianjin","Shenyang","Changchun","Harbin","Xi'an","Lanzhou","Urumqi"]
+  };
+  var regionZh={"North China":"华北","East China":"华东","Central China":"华中","South China":"华南","Southwest":"西南","Northern Regions":"北方"};
+  
+  for(var k=0;k<results.length;k++){
+    var r=results[k].h;
+    var city=(r.city_en||"").toLowerCase();
+    var region="Other";
+    for(var rk in regionCities){
+      for(var ci=0;ci<regionCities[rk].length;ci++){
+        if(city===regionCities[rk][ci].toLowerCase()){region=rk;break;}
+      }
+      if(region!=="Other")break;
+    }
+    if(!regions[region])regions[region]=[];
+    regions[region].push(r);
+  }
+  
+  var html="";
+  for(var ri=0;ri<regionOrder.length;ri++){
+    var reg=regionOrder[ri];
+    var items=regions[reg];
+    if(!items||items.length===0)continue;
+    var regName=lang==="zh"?(regionZh[reg]||reg):reg;
+    html+='<div class="region"><div class="region-title">'+regName+' <span class="region-count">'+items.length+" "+(lang==="zh"?"家医院":"hospitals")+'</span></div>';
+    for(var ii=0;ii<items.length;ii++){
+      var c=items[ii];
+      var name=lang==="zh"?c.name_zh:c.name_en;
+      var city=lang==="zh"?c.city_zh:c.city_en;
+      var specs=lang==="zh"?c.specs_zh:c.specs_en;
+      html+='<div class="hcard"><div class="hcard-top"><div><div class="hcard-name"><a href="./hospitals/'+c.subdir+'/'+c.id+'.html?lang='+lang+'">'+name+'</a></div><div class="hcard-info">'+city+'</div></div><div class="hcard-arrow"><a href="./hospitals/'+c.subdir+'/'+c.id+'.html?lang='+lang+'">'+(lang==="zh"?"查看详情 →":"View details →")+'</a></div></div>';
+      if(specs&&specs.length>0){
+        html+='<div class="hcard-tags">';
+        for(var si=0;si<Math.min(specs.length,4);si++)html+='<span class="hcard-tag">'+specs[si]+'</span>';
+        html+='</div>';
+      }
+      html+='</div>';
+    }
+    html+='</div>';
+  }
+  document.getElementById("results").innerHTML=html;
+}
+
+(function(){
+  var params=new URLSearchParams(location.search);
+  var lang=params.get("lang")||localStorage.getItem("chinamed_lang")||"zh";
+  if(!I18N[lang])lang="zh";curLang=lang;
+  switchLang(lang);
+  fetch("./search-index.json").then(function(r){return r.json();}).then(function(data){
+    searchIdx=data;runSearch();
+  });
+})();
+</script></body></html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChinaMed Directory — 中国公立医院国际服务目录</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a365d;--navy-light:#2a4a7f;--blue:#3182ce;--blue-light:#ebf4fb;--gray-50:#f7f9fb;--gray-100:#edf2f7;--gray-200:#e2e8f0;--gray-300:#cbd5e0;--gray-500:#718096;--gray-700:#4a5568;--gray-900:#1a202c;--white:#fff;--radius:12px;--radius-sm:8px;--font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{font-family:var(--font);color:var(--gray-900);background:var(--gray-50);line-height:1.6;-webkit-font-smoothing:antialiased}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--gray-200);height:64px}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:20px;font-weight:700;color:var(--navy);text-decoration:none;letter-spacing:-.3px;display:flex;align-items:center;gap:8px}
+.nav-logo-icon{width:32px;height:32px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--gray-700);font-size:14px;padding:8px 14px;border-radius:6px;transition:all .15s;white-space:nowrap}
+.nav-links a:hover{background:var(--gray-100);color:var(--navy)}
+.nav-links a.active{color:var(--navy);font-weight:600;background:var(--blue-light)}
+.lang-btn{background:var(--white);border:1px solid var(--gray-200);padding:6px 10px;border-radius:6px;font-size:13px;cursor:pointer;color:var(--gray-700);margin-left:2px}
+.lang-btn:hover{border-color:var(--navy);color:var(--navy)}
+.lang-btn.selected{border-color:var(--navy);background:var(--blue-light);color:var(--navy);font-weight:600}
+.lang-bar{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+/* ---------- HERO ---------- */
+.hero{margin-top:64px;padding:72px 24px 64px;text-align:center;background:linear-gradient(180deg,var(--blue-light) 0%,var(--gray-50) 100%)}
+.hero-badge{display:inline-block;background:var(--navy);color:white;font-size:12px;font-weight:600;letter-spacing:.5px;padding:6px 16px;border-radius:100px;margin-bottom:24px;text-transform:uppercase}
+.hero h1{font-size:40px;font-weight:800;color:var(--navy);max-width:760px;margin:0 auto 16px;line-height:1.25;letter-spacing:-.5px}
+.hero p{font-size:17px;color:var(--gray-500);max-width:600px;margin:0 auto 32px;line-height:1.7}
+.hero-stats{display:flex;justify-content:center;gap:48px;margin-top:40px}
+.hero-stat{text-align:center}
+.hero-stat-num{font-size:32px;font-weight:800;color:var(--navy);line-height:1.1}
+.hero-stat-label{font-size:13px;color:var(--gray-500);margin-top:4px}
+/* ---------- SECTIONS ---------- */
+.section{max-width:1280px;margin:0 auto;padding:56px 24px}
+.section-header{text-align:center;margin-bottom:48px}
+.section-label{font-size:12px;font-weight:700;letter-spacing:1px;color:var(--blue);text-transform:uppercase;margin-bottom:12px}
+.section-title{font-size:28px;font-weight:700;color:var(--navy);margin-bottom:8px;letter-spacing:-.3px}
+.section-sub{font-size:15px;color:var(--gray-500)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:24px;transition:border-color .15s,transform .15s;text-decoration:none;color:inherit;display:block}
+.card:hover{border-color:var(--navy);transform:translateY(-2px)}
+.card-region{font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.card-title{font-size:18px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.card-count{font-size:13px;color:var(--gray-500);margin-bottom:16px}
+.card-hospitals{font-size:13px;color:var(--gray-700);line-height:1.7}
+.card-arrow{display:inline-block;margin-top:16px;font-size:13px;font-weight:600;color:var(--blue)}
+.specialty-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.specialty-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-sm);padding:20px 16px;text-align:center;text-decoration:none;color:inherit;transition:border-color .15s}
+.specialty-card:hover{border-color:var(--navy)}
+.specialty-icon{width:44px;height:44px;background:var(--blue-light);border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.specialty-name{font-size:15px;font-weight:600;color:var(--navy)}
+.specialty-count{font-size:12px;color:var(--gray-500);margin-top:4px}
+/* ---------- HOW IT WORKS ---------- */
+.steps-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:960px;margin:0 auto}
+.step{text-align:center;padding:32px 24px}
+.step-num{width:48px;height:48px;background:var(--blue-light);border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:var(--navy)}
+.step-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.step-desc{font-size:14px;color:var(--gray-500);line-height:1.7}
+/* ---------- NOTICE ---------- */
+.notice{max-width:1280px;margin:0 auto;padding:0 24px 56px}
+.notice-inner{background:var(--blue-light);border:1px solid var(--gray-200);border-radius:var(--radius);padding:28px 32px;font-size:14px;color:var(--gray-700);line-height:1.7}
+.notice-inner strong{color:var(--navy)}
+/* ---------- FOOTER ---------- */
+.footer{background:var(--navy);color:rgba(255,255,255,.85);padding:48px 24px 32px}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:32px}
+.footer h3{font-size:14px;font-weight:700;color:white;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.footer p,.footer a{font-size:13px;line-height:1.8;color:rgba(255,255,255,.7);text-decoration:none}
+.footer a:hover{color:white;text-decoration:underline}
+.footer-divider{border:0;border-top:1px solid rgba(255,255,255,.15);margin:24px 0}
+.footer-legal{font-size:12px;color:rgba(255,255,255,.5);line-height:1.8}
+.footer-legal strong{color:rgba(255,255,255,.8)}
+.spec-section{background:var(--white);border-top:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200)}
+/* rtl override */
+body.rtl{direction:rtl}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero h1{font-size:28px}
+  .hero-stats{gap:32px;flex-wrap:wrap}
+  .hero-stat-num{font-size:26px}
+  .section{padding:40px 20px}
+  .section-title{font-size:24px}
+  .card-grid{grid-template-columns:1fr}
+  .specialty-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+}
+/* === SEARCH === */
+.search-section{max-width:720px;margin:-20px auto 0;padding:0 24px;position:relative;z-index:50}
+.search-wrap{position:relative;background:var(--white);border:2px solid var(--gray-200);border-radius:16px;box-shadow:0 8px 30px rgba(26,54,93,.08);transition:border-color .2s}
+.search-wrap:focus-within{border-color:var(--navy)}
+.search-input{width:100%;padding:16px 56px 16px 20px;font-size:16px;font-family:var(--font);border:none;outline:none;border-radius:16px;background:transparent;color:var(--gray-900)}
+.search-input::placeholder{color:var(--gray-500)}
+.search-icon-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);width:40px;height:40px;background:var(--navy);border:none;border-radius:10px;color:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.search-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--white);border:1px solid var(--gray-200);border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.1);max-height:320px;overflow-y:auto;display:none;z-index:60}
+.search-dropdown.show{display:block}
+.search-item{padding:14px 20px;cursor:pointer;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--gray-100);transition:background .1s}
+.search-item:hover{background:var(--blue-light)}
+.search-item:last-child{border-bottom:none}
+.search-item-name{font-size:15px;font-weight:600;color:var(--navy);flex:1}
+.search-item-city{font-size:12px;color:var(--gray-500)}
+.search-item-spec{font-size:12px;color:var(--blue);margin-left:8px}
+.search-no-result{padding:20px;text-align:center;color:var(--gray-500);font-size:14px}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav-inner">
+  <a href="./" class="nav-logo"><span class="nav-logo-icon">CM</span>ChinaMed Directory</a>
+  <ul class="nav-links">
+    <li><a href="./" class="active" data-key="nav_home">首页</a></li>
+    <li><a href="./general-hospitals.html" data-key="nav_general">综合医院</a></li>
+    <li><a href="./specialty-hospitals.html" data-key="nav_specialty">专科医院</a></li>
+    <li><a href="./about.html" data-key="nav_about">关于我们</a></li>
+    <li><a href="./contact.html" data-key="nav_contact">联系我们</a></li>
+    <li><a href="./legal-notice.html" data-key="nav_legal">法律声明</a></li>
+  </ul>
+  <div class="lang-bar">
+    <button class="lang-btn selected" onclick="setLang('zh')">中</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" onclick="setLang('ru')">RU</button>
+    <button class="lang-btn" onclick="setLang('ko')">KO</button>
+    <button class="lang-btn" onclick="setLang('ar')">AR</button>
+  </div>
+</div></nav>
+
+<header class="hero">
+  <div class="hero-badge" data-key="hero_badge">官方信息目录</div>
+  <h1 data-key="hero_title">查找中国顶级公立医院的国际医疗服务</h1>
+  <p data-key="hero_desc">精选80家拥有正规国际医疗部的中国三甲公立医院。每家医院都有英文服务团队、直拨电话和国际保险直付。</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">80</div><div class="hero-stat-label" data-key="stat_hospitals">收录医院</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">6</div><div class="hero-stat-label" data-key="stat_regions">地理分区</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">8</div><div class="hero-stat-label" data-key="stat_languages">支持语言</div></div>
+  </div>
+</header>
+
+<div style="max-width:960px;margin:0 auto;padding:0 24px 20px;text-align:center">
+<div style="background:var(--white,#fff);border:1px solid var(--gray-200,#e2e8f0);border-radius:12px;padding:16px 20px;display:inline-block;min-width:300px;max-width:728px;width:100%">
+<div style="font-size:10px;font-weight:600;color:var(--gray-500,#718096);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Sponsored</div>
+<div style="background:linear-gradient(135deg,var(--blue-light,#ebf4fb),var(--gray-50,#f7f9fb));border-radius:8px;padding:14px;text-align:center;color:var(--gray-500,#718096);font-size:13px;font-weight:500">📢 Ad Space Available — Contact for Placement</div>
+</div></div><div class="search-section">
+  <div class="search-wrap">
+    <input type="text" class="search-input" id="searchInput" data-key-placeholder="search_placeholder" placeholder="Search hospitals, specialties, cities..." autocomplete="off">
+    <button class="search-icon-btn" onclick="doSearch()" aria-label="Search">🔍</button>
+    <div class="search-dropdown" id="searchDropdown"></div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-label" data-key="s1_label">第一部分</div>
+    <h2 class="section-title" data-key="s1_title">综合三甲医院</h2>
+    <p class="section-sub" data-key="s1_sub">50家全国头部综合三甲公立医院，均设有国际医疗中心</p>
+  </div>
+  <div class="card-grid" id="general-cards"></div>
+</section>
+
+<section class="section spec-section">
+  <div class="section-header">
+    <div class="section-label" data-key="s2_label">第二部分</div>
+    <h2 class="section-title" data-key="s2_title">特色专科医院</h2>
+    <p class="section-sub" data-key="s2_sub">30家专科强院，覆盖核心城市，具备外宾接待能力</p>
+  </div>
+  <div class="specialty-grid" id="specialty-cards"></div>
+</section>
+
+<div style="max-width:960px;margin:12px auto 20px;padding:0 24px">
+<div style="background:var(--white,#fff);border:1px solid var(--gray-200,#e2e8f0);border-radius:12px;padding:18px 22px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
+<div style="font-size:10px;font-weight:600;color:var(--gray-500,#718096);text-transform:uppercase;letter-spacing:1px;white-space:nowrap">Sponsored</div>
+<div style="text-align:center;color:var(--gray-500,#718096);font-size:13px">📢 Your Ad Here — Reach International Patients</div>
+<div style="background:var(--navy,#1a365d);color:white;font-size:12px;font-weight:600;padding:6px 14px;border-radius:6px;white-space:nowrap">Inquire →</div>
+</div></div>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-label" data-key="s3_label">使用指南</div>
+    <h2 class="section-title" data-key="s3_title">三步找到你的医院</h2>
+    <p class="section-sub" data-key="s3_sub">简单、直接、无中介</p>
+  </div>
+  <div class="steps-row">
+    <div class="step"><div class="step-num">1</div><div class="step-title" data-key="step1_t">按地区或科室浏览</div><div class="step-desc" data-key="step1_d">按地理分区或专科分类查找医院。每家医院都已核实设有国际医疗部。</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-title" data-key="step2_t">直接联系国际部</div><div class="step-desc" data-key="step2_d">使用我们提供的核实电话或邮箱直接联系医院国际医疗中心。全程无第三方介入。</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-title" data-key="step3_t">准备材料，前往就诊</div><div class="step-desc" data-key="step3_d">按照我们的简易就诊指南准备材料。出发前用Google Maps，抵达后用百度地图。自行安排，无需中介。</div></div>
+  </div>
+</section>
+
+<div class="notice">
+  <div class="notice-inner">
+    <strong data-key="notice_t">重要提示：</strong><span data-key="notice_d">本站仅为信息展示平台，不提供医疗诊断、治疗建议、预约挂号或中介服务。所有医院信息来源于公开官方渠道，就医前请通过医院官方途径核实。</span>
+  </div>
+</div>
+
+<footer class="footer"><div class="footer-inner">
+  <div class="footer-grid">
+    <div><h3>ChinaMed Directory</h3><p data-key="footer_desc">公益性信息平台，免费使用，无广告，无中介。</p></div>
+    <div><h3 data-key="footer_links">快速链接</h3><p><a href="./general-hospitals.html" data-key="nav_general">综合医院</a></p><p><a href="./specialty-hospitals.html" data-key="nav_specialty">专科医院</a></p><p><a href="./about.html" data-key="nav_about">关于我们</a></p></div>
+    <div><h3 data-key="footer_legal">法律</h3><p><a href="./legal-notice.html" data-key="nav_legal">法律声明</a></p></div>
+  </div>
+  <div style="max-width:960px;margin:0 auto 20px;padding:0 24px;text-align:center">
+<div style="border:1px dashed var(--gray-200,#e2e8f0);border-radius:10px;padding:14px;display:inline-block;min-width:300px;max-width:728px;width:100%">
+<div style="font-size:10px;font-weight:500;color:var(--gray-500,#718096);margin-bottom:6px">Advertisement</div>
+<div style="color:var(--gray-500,#718096);font-size:13px">📢 Ad Space Available</div>
+</div></div><hr class="footer-divider">
+  <div class="footer-legal" data-key="disclaimer"></div>
+</div></footer>
+
+<script>
+const i18n = {
+zh: {
+  nav_home:"首页",nav_general:"综合医院",nav_specialty:"专科医院",nav_about:"关于我们",nav_contact:"联系我们",nav_legal:"法律声明",
+  hero_badge:"官方信息目录",hero_title:"查找中国顶级公立医院的国际医疗服务",hero_desc:"精选80家拥有正规国际医疗部的中国三甲公立医院。每家医院都有英文服务团队、直拨电话和国际保险直付。",
+  stat_hospitals:"收录医院",stat_regions:"地理分区",stat_languages:"支持语言",
+  s1_label:"第一部分",s1_title:"综合三甲医院",s1_sub:"50家全国头部综合三甲公立医院，均设有国际医疗中心",
+  s2_label:"第二部分",s2_title:"特色专科医院",s2_sub:"30家专科强院，覆盖核心城市，具备外宾接待能力",
+  s3_label:"使用指南",s3_title:"三步找到你的医院",s3_sub:"简单、直接、无中介",
+  step1_t:"按地区或科室浏览",step1_d:"按地理分区或专科分类查找医院。每家医院都已核实设有国际医疗部。",
+  step2_t:"直接联系国际部",step2_d:"使用我们提供的核实电话或邮箱直接联系医院国际医疗中心。全程无第三方介入。",
+  step3_t:"准备材料，前往就诊",step3_d:"按照我们的简易就诊指南准备材料。出发前用Google Maps，抵达后用百度地图。自行安排，无需中介。",
+  notice_t:"重要提示：",notice_d:"本站仅为信息展示平台，不提供医疗诊断、治疗建议、预约挂号或中介服务。所有医院信息来源于公开官方渠道，就医前请通过医院官方途径核实。",
+  footer_desc:"公益性信息平台，免费使用，无广告，无中介。",footer_links:"快速链接",footer_legal:"法律",
+  disclaimer:"<strong>医疗免责声明：</strong>本站所有内容仅供一般性信息参考。不构成专业医疗建议、诊断或治疗意见。本站不是医疗机构、就医中介或预约代理。使用本站不建立医患或服务合同关系。所有信息来源于公开官方渠道，就医前请通过医院官方途径核实。本站不对因使用本站信息或链接产生的任何直接或间接损失承担责任。<br><br>© 2026 ChinaMed Directory. 保留所有权利。",
+  region_n:"华北 · 北京",region_e:"华东 · 上海浙江江苏安徽福建山东",region_c:"华中 · 武汉长沙郑州南昌",
+  region_s:"华南 · 广东海南",region_sw:"西南 · 四川重庆云南贵州",region_o:"北方 · 天津辽宁吉林黑龙江陕西甘肃新疆",
+  hospitals_c:"家医院",search_placeholder:"搜索医院名、专科、城市…",browse_all:"查看全部 →",
+  region_labels:["华北 · 北京","华东 · 上海浙江江苏安徽福建山东","华中 · 武汉长沙郑州南昌","华南 · 广东海南","西南 · 四川重庆云南贵州","北方 · 天津辽宁吉林黑龙江陕西甘肃新疆"],
+  region_cities:["北京","上海 · 杭州 · 南京 · 济南 · 合肥 · 福州 · 厦门","武汉 · 长沙 · 郑州 · 南昌","广州 · 海口","成都 · 重庆 · 昆明 · 贵阳","天津 · 沈阳 · 长春 · 哈尔滨 · 西安 · 兰州 · 乌鲁木齐"],
+  region_counts:["7家医院","16家医院","8家医院","6家医院","6家医院","7家医院"],
+  region_hospitals:[
+    "北京协和医院 · 中日友好医院 · 北京安贞医院 · 北京天坛医院 · 北京友谊医院 · 北京大学第一医院 · 北京大学第三医院",
+    "上海瑞金医院 · 华山医院 · 中山医院 · 上海六院 · 上海九院 · 复旦儿科 · 浙大一院 · 浙大二院 · 邵逸夫医院 · 南京鼓楼医院 · 江苏省人民医院 · 山东齐鲁医院 · 山东省立医院 · 安徽医大一院 · 福建协和医院 · 厦大中山医院",
+    "同济医院 · 协和医院(武汉) · 中南医院 · 湖北省人民医院 · 湘雅医院 · 湘雅二院 · 郑大一院 · 南昌大一院",
+    "中山一院 · 广东省人民医院 · 广医一院 · 南方医院 · 中山肿瘤中心 · 海南医学院一院",
+    "华西医院 · 四川省人民医院 · 重医一院 · 重医二院 · 昆医一院 · 贵州省人民医院",
+    "天津医大总院 · 盛京医院 · 吉大白求恩一院 · 哈医大一院 · 西安交大一院 · 兰大一院 · 新疆医大一院"
+  ],
+  specialties:["骨科","神经科","眼科","口腔/整形","呼吸科","肿瘤科","心血管","器官移植","中医"],
+  sp_counts:["5家","4家","4家","4家","3家","3家","3家","2家","2家"]
+},
+en: {
+  nav_home:"Home",nav_general:"General Hospitals",nav_specialty:"Specialty Hospitals",nav_about:"About Us",nav_contact:"Contact",nav_legal:"Legal Notice",
+  hero_badge:"Official Information Directory",hero_title:"Find China's Top Public Hospitals With International Services",hero_desc:"A curated directory of 80 verified tertiary public hospitals across China. Every hospital has a dedicated international medical center with English-speaking staff and direct phone contact.",
+  stat_hospitals:"Verified Hospitals",stat_regions:"Geographic Regions",stat_languages:"Languages",
+  s1_label:"Part 1",s1_title:"Top General Hospitals",s1_sub:"50 leading comprehensive tertiary public hospitals with international medical centers",
+  s2_label:"Part 2",s2_title:"Top Specialty Hospitals",s2_sub:"30 specialized hospitals with international services across core cities",
+  s3_label:"How to use",s3_title:"Three Steps to Find Your Hospital",s3_sub:"Simple. Direct. No intermediaries.",
+  step1_t:"Browse by Region or Specialty",step1_d:"Find hospitals by geographic region or clinical specialty. Every hospital listed has been verified to have an international medical center.",
+  step2_t:"Contact the International Department",step2_d:"Call or email the hospital's international medical center directly using verified contact details. No third-party involved.",
+  step3_t:"Prepare and Visit",step3_d:"Follow our simple visit guide. Use Google Maps before departure and Baidu Maps after arrival. Self-arranged, no intermediary needed.",
+  notice_t:"Important:",notice_d:"This website is an information directory only. We do not provide medical diagnosis, treatment advice, appointment booking, or intermediary services. All hospital information is collected from public official sources. Please verify with the hospital directly before visiting.",
+  footer_desc:"A public-service information platform. Free to use. No advertisements. No intermediaries.",footer_links:"Quick Links",footer_legal:"Legal",
+  disclaimer:"<strong>Medical Disclaimer:</strong> All content on this website is for general informational reference only. It does NOT constitute professional medical advice, diagnosis or treatment. We are not a medical institution, medical intermediary or booking agency. No doctor-patient relationship is established by using this site. Information is sourced from public official channels — verify with the hospital before visiting. We are not liable for any loss arising from use of this website.<br><br>&copy; 2026 ChinaMed Directory. All rights reserved.",
+  region_n:"North China · Beijing",region_e:"East China · Shanghai, Zhejiang, Jiangsu, Anhui, Fujian, Shandong",region_c:"Central China · Wuhan, Changsha, Zhengzhou, Nanchang",
+  region_s:"South China · Guangdong, Hainan",region_sw:"Southwest · Sichuan, Chongqing, Yunnan, Guizhou",region_o:"Northern Regions · Tianjin, Liaoning, Jilin, Heilongjiang, Shaanxi, Gansu, Xinjiang",
+  hospitals_c:"hospitals",search_placeholder:"Search hospitals, specialties, cities…",browse_all:"Browse all →",
+  region_labels:["North China · Beijing","East China · Shanghai, Zhejiang, Jiangsu, Anhui, Fujian, Shandong","Central China · Wuhan, Changsha, Zhengzhou, Nanchang","South China · Guangdong, Hainan","Southwest · Sichuan, Chongqing, Yunnan, Guizhou","Northern Regions · Tianjin, Liaoning, Jilin, Heilongjiang, Shaanxi, Gansu, Xinjiang"],
+  region_cities:["Beijing","Shanghai · Hangzhou · Nanjing · Jinan · Hefei · Fuzhou · Xiamen","Wuhan · Changsha · Zhengzhou · Nanchang","Guangzhou · Haikou","Chengdu · Chongqing · Kunming · Guiyang","Tianjin · Shenyang · Changchun · Harbin · Xi'an · Lanzhou · Urumqi"],
+  region_counts:["7 hospitals","16 hospitals","8 hospitals","6 hospitals","6 hospitals","7 hospitals"],
+  region_hospitals:[
+    "Peking Union Medical College Hospital · China-Japan Friendship Hospital · Beijing Anzhen Hospital · Beijing Tiantan Hospital · Beijing Friendship Hospital · Peking University First Hospital · Peking University Third Hospital",
+    "Ruijin Hospital · Huashan Hospital · Zhongshan Hospital · Shanghai 6th · Shanghai 9th · Fudan Children's · Zhejiang Univ 1st · Zhejiang Univ 2nd · Sir Run Run Shaw · Nanjing Drum Tower · Jiangsu Provincial · Qilu Hospital · Shandong Provincial · Anhui Medical 1st · Fujian Union · Xiamen Zhongshan",
+    "Tongji Hospital · Union Hospital (Wuhan) · Zhongnan Hospital · Hubei Renmin · Xiangya Hospital · Xiangya 2nd · Zhengzhou Univ 1st · Nanchang Univ 1st",
+    "Sun Yat-sen Univ 1st · Guangdong Provincial People's · Guangzhou Medical 1st · Nanfang Hospital · SYSU Cancer Center · Hainan Medical 1st",
+    "West China Hospital · Sichuan Provincial · Chongqing Medical 1st · Chongqing Medical 2nd · Kunming Medical 1st · Guizhou Provincial",
+    "Tianjin Medical General · Shengjing Hospital · Bethune 1st (JLU) · Harbin Medical 1st · Xi'an Jiaotong 1st · Lanzhou Univ 1st · Xinjiang Medical 1st"
+  ],
+  specialties:["Orthopedics","Neurology","Ophthalmology","Dental & Maxillofacial","Respiratory","Oncology","Cardiovascular","Organ Transplant","TCM"],
+  sp_counts:["5","4","4","4","3","3","3","2","2"]
+},
+fr: {
+  nav_home:"Accueil",nav_general:"Hopitaux Generaux",nav_specialty:"Hopitaux Specialises",nav_about:"A propos",nav_contact:"Contact",nav_legal:"Mentions legales",
+  hero_badge:"Repertoire Officiel",hero_title:"Trouvez les meilleurs hopitaux publics chinois avec services internationaux",hero_desc:"Un repertoire de 80 hopitaux publics tertiaires verifies en Chine. Chaque hopital dispose d'un centre medical international avec personnel anglophone et contact telephonique direct.",
+  stat_hospitals:"Hopitaux Verifies",stat_regions:"Regions Geographiques",stat_languages:"Langues",
+  s1_label:"Partie 1",s1_title:"Meilleurs Hopitaux Generaux",s1_sub:"50 hopitaux publics tertiaires de premier plan avec centres medicaux internationaux",
+  s2_label:"Partie 2",s2_title:"Meilleurs Hopitaux Specialises",s2_sub:"30 hopitaux specialises avec services internationaux dans les villes principales",
+  s3_label:"Mode d'emploi",s3_title:"Trois etapes pour trouver votre hopital",s3_sub:"Simple. Direct. Sans intermediaire.",
+  step1_t:"Parcourir par region ou specialite",step1_d:"Trouvez des hopitaux par region geographique ou specialite clinique. Chaque hopital repertorie a ete verifie.",
+  step2_t:"Contacter le departement international",step2_d:"Appelez ou envoyez un e-mail au centre medical international de l'hopital en utilisant les coordonnees verifiees.",
+  step3_t:"Preparez-vous et visitez",step3_d:"Suivez notre guide de visite simple. Utilisez Google Maps avant le depart et Baidu Maps apres l'arrivee.",
+  notice_t:"Important :",notice_d:"Ce site est un repertoire d'informations uniquement. Nous ne fournissons pas de diagnostic medical, de conseils de traitement ou de services de reservation.",
+  footer_desc:"Une plateforme d'information de service public. Gratuit. Sans publicite. Sans intermediaire.",footer_links:"Liens rapides",footer_legal:"Juridique",
+  disclaimer:"<strong>Avertissement medical :</strong> Tout le contenu de ce site est a titre informatif uniquement. Il ne constitue pas un avis medical professionnel. Nous ne sommes pas un etablissement medical ni un intermediaire. Verifiez aupres de l'hopital avant de vous y rendre.<br><br>&copy; 2026 ChinaMed Directory. Tous droits reserves.",
+  region_n:"Chine du Nord · Pekin",region_e:"Chine de l'Est · Shanghai, Zhejiang, Jiangsu, Anhui, Fujian, Shandong",region_c:"Chine Centrale · Wuhan, Changsha, Zhengzhou, Nanchang",
+  region_s:"Chine du Sud · Guangdong, Hainan",region_sw:"Sud-Ouest · Sichuan, Chongqing, Yunnan, Guizhou",region_o:"Regions du Nord · Tianjin, Liaoning, Jilin, Heilongjiang, Shaanxi, Gansu, Xinjiang",
+  hospitals_c:"hopitaux",search_placeholder:"Rechercher hopitaux, specialites, villes…",browse_all:"Tout parcourir →",
+  region_labels:["Chine du Nord · Pekin","Chine de l'Est · Shanghai, Zhejiang...","Chine Centrale · Wuhan, Changsha...","Chine du Sud · Guangdong, Hainan","Sud-Ouest · Sichuan, Chongqing...","Regions du Nord · Tianjin, Liaoning..."],
+  region_cities:["Pekin","Shanghai · Hangzhou · Nanjing · Jinan · Hefei · Fuzhou · Xiamen","Wuhan · Changsha · Zhengzhou · Nanchang","Guangzhou · Haikou","Chengdu · Chongqing · Kunming · Guiyang","Tianjin · Shenyang · Changchun · Harbin · Xi'an · Lanzhou · Urumqi"],
+  region_counts:["7 hopitaux","16 hopitaux","8 hopitaux","6 hopitaux","6 hopitaux","7 hopitaux"],
+  region_hospitals:[
+    "Peking Union Medical College · China-Japan Friendship · Anzhen · Tiantan · Friendship · Peking Univ 1st · Peking Univ 3rd",
+    "Ruijin · Huashan · Zhongshan · Shanghai 6e · Shanghai 9e · Fudan Enfants · Zhejiang 1er · Zhejiang 2e · Run Run Shaw · Nanjing Drum Tower · Jiangsu Provincial · Qilu · Shandong Provincial · Anhui Medical · Fujian Union · Xiamen Zhongshan",
+    "Tongji · Union (Wuhan) · Zhongnan · Hubei Renmin · Xiangya · Xiangya 2e · Zhengzhou 1er · Nanchang 1er",
+    "Sun Yat-sen 1er · Guangdong Provincial · Guangzhou Medical 1er · Nanfang · SYSU Cancer · Hainan Medical 1er",
+    "West China · Sichuan Provincial · Chongqing Medical 1er · Chongqing Medical 2e · Kunming Medical 1er · Guizhou Provincial",
+    "Tianjin Medical · Shengjing · Bethune (JLU) · Harbin Medical · Xi'an Jiaotong · Lanzhou Univ · Xinjiang Medical"
+  ],
+  specialties:["Orthopedie","Neurologie","Ophtalmologie","Dentaire & Maxillo-facial","Pneumologie","Oncologie","Cardiovasculaire","Transplantation","MTC"],
+  sp_counts:["5","4","4","4","3","3","3","2","2"]
+},
+de: {
+  nav_home:"Start",nav_general:"Allgemeine Krankenhauser",nav_specialty:"Fachkrankenhauser",nav_about:"Uber uns",nav_contact:"Kontakt",nav_legal:"Rechtliches",
+  hero_badge:"Offizielles Verzeichnis",hero_title:"Finden Sie Chinas fuhrende offentliche Krankenhauser mit internationalen Diensten",hero_desc:"Ein kuratiertes Verzeichnis von 80 gepruften offentlichen Krankenhausern in China. Jedes Krankenhaus verfugt uber ein internationales medizinisches Zentrum mit englischsprachigem Personal.",
+  stat_hospitals:"Geprufte KH",stat_regions:"Geografische Regionen",stat_languages:"Sprachen",
+  s1_label:"Teil 1",s1_title:"Allgemeine Spitzenkrankenhauser",s1_sub:"50 fuhrende allgemeine offentliche Krankenhauser mit internationalen medizinischen Zentren",
+  s2_label:"Teil 2",s2_title:"Fachkrankenhauser",s2_sub:"30 spezialisierte Krankenhauser mit internationalen Diensten in Kernstadten",
+  s3_label:"Anleitung",s3_title:"Drei Schritte zu Ihrem Krankenhaus",s3_sub:"Einfach. Direkt. Ohne Vermittler.",
+  step1_t:"Nach Region oder Fachgebiet durchsuchen",step1_d:"Finden Sie Krankenhauser nach geografischer Region oder medizinischem Fachgebiet. Jedes Krankenhaus wurde uberpruft.",
+  step2_t:"Internationale Abteilung direkt kontaktieren",step2_d:"Rufen Sie das internationale medizinische Zentrum des Krankenhauses direkt unter den verifizierten Kontaktdaten an oder senden Sie eine E-Mail.",
+  step3_t:"Vorbereiten und besuchen",step3_d:"Befolgen Sie unseren einfachen Besuchsleitfaden. Nutzen Sie Google Maps vor der Abreise und Baidu Maps nach der Ankunft.",
+  notice_t:"Wichtig:",notice_d:"Diese Website ist nur ein Informationsverzeichnis. Wir bieten keine arztliche Diagnose, Behandlungsberatung oder Terminbuchung an.",
+  footer_desc:"Eine gemeinnutzige Informationsplattform. Kostenlos. Keine Werbung. Keine Vermittler.",footer_links:"Schnellzugriff",footer_legal:"Rechtliches",
+  disclaimer:"<strong>Medizinischer Haftungsausschluss:</strong> Alle Inhalte dienen nur der allgemeinen Information. Sie stellen keine arztliche Beratung dar. Wir sind keine medizinische Einrichtung. Vor dem Besuch beim Krankenhaus prufen.<br><br>&copy; 2026 ChinaMed Directory. Alle Rechte vorbehalten.",
+  region_n:"Nordchina · Peking",region_e:"Ostchina · Shanghai, Zhejiang, Jiangsu, Anhui, Fujian, Shandong",region_c:"Zentralchina · Wuhan, Changsha, Zhengzhou, Nanchang",
+  region_s:"Sudchina · Guangdong, Hainan",region_sw:"Sudwest · Sichuan, Chongqing, Yunnan, Guizhou",region_o:"Nordliche Regionen · Tianjin, Liaoning, Jilin, Heilongjiang, Shaanxi, Gansu, Xinjiang",
+  hospitals_c:"Krankenhauser",search_placeholder:"Krankenhauser, Fachgebiete, Stadte suchen…",browse_all:"Alle durchsuchen →",
+  region_labels:["Nordchina · Peking","Ostchina · Shanghai, Zhejiang...","Zentralchina · Wuhan, Changsha...","Sudchina · Guangdong, Hainan","Sudwest · Sichuan, Chongqing...","Nordliche Regionen · Tianjin..."],
+  region_cities:["Peking","Shanghai · Hangzhou · Nanjing · Jinan · Hefei · Fuzhou · Xiamen","Wuhan · Changsha · Zhengzhou · Nanchang","Guangzhou · Haikou","Chengdu · Chongqing · Kunming · Guiyang","Tianjin · Shenyang · Changchun · Harbin · Xi'an · Lanzhou · Urumqi"],
+  region_counts:["7 Krankenhauser","16 Krankenhauser","8 Krankenhauser","6 Krankenhauser","6 Krankenhauser","7 Krankenhauser"],
+  region_hospitals:["Peking Union · China-Japan Friendship · Anzhen · Tiantan · Friendship · Peking Univ 1. · Peking Univ 3.","Ruijin · Huashan · Zhongshan · Shanghai 6. · Shanghai 9. · Fudan Kinder · Zhejiang 1. · Zhejiang 2. · Run Run Shaw · Nanjing Drum Tower · Jiangsu Prov. · Qilu · Shandong Prov. · Anhui Med. · Fujian Union · Xiamen Zhongshan","Tongji · Union (Wuhan) · Zhongnan · Hubei Renmin · Xiangya · Xiangya 2. · Zhengzhou 1. · Nanchang 1.","Sun Yat-sen 1. · Guangdong Prov. · Guangzhou Med. 1. · Nanfang · SYSU Cancer · Hainan Med. 1.","West China · Sichuan Prov. · Chongqing Med. 1. · Chongqing Med. 2. · Kunming Med. · Guizhou Prov.","Tianjin Med. · Shengjing · Bethune (JLU) · Harbin Med. · Xi'an Jiaotong · Lanzhou Univ. · Xinjiang Med."],
+  specialties:["Orthopadie","Neurologie","Augenheilkunde","Zahn- & Kieferchirurgie","Pneumologie","Onkologie","Kardiologie","Transplantation","TCM"],
+  sp_counts:["5","4","4","4","3","3","3","2","2"]
+},
+es: {
+  nav_home:"Inicio",nav_general:"Hospitales Generales",nav_specialty:"Hospitales Especializados",nav_about:"Sobre nosotros",nav_contact:"Contacto",nav_legal:"Aviso legal",
+  hero_badge:"Directorio Oficial",hero_title:"Encuentre los mejores hospitales publicos de China con servicios internacionales",hero_desc:"Un directorio de 80 hospitales publicos terciarios verificados en China. Cada hospital cuenta con un centro medico internacional con personal de habla inglesa.",
+  stat_hospitals:"Hospitales Verificados",stat_regions:"Regiones",stat_languages:"Idiomas",
+  s1_label:"Parte 1",s1_title:"Mejores Hospitales Generales",s1_sub:"50 hospitales publicos terciarios lideres con centros medicos internacionales",
+  s2_label:"Parte 2",s2_title:"Hospitales Especializados",s2_sub:"30 hospitales especializados con servicios internacionales en ciudades principales",
+  s3_label:"Guia de uso",s3_title:"Tres pasos para encontrar su hospital",s3_sub:"Simple. Directo. Sin intermediarios.",
+  step1_t:"Explore por region o especialidad",step1_d:"Encuentre hospitales por region geografica o especialidad clinica. Cada hospital listado ha sido verificado.",
+  step2_t:"Contacte al departamento internacional",step2_d:"Llame o envie un correo al centro medico internacional del hospital usando los datos de contacto verificados.",
+  step3_t:"Prepare y visite",step3_d:"Siga nuestra guia de visita sencilla. Use Google Maps antes de salir y Baidu Maps al llegar.",
+  notice_t:"Importante:",notice_d:"Este sitio es solo un directorio informativo. No proporcionamos diagnostico medico, consejos de tratamiento ni reservas de citas.",
+  footer_desc:"Plataforma de informacion de servicio publico. Gratis. Sin anuncios. Sin intermediarios.",footer_links:"Enlaces",footer_legal:"Legal",
+  disclaimer:"<strong>Aviso medico:</strong> Todo el contenido es solo para referencia informativa. No constituye asesoramiento medico profesional. No somos una institucion medica. Verifique con el hospital antes de visitar.<br><br>&copy; 2026 ChinaMed Directory.",
+  region_n:"Norte · Pekin",region_e:"Este · Shanghai, Zhejiang, Jiangsu, Anhui, Fujian, Shandong",region_c:"Central · Wuhan, Changsha, Zhengzhou, Nanchang",
+  region_s:"Sur · Guangdong, Hainan",region_sw:"Suroeste · Sichuan, Chongqing, Yunnan, Guizhou",region_o:"Norte · Tianjin, Liaoning, Jilin, Heilongjiang, Shaanxi, Gansu, Xinjiang",
+  hospitals_c:"hospitales",search_placeholder:"Buscar hospitales, especialidades, ciudades…",browse_all:"Ver todos →",
+  region_labels:["Norte de China · Pekin","Este de China · Shanghai, Zhejiang...","China Central · Wuhan, Changsha...","Sur de China · Guangdong, Hainan","Suroeste · Sichuan, Chongqing...","Regiones del Norte · Tianjin..."],
+  region_cities:["Pekin","Shanghai · Hangzhou · Nanjing · Jinan · Hefei · Fuzhou · Xiamen","Wuhan · Changsha · Zhengzhou · Nanchang","Guangzhou · Haikou","Chengdu · Chongqing · Kunming · Guiyang","Tianjin · Shenyang · Changchun · Harbin · Xi'an · Lanzhou · Urumqi"],
+  region_counts:["7 hospitales","16 hospitales","8 hospitales","6 hospitales","6 hospitales","7 hospitales"],
+  region_hospitals:["Peking Union · China-Japan Friendship · Anzhen · Tiantan · Friendship · Peking Univ 1 · Peking Univ 3","Ruijin · Huashan · Zhongshan · Shanghai 6 · Shanghai 9 · Fudan Infantil · Zhejiang 1 · Zhejiang 2 · Run Run Shaw · Nanjing Drum Tower · Jiangsu · Qilu · Shandong · Anhui Medical · Fujian Union · Xiamen Zhongshan","Tongji · Union (Wuhan) · Zhongnan · Hubei Renmin · Xiangya · Xiangya 2 · Zhengzhou 1 · Nanchang 1","Sun Yat-sen 1 · Guangdong Provincial · Guangzhou Medical 1 · Nanfang · SYSU Cancer · Hainan Medical 1","West China · Sichuan · Chongqing Medical 1 · Chongqing Medical 2 · Kunming Medical · Guizhou","Tianjin Medical · Shengjing · Bethune (JLU) · Harbin Medical · Xi'an Jiaotong · Lanzhou · Xinjiang Medical"],
+  specialties:["Ortopedia","Neurologia","Oftalmologia","Dental y Maxilofacial","Neumologia","Oncologia","Cardiovascular","Trasplante","MTC"],
+  sp_counts:["5","4","4","4","3","3","3","2","2"]
+},
+ru: {
+  nav_home:"Главная",nav_general:"Общие больницы",nav_specialty:"Спец. больницы",nav_about:"О нас",nav_contact:"Контакты",nav_legal:"Правовая информация",
+  hero_badge:"Официальный справочник",hero_title:"Найдите ведущие государственные больницы Китая с международными услугами",hero_desc:"Проверенный справочник 80 государственных больниц Китая. В каждой больнице есть международный медицинский центр с англоговорящим персоналом и прямыми контактами.",
+  stat_hospitals:"Проверенных больниц",stat_regions:"Регионов",stat_languages:"Языков",
+  s1_label:"Часть 1",s1_title:"Ведущие общие больницы",s1_sub:"50 ведущих многопрофильных государственных больниц с международными центрами",
+  s2_label:"Часть 2",s2_title:"Специализированные больницы",s2_sub:"30 специализированных больниц с международными услугами",
+  s3_label:"Инструкция",s3_title:"Три шага к вашей больнице",s3_sub:"Просто. Напрямую. Без посредников.",
+  step1_t:"Поиск по региону или специальности",step1_d:"Найдите больницы по региону или медицинской специальности. Все больницы проверены.",
+  step2_t:"Свяжитесь с международным отделом",step2_d:"Позвоните или напишите в международный медицинский центр больницы, используя проверенные контакты.",
+  step3_t:"Подготовьтесь и посетите",step3_d:"Следуйте нашему руководству. Используйте Google Maps до вылета и Baidu Maps после прибытия.",
+  notice_t:"Важно:",notice_d:"Этот сайт — только информационный справочник. Мы не предоставляем медицинские диагнозы, рекомендации по лечению или запись на прием.",
+  footer_desc:"Общественная информационная платформа. Бесплатно. Без рекламы. Без посредников.",footer_links:"Ссылки",footer_legal:"Право",
+  disclaimer:"<strong>Медицинское предупреждение:</strong> Весь контент носит информационный характер. Не является медицинской консультацией. Мы не медицинское учреждение.<br><br>&copy; 2026 ChinaMed Directory.",
+  region_n:"Северный Китай · Пекин",region_e:"Восточный Китай · Шанхай, Чжэцзян...",region_c:"Центральный Китай · Ухань, Чанша...",
+  region_s:"Южный Китай · Гуандун, Хайнань",region_sw:"Юго-Запад · Сычуань, Чунцин...",region_o:"Северные регионы · Тяньцзинь...",
+  hospitals_c:"больниц",search_placeholder:"Поиск больниц, специальностей, городов…",browse_all:"Смотреть все →",
+  region_labels:["Северный Китай","Восточный Китай","Центральный Китай","Южный Китай","Юго-Запад","Северные регионы"],
+  region_cities:["Пекин","Шанхай · Ханчжоу · Нанкин · Цзинань · Хэфэй · Фучжоу · Сямэнь","Ухань · Чанша · Чжэнчжоу · Наньчан","Гуанчжоу · Хайкоу","Чэнду · Чунцин · Куньмин · Гуйян","Тяньцзинь · Шэньян · Чанчунь · Харбин · Сиань · Ланьчжоу · Урумчи"],
+  region_counts:["7 больниц","16 больниц","8 больниц","6 больниц","6 больниц","7 больниц"],
+  region_hospitals:[
+    "Peking Union · China-Japan Friendship · Anzhen · Tiantan · Friendship · Peking Univ 1 · Peking Univ 3",
+    "Ruijin · Huashan · Zhongshan · Shanghai 6 · Shanghai 9 · Fudan Children · Zhejiang 1 · Zhejiang 2 · Run Run Shaw · Nanjing Drum Tower · Jiangsu · Qilu · Shandong · Anhui · Fujian Union · Xiamen Zhongshan",
+    "Tongji · Union (Wuhan) · Zhongnan · Hubei Renmin · Xiangya · Xiangya 2 · Zhengzhou 1 · Nanchang 1",
+    "Sun Yat-sen 1 · Guangdong Prov · Guangzhou Medical 1 · Nanfang · SYSU Cancer · Hainan Medical 1",
+    "West China · Sichuan · Chongqing Medical 1 · Chongqing Medical 2 · Kunming Medical · Guizhou",
+    "Tianjin Medical · Shengjing · Bethune · Harbin Medical · Xi'an Jiaotong · Lanzhou · Xinjiang Medical"
+  ],
+  specialties:["Ортопедия","Неврология","Офтальмология","Стоматология","Пульмонология","Онкология","Кардиология","Трансплантация","ТКМ"],
+  sp_counts:["5","4","4","4","3","3","3","2","2"]
+},
+ko: {
+  nav_home:"홈",nav_general:"종합병원",nav_specialty:"전문병원",nav_about:"소개",nav_contact:"연락처",nav_legal:"법적고지",
+  hero_badge:"공식 정보 디렉토리",hero_title:"국제 의료 서비스를 제공하는 중국 최고의 공립 병원을 찾아보세요",hero_desc:"중국 전역의 검증된 80개 3차 공립 병원 디렉토리입니다. 모든 병원에는 영어 구사 직원이 있는 국제 의료 센터가 있습니다.",
+  stat_hospitals:"검증된 병원",stat_regions:"지역",stat_languages:"언어",
+  s1_label:"파트 1",s1_title:"종합 3차 병원",s1_sub:"국제 의료 센터를 갖춘 50개 주요 종합 3차 공립 병원",
+  s2_label:"파트 2",s2_title:"전문 병원",s2_sub:"주요 도시의 국제 서비스를 갖춘 30개 전문 병원",
+  s3_label:"사용 안내",s3_title:"병원을 찾는 3단계",s3_sub:"간단합니다. 직접 연결. 중개인 없음.",
+  step1_t:"지역 또는 진료과별 검색",step1_d:"지리적 지역 또는 임상 전문 분야별로 병원을 찾으세요. 모든 병원은 검증되었습니다.",
+  step2_t:"국제 진료부에 직접 연락",step2_d:"검증된 연락처를 사용하여 병원의 국제 의료 센터에 직접 전화하거나 이메일을 보내세요.",
+  step3_t:"준비하고 방문하기",step3_d:"간단한 방문 가이드를 따르세요. 출발 전 Google Maps, 도착 후 Baidu Maps를 사용하세요.",
+  notice_t:"중요:",notice_d:"이 웹사이트는 정보 디렉토리일 뿐입니다. 의료 진단, 치료 조언 또는 예약 서비스를 제공하지 않습니다.",
+  footer_desc:"공공 정보 플랫폼. 무료. 광고 없음. 중개인 없음.",footer_links:"바로가기",footer_legal:"법적",
+  disclaimer:"<strong>의료 면책 조항:</strong> 모든 콘텐츠는 일반 정보 참조용입니다. 전문 의료 조언이 아닙니다. 병원 방문 전 확인하세요.<br><br>&copy; 2026 ChinaMed Directory.",
+  region_n:"화북 · 베이징",region_e:"화동 · 상하이, 저장, 장쑤, 안후이, 푸젠, 산둥",region_c:"화중 · 우한, 창사, 정저우, 난창",
+  region_s:"화남 · 광둥, 하이난",region_sw:"서남 · 쓰촨, 충칭, 윈난, 구이저우",region_o:"북부 · 톈진, 랴오닝, 지린, 헤이룽장, 산시, 간쑤, 신장",
+  hospitals_c:"개 병원",search_placeholder:"병원, 진료과, 도시 검색…",browse_all:"전체 보기 →",
+  region_labels:["화북 · 베이징","화동 · 상하이, 저장...","화중 · 우한, 창사...","화남 · 광둥, 하이난","서남 · 쓰촨, 충칭...","북부 · 톈진..."],
+  region_cities:["베이징","상하이 · 항저우 · 난징 · 지난 · 허페이 · 푸저우 · 샤먼","우한 · 창사 · 정저우 · 난창","광저우 · 하이커우","청두 · 충칭 · 쿤밍 · 구이양","텐진 · 선양 · 창춘 · 하얼빈 · 시안 · 란저우 · 우루무치"],
+  region_counts:["7개 병원","16개 병원","8개 병원","6개 병원","6개 병원","7개 병원"],
+  region_hospitals:[
+    "Peking Union · China-Japan Friendship · Anzhen · Tiantan · Friendship · Peking Univ 1 · Peking Univ 3",
+    "Ruijin · Huashan · Zhongshan · Shanghai 6 · Shanghai 9 · Fudan Children · Zhejiang 1 · Zhejiang 2 · Run Run Shaw · Nanjing Drum Tower · Jiangsu · Qilu · Shandong · Anhui · Fujian Union · Xiamen Zhongshan",
+    "Tongji · Union (Wuhan) · Zhongnan · Hubei Renmin · Xiangya · Xiangya 2 · Zhengzhou 1 · Nanchang 1",
+    "Sun Yat-sen 1 · Guangdong Prov · Guangzhou Medical 1 · Nanfang · SYSU Cancer · Hainan Medical 1",
+    "West China · Sichuan · Chongqing Medical 1 · Chongqing Medical 2 · Kunming Medical · Guizhou",
+    "Tianjin Medical · Shengjing · Bethune · Harbin Medical · Xi'an Jiaotong · Lanzhou · Xinjiang Medical"
+  ],
+  specialties:["정형외과","신경과","안과","치과/구강악안면","호흡기내과","종양내과","심장혈관","장기이식","한의학"],
+  sp_counts:["5","4","4","4","3","3","3","2","2"]
+},
+ar: {
+  nav_home:"الرئيسية",nav_general:"مستشفيات عامة",nav_specialty:"مستشفيات تخصصية",nav_about:"من نحن",nav_contact:"اتصل بنا",nav_legal:"إشعار قانوني",
+  hero_badge:"دليل المعلومات الرسمي",hero_title:"اعثر على أفضل المستشفيات العامة في الصين مع الخدمات الدولية",hero_desc:"دليل منسق يضم 80 مستشفى عاما معتمدا في الصين. كل مستشفى لديه مركز طبي دولي مع طاقم ناطق بالانجليزية واتصال هاتفي مباشر.",
+  stat_hospitals:"مستشفى معتمد",stat_regions:"مناطق جغرافية",stat_languages:"لغات",
+  s1_label:"الجزء 1",s1_title:"أفضل المستشفيات العامة",s1_sub:"50 مستشفى عاما رائدا مع مراكز طبية دولية",
+  s2_label:"الجزء 2",s2_title:"المستشفيات التخصصية",s2_sub:"30 مستشفى تخصصيا مع خدمات دولية في المدن الرئيسية",
+  s3_label:"كيفية الاستخدام",s3_title:"ثلاث خطوات للعثور على مستشفاك",s3_sub:"بسيط. مباشر. بدون وسطاء.",
+  step1_t:"تصفح حسب المنطقة أو التخصص",step1_d:"ابحث عن المستشفيات حسب المنطقة الجغرافية أو التخصص السريري. تم التحقق من كل مستشفى مدرج.",
+  step2_t:"اتصل بالقسم الدولي مباشرة",step2_d:"اتصل أو ارسل بريدا الكترونيا للمركز الطبي الدولي بالمستشفى باستخدام جهات الاتصال الموثقة.",
+  step3_t:"التحضير والزيارة",step3_d:"اتبع دليل الزيارة البسيط. استخدم خرائط Google قبل المغادرة وخرائط Baidu بعد الوصول.",
+  notice_t:"مهم:",notice_d:"هذا الموقع هو دليل معلومات فقط. لا نقدم تشخيصا طبيا او نصائح علاجية او خدمات حجز.",
+  footer_desc:"منصة معلومات عامة. مجانية. بدون اعلانات. بدون وسطاء.",footer_links:"روابط سريعة",footer_legal:"قانوني",
+  disclaimer:"<strong>اخطار طبي:</strong> كل المحتوى للمرجع المعلوماتي فقط. لا يشكل استشارة طبية مهنية. نحن لسنا مؤسسة طبية. تحقق مع المستشفى قبل الزيارة.<br><br>&copy; 2026 ChinaMed Directory.",
+  region_n:"شمال الصين · بكين",region_e:"شرق الصين · شنغهاي",region_c:"وسط الصين · ووهان",region_s:"جنوب الصين · قوانغدونغ",region_sw:"جنوب غرب · سيتشوان",region_o:"المناطق الشمالية · تيانجين",
+  hospitals_c:"مستشفى",search_placeholder:"ابحث عن مستشفيات، تخصصات، مدن…",browse_all:"تصفح الكل ←",
+  region_labels:["شمال الصين · بكين","شرق الصين · شنغهاي...","وسط الصين · ووهان...","جنوب الصين · قوانغدونغ","جنوب غرب · سيتشوان...","المناطق الشمالية · تيانجين..."],
+  region_cities:["بكين","شنغهاي · هانغتشو · نانجينغ · جينان · خفى · فوتشو · شيامن","ووهان · تشانغشا · تشنغتشو · نانتشانغ","قوانغتشو · هايكو","تشنغدو · تشونغتشينغ · كونمينغ · قوييانغ","تيانجين · شنيانغ · تشانغتشون · هاربين · شيان · لانتشو · اورومتشي"],
+  region_counts:["7 مستشفيات","16 مستشفى","8 مستشفيات","6 مستشفيات","6 مستشفيات","7 مستشفيات"],
+  region_hospitals:[
+    "Peking Union · China-Japan Friendship · Anzhen · Tiantan · Friendship · Peking Univ 1 · Peking Univ 3",
+    "Ruijin · Huashan · Zhongshan · Shanghai 6 · Shanghai 9 · Fudan Children · Zhejiang 1 · Zhejiang 2 · Run Run Shaw · Nanjing Drum Tower · Jiangsu · Qilu · Shandong · Anhui · Fujian Union · Xiamen Zhongshan",
+    "Tongji · Union (Wuhan) · Zhongnan · Hubei Renmin · Xiangya · Xiangya 2 · Zhengzhou 1 · Nanchang 1",
+    "Sun Yat-sen 1 · Guangdong Prov · Guangzhou Medical 1 · Nanfang · SYSU Cancer · Hainan Medical 1",
+    "West China · Sichuan · Chongqing Medical 1 · Chongqing Medical 2 · Kunming Medical · Guizhou",
+    "Tianjin Medical · Shengjing · Bethune · Harbin Medical · Xi'an Jiaotong · Lanzhou · Xinjiang Medical"
+  ],
+  specialties:["جراحة العظام","طب الاعصاب","طب العيون","طب الاسنان","الجهاز التنفسي","الاورام","القلب","زراعة الاعضاء","الطب الصيني"],
+  sp_counts:["5","4","4","4","3","3","3","2","2"]
+}
+};
+
+let curLang = 'zh';
+function setLang(lang) {
+  curLang = lang;
+  localStorage.setItem("chinamed_lang", lang);
+  const d = i18n[lang];
+  document.documentElement.lang = lang === 'ar' ? 'ar' : lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.body.classList.toggle('rtl', lang === 'ar');
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('selected', b.textContent.trim() === {zh:'中',en:'EN',fr:'FR',de:'DE',es:'ES',ru:'RU',ko:'KO',ar:'AR'}[lang]));
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const k = el.dataset.key;
+    if (d[k]) el.innerHTML = d[k];
+  });
+  // rebuild region cards
+  const gc = document.getElementById('general-cards');
+  gc.innerHTML = '';
+  for (let i = 0; i < 6; i++) {
+    const div = document.createElement('a');
+    div.className = 'card';
+    div.href = './general-hospitals.html#region-' + i;
+    div.innerHTML = `<div class="card-region">${d.region_labels[i]}</div><div class="card-title">${d.region_cities[i]}</div><div class="card-count">${d.region_counts[i]}</div><div class="card-hospitals">${d.region_hospitals[i]}</div><span class="card-arrow">${d.browse_all}</span>`;
+    gc.appendChild(div);
+  }
+  // rebuild specialty cards
+  const sc = document.getElementById('specialty-cards');
+  sc.innerHTML = '';
+  for (let i = 0; i < 9; i++) {
+    const div = document.createElement('a');
+    div.className = 'specialty-card';
+    div.href = './specialty-hospitals.html#spec-' + i;
+    div.innerHTML = `<div class="specialty-name">${d.specialties[i]}</div><div class="specialty-count">${d.sp_counts[i]}</div>`;
+    sc.appendChild(div);
+  }
+  // update nav links to pass lang (preserve hash)
+  document.querySelectorAll('a[href]').forEach(function(a) {
+    var href = a.getAttribute('href');
+    if (href && href.startsWith('./') && !href.startsWith('javascript') && !href.startsWith('http')) {
+      var parts = href.split('#');
+      var path = parts[0].replace(/\?.*$/, '');
+      var hash = parts[1] || '';
+      a.href = path + '?lang=' + lang + (hash ? '#' + hash : '');
+    }
+  });
+  // Update search placeholder
+  var si = document.getElementById("searchInput");
+  if (si && d.search_placeholder) si.placeholder = d.search_placeholder;
+}
+
+// === SEARCH AUTOCOMPLETE ===
+var searchIndex = null;
+function loadSearchIndex() {
+  fetch('./search-index.json')
+    .then(function(r) { return r.json(); })
+    .then(function(data) { searchIndex = data; })
+    .catch(function() {});
+}
+
+function doSearch() {
+  var q = document.getElementById("searchInput").value.trim();
+  if (q) window.location.href = './search.html?q=' + encodeURIComponent(q) + '&lang=' + initLang;
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && document.activeElement === document.getElementById('searchInput')) {
+    doSearch();
+  }
+});
+
+var searchTimeout;
+document.getElementById("searchInput").addEventListener("input", function() {
+  clearTimeout(searchTimeout);
+  var q = this.value.trim();
+  var dd = document.getElementById("searchDropdown");
+  if (q.length < 2) { dd.classList.remove("show"); dd.innerHTML = ""; return; }
+  searchTimeout = setTimeout(function() {
+    if (!searchIndex) { loadSearchIndex(); return; }
+    var results = [];
+    var ql = q.toLowerCase();
+    for (var i = 0; i < searchIndex.length; i++) {
+      var h = searchIndex[i];
+      var score = 0;
+      // Match name
+      if (h.name_en.toLowerCase().indexOf(ql) >= 0) score += 5;
+      if (h.name_zh.indexOf(q) >= 0) score += 5;
+      // Match city
+      if (h.city_en.toLowerCase().indexOf(ql) >= 0) score += 3;
+      if (h.city_zh.indexOf(q) >= 0) score += 3;
+      // Match tokens
+      var tokens = h.tokens || [];
+      for (var j = 0; j < tokens.length; j++) {
+        if (tokens[j].indexOf(ql) >= 0) { score += 2; break; }
+      }
+      if (score > 0) {
+        results.push({h: h, score: score});
+      }
+    }
+    results.sort(function(a, b) { return b.score - a.score; });
+    results = results.slice(0, 8);
+    
+    var html = "";
+    if (results.length === 0) {
+      html = '<div class="search-no-result">No hospitals found — try a different keyword</div>';
+    } else {
+      for (var k = 0; k < results.length; k++) {
+        var r = results[k].h;
+        var name = initLang === "zh" ? r.name_zh : r.name_en;
+        var city = initLang === "zh" ? r.city_zh : r.city_en;
+        var spec = r.specs_en[0] || "";
+        if (initLang === "zh" && r.specs_zh[0]) spec = r.specs_zh[0];
+        html += '<div class="search-item" onclick="window.location.href=\'./hospitals/' + r.subdir + '/' + r.id + '.html?lang=' + initLang + '\'" style="cursor:pointer">';
+        html += '<div class="search-item-name">' + name + '</div>';
+        html += '<div class="search-item-city">' + city + '</div>';
+        if (spec) html += '<div class="search-item-spec">' + spec + '</div>';
+        html += '</div>';
+      }
+    }
+    dd.innerHTML = html;
+    dd.classList.add("show");
+  }, 150);
+});
+
+document.addEventListener("click", function(e) {
+  var dd = document.getElementById("searchDropdown");
+  var si = document.getElementById("searchInput");
+  if (e.target !== si && !dd.contains(e.target)) {
+    dd.classList.remove("show");
+  }
+});
+
+// Load search index on page load
+loadSearchIndex();
+
+// initial render
+var initLang = localStorage.getItem("chinamed_lang") || "zh";
+if (!i18n[initLang]) initLang = "zh";
+setLang(initLang);
+</script>
+</body>
+</html>

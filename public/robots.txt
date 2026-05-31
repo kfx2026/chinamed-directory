@@ -1,0 +1,26 @@
+# ChinaMed Directory — robots.txt
+# Allow: Google, Bing, Yandex, Baidu (legit search engines)
+# Block: malicious crawlers, AI scrapers, aggressive bots
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: *
+Disallow: /

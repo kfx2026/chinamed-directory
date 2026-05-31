@@ -1,0 +1,9 @@
+.wrangler/
+node_modules/
+*.pyc
+__pycache__/
+src/data/hospitals/
+build_upgrade.py
+.env*
+*.log
+.DS_Store
