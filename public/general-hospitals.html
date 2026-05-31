@@ -1,38 +1,38 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title data-key="title">ChinaMed Directory</title><style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#1a365d;--navy-light:#2a4a7f;--blue:#3182ce;--blue-light:#ebf4fb;--gray-50:#f7f9fb;--gray-100:#edf2f7;--gray-200:#e2e8f0;--gray-500:#718096;--gray-700:#4a5568;--gray-900:#1a202c;--white:#fff;--radius:12px;--radius-sm:8px;--green:#276749;--green-light:#f0fff4;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,"Helvetica Neue",Arial,sans-serif}
-body{font-family:var(--font);color:var(--gray-700);background:var(--gray-50);line-height:1.6;-webkit-font-smoothing:antialiased}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--gray-200);height:64px}
+:root{--ink:#0f0f0f;--ink-light:#2a2a2a;--gold:#b8956a;--gold-dark:#9a7d52;--gold-light:#f5efe6;--cream:#faf8f5;--warm-50:#f7f5f2;--warm-100:#efe8de;--warm-200:#e3d9cb;--warm-300:#d4c8b5;--warm-500:#8b8176;--warm-700:#4a4540;--warm-900:#1a1816;--white:#fff;--radius:14px;--radius-sm:10px;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{font-family:var(--font);color:var(--warm-700);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--warm-200);height:64px}
 .nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-size:18px;font-weight:700;color:var(--navy);text-decoration:none;display:flex;align-items:center;gap:8px}
-.nav-logo-icon{width:32px;height:32px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;flex-shrink:0}
+.nav-logo{font-size:18px;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px}
+.nav-logo-icon{width:32px;height:32px;background:var(--ink);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;flex-shrink:0}
 .nav-links{display:flex;align-items:center;gap:4px;list-style:none}
-.nav-links a{text-decoration:none;color:var(--gray-700);font-size:13px;padding:8px 12px;border-radius:6px;white-space:nowrap}
-.nav-links a:hover{background:var(--gray-100)}
-.nav-links a.active{color:var(--navy);font-weight:600;background:var(--blue-light)}
+.nav-links a{text-decoration:none;color:var(--warm-700);font-size:13px;padding:8px 12px;border-radius:6px;white-space:nowrap}
+.nav-links a:hover{background:var(--warm-100)}
+.nav-links a.active{color:var(--ink);font-weight:600;background:var(--gold-light)}
 .lang-bar{display:flex;gap:3px;align-items:center;flex-wrap:wrap}
-.lang-btn{background:var(--white);border:1px solid var(--gray-200);padding:4px 8px;border-radius:5px;font-size:11px;cursor:pointer;color:var(--gray-700);min-width:28px;text-align:center}
-.lang-btn:hover{border-color:var(--navy);color:var(--navy)}
-.lang-btn.selected{border-color:var(--navy);background:var(--blue-light);color:var(--navy);font-weight:600}
-.page-header{margin-top:64px;padding:40px 24px 28px;text-align:center;background:linear-gradient(180deg,var(--blue-light),var(--gray-50))}
-.page-header h1{font-size:30px;font-weight:800;color:var(--navy)}
-.page-header p{font-size:15px;color:var(--gray-500);margin-top:6px}
+.lang-btn{background:var(--white);border:1px solid var(--warm-200);padding:4px 8px;border-radius:5px;font-size:11px;cursor:pointer;color:var(--warm-700);min-width:28px;text-align:center}
+.lang-btn:hover{border-color:var(--ink);color:var(--ink)}
+.lang-btn.selected{border-color:var(--ink);background:var(--gold-light);color:var(--ink);font-weight:600}
+.page-header{margin-top:64px;padding:40px 24px 28px;text-align:center;background:linear-gradient(180deg,var(--gold-light),var(--cream))}
+.page-header h1{font-size:30px;font-weight:800;color:var(--ink)}
+.page-header p{font-size:15px;color:var(--cream0);margin-top:6px}
 .content{max-width:960px;margin:0 auto;padding:0 24px 64px}
 .region{margin-bottom:36px}
-.region-title{font-size:19px;font-weight:700;color:var(--navy);border-bottom:2px solid var(--blue);padding-bottom:10px;margin-bottom:14px}
-.region-count{font-size:13px;font-weight:400;color:var(--gray-500);margin-left:8px}
-.hcard{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);padding:18px 22px;margin-bottom:10px;transition:border-color .15s}
-.hcard:hover{border-color:var(--navy)}
+.region-title{font-size:19px;font-weight:700;color:var(--ink);border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:14px}
+.region-count{font-size:13px;font-weight:400;color:var(--cream0);margin-left:8px}
+.hcard{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius);padding:18px 22px;margin-bottom:10px;transition:border-color .15s}
+.hcard:hover{border-color:var(--ink)}
 .hcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.hcard-name{font-size:16px;font-weight:700;color:var(--navy)}
+.hcard-name{font-size:16px;font-weight:700;color:var(--ink)}
 .hcard-name a{color:inherit;text-decoration:none}
 .hcard-name a:hover{text-decoration:underline}
-.hcard-info{font-size:12px;color:var(--gray-500);margin-top:2px}
+.hcard-info{font-size:12px;color:var(--cream0);margin-top:2px}
 .hcard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.hcard-tag{background:var(--blue-light);color:var(--navy);font-size:12px;font-weight:600;padding:3px 10px;border-radius:4px}
-.hcard-arrow{font-size:13px;color:var(--blue);font-weight:600;white-space:nowrap;margin-left:12px}
-.footer{background:var(--navy);color:rgba(255,255,255,.85);padding:48px 24px 32px;margin-top:48px}
+.hcard-tag{background:var(--gold-light);color:var(--ink);font-size:12px;font-weight:600;padding:3px 10px;border-radius:4px}
+.hcard-arrow{font-size:13px;color:var(--gold);font-weight:600;white-space:nowrap;margin-left:12px}
+.footer{background:var(--ink);color:rgba(255,255,255,.85);padding:48px 24px 32px;margin-top:48px}
 .footer-inner{max-width:960px;margin:0 auto}
 .footer h3{font-size:14px;font-weight:700;color:white;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
 .footer p,.footer a{font-size:13px;line-height:1.8;color:rgba(255,255,255,.7);text-decoration:none}
@@ -40,6 +40,36 @@ body{font-family:var(--font);color:var(--gray-700);background:var(--gray-50);lin
 .footer-divider{border:0;border-top:1px solid rgba(255,255,255,.15);margin:24px 0}
 .footer-legal{font-size:12px;color:rgba(255,255,255,.5);line-height:1.8}
 @media(max-width:768px){.nav-links{display:none}.page-header h1{font-size:24px}.lang-bar{display:none}}
+
+/* premium refinement */
+body{letter-spacing:.01em}
+.nav{border-bottom:1px solid var(--warm-100);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:rgba(255,255,255,.92)}
+.nav-logo{font-weight:600;letter-spacing:-.2px}
+.nav-logo-icon{font-weight:500;font-size:15px}
+.nav-links a{font-size:13px;font-weight:500;padding:8px 16px;letter-spacing:.3px}
+.nav-links a:hover{background:var(--gold-light);color:var(--ink)}
+.nav-links a.active{background:var(--gold-light);color:var(--ink);font-weight:600}
+.lang-btn{font-size:12px;padding:5px 10px;border-radius:6px;font-weight:500;letter-spacing:.2px}
+.lang-btn:hover{background:var(--gold-light);border-color:var(--gold)}
+.lang-btn.selected{background:var(--ink);color:var(--white);border-color:var(--ink);font-weight:600}
+
+.page-header{padding:72px 24px 48px;background:linear-gradient(175deg,var(--warm-50) 0%,var(--cream) 50%,var(--warm-50) 100%)}
+.page-header h1{font-size:34px;font-weight:300;color:var(--ink);letter-spacing:-.5px}
+.page-header p{font-size:15px;color:var(--warm-500)}
+.region-title{font-size:18px;font-weight:600;color:var(--ink);margin:24px 0 16px;letter-spacing:-.2px;padding-bottom:12px;border-bottom:1px solid var(--warm-100)}
+.hcard{background:var(--white);border:1px solid var(--warm-100);border-radius:var(--radius);padding:22px 28px;margin-bottom:14px;transition:all .2s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 2px rgba(0,0,0,.015)}
+.hcard:hover{border-color:var(--gold);box-shadow:0 6px 20px rgba(0,0,0,.04);transform:translateY(-1px)}
+.hcard-name a{font-size:16px;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-.2px}
+.hcard-name a:hover{color:var(--gold)}
+.hcard-info{font-size:13px;color:var(--warm-500);margin-top:4px;font-weight:500}
+.hcard-arrow a{font-size:13px;font-weight:600;color:var(--ink);text-decoration:none}
+.hcard-arrow a:hover{color:var(--gold)}
+.tag{background:var(--gold-light);color:var(--gold-dark);font-size:11px;font-weight:600;padding:3px 12px;border-radius:6px;letter-spacing:.3px}
+.tag-spec{background:var(--warm-50);color:var(--warm-700);font-size:11px;padding:3px 12px;border-radius:6px;cursor:pointer;transition:all .15s}
+.tag-spec:hover{background:var(--gold-light);color:var(--gold-dark)}
+.spec-panel{background:var(--warm-50);border:1px solid var(--warm-200);border-radius:var(--radius);padding:20px 24px;margin:8px 0 16px;font-size:13px;color:var(--warm-700)}
+@media(max-width:768px){.page-header h1{font-size:26px}.hcard{padding:18px 20px}}
+
 </style></head><body>
 
 <nav class="nav"><div class="nav-inner">
@@ -56,15 +86,15 @@ body{font-family:var(--font);color:var(--gray-700);background:var(--gray-50);lin
 
 <header class="page-header"><h1 data-key="page_title_general"></h1><p data-key="page_sub_general"></p></header>
 <div style="max-width:960px;margin:0 auto;padding:0 24px 20px;text-align:center">
-<div style="background:var(--white,#fff);border:1px solid var(--gray-200,#e2e8f0);border-radius:12px;padding:16px 20px;display:inline-block;min-width:300px;max-width:728px;width:100%">
-<div style="font-size:10px;font-weight:600;color:var(--gray-500,#718096);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Sponsored</div>
-<div style="background:linear-gradient(135deg,var(--blue-light,#ebf4fb),var(--gray-50,#f7f9fb));border-radius:8px;padding:14px;text-align:center;color:var(--gray-500,#718096);font-size:13px;font-weight:500">📢 Ad Space Available — Contact for Placement</div>
+<div style="background:var(--white,#fff);border:1px solid var(--warm-200,#e2e8f0);border-radius:12px;padding:16px 20px;display:inline-block;min-width:300px;max-width:728px;width:100%">
+<div style="font-size:10px;font-weight:600;color:var(--cream0,#718096);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Sponsored</div>
+<div style="background:linear-gradient(135deg,var(--gold-light,#ebf4fb),var(--cream,#f7f9fb));border-radius:8px;padding:14px;text-align:center;color:var(--cream0,#718096);font-size:13px;font-weight:500">📢 Ad Space Available — Contact for Placement</div>
 </div></div><div class="content" id="hospitalList"></div>
 <div style="max-width:960px;margin:28px auto;padding:0 24px">
-<div style="background:var(--white,#fff);border:1px solid var(--gray-200,#e2e8f0);border-radius:12px;padding:18px 22px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
-<div style="font-size:10px;font-weight:600;color:var(--gray-500,#718096);text-transform:uppercase;letter-spacing:1px;white-space:nowrap">Sponsored</div>
-<div style="text-align:center;color:var(--gray-500,#718096);font-size:13px">📢 Your Ad Here — Reach International Patients</div>
-<div style="background:var(--navy,#1a365d);color:white;font-size:12px;font-weight:600;padding:6px 14px;border-radius:6px;white-space:nowrap">Inquire →</div>
+<div style="background:var(--white,#fff);border:1px solid var(--warm-200,#e2e8f0);border-radius:12px;padding:18px 22px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
+<div style="font-size:10px;font-weight:600;color:var(--cream0,#718096);text-transform:uppercase;letter-spacing:1px;white-space:nowrap">Sponsored</div>
+<div style="text-align:center;color:var(--cream0,#718096);font-size:13px">📢 Your Ad Here — Reach International Patients</div>
+<div style="background:var(--ink,#1a365d);color:white;font-size:12px;font-weight:600;padding:6px 14px;border-radius:6px;white-space:nowrap">Inquire →</div>
 </div></div><footer class="footer"><div class="footer-inner" id="footerContent"></div></footer>
 
 <script>
@@ -133,7 +163,7 @@ function render(lang) {
   var html = "";
   // Back link when filtered
   if (regionIndex !== null && data[regionIndex]) {
-    html += '<div style="margin-bottom:20px"><a href="' + pageBase + '?lang=' + lang + '" style="display:inline-flex;align-items:center;gap:4px;color:var(--blue);text-decoration:none;font-size:14px;font-weight:600;padding:8px 0">← ' + (d.back_all || 'Show All Regions') + '</a></div>';
+    html += '<div style="margin-bottom:20px"><a href="' + pageBase + '?lang=' + lang + '" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold);text-decoration:none;font-size:14px;font-weight:600;padding:8px 0">← ' + (d.back_all || 'Show All Regions') + '</a></div>';
   }
 
   var start = regionIndex !== null && data[regionIndex] ? regionIndex : 0;
