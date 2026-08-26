@@ -93,6 +93,16 @@ img{max-width:100%}
 .tl-item::before{content:'';position:absolute;left:-28px;top:4px;width:22px;height:22px;background:var(--ink);border:3px solid var(--gold-light);border-radius:50%}
 .tl-item h3{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:6px}
 .tl-item p{font-size:14.5px;color:var(--warm-700);line-height:1.75}
+/* ---------- PROCESS FLOW (4 steps with measures) ---------- */
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;max-width:1100px;margin:0 auto}
+.flow-step{background:#fff;border:1px solid var(--warm-200);border-radius:var(--radius);padding:26px 24px;position:relative;box-shadow:0 6px 22px rgba(60,40,20,.05)}
+.flow-step::before{content:'';position:absolute;left:0;top:0;width:100%;height:4px;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:var(--radius) var(--radius) 0 0}
+.flow-num{width:38px;height:38px;border-radius:50%;background:var(--ink);color:var(--gold-light);font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.flow-step h3{font-size:19px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.flow-desc{font-size:14.5px;color:var(--warm-700);line-height:1.7;margin-bottom:14px}
+.flow-measures{list-style:none;margin:0;padding:0;border-top:1px dashed var(--warm-200);padding-top:14px}
+.flow-measures li{position:relative;padding:0 0 11px 22px;font-size:13.5px;color:var(--warm-800);line-height:1.65}
+.flow-measures li::before{content:'✓';position:absolute;left:0;top:0;color:var(--gold);font-weight:800}
 /* ---------- PACKAGE CARDS ---------- */
 .pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1000px;margin:0 auto}
 .pkg-card{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius);padding:30px 26px;position:relative;transition:border-color .15s,transform .15s}
