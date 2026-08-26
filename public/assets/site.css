@@ -172,6 +172,10 @@ table.tbl .save{color:#2e7d32;font-weight:700}
 .contact-item .ico{font-size:22px}
 .contact-item .lbl{font-size:12px;color:var(--warm-500)}
 .contact-item .val{font-size:15px;font-weight:700;color:var(--ink)}
+.contact-item.align-top{align-items:flex-start}
+.contact-item.align-top .ico{margin-top:2px}
+.contact-item .val-list a{display:block;font-size:15px;font-weight:700;color:var(--gold-deep);text-decoration:none;padding:3px 0;word-break:break-all}
+.contact-item .val-list a:hover{text-decoration:underline}
 /* ---------- HOSPITAL STRIP ---------- */
 .hosp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
 .hosp-card{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius);padding:24px;transition:border-color .15s,transform .15s;text-decoration:none;color:inherit;display:block}
@@ -201,3 +205,15 @@ body.rtl .nav-links,.body.rtl .lang-bar{/* keep bar order acceptable */}
   .fm-arrow{transform:rotate(90deg);padding:2px 0}
   .fm-callouts{grid-template-columns:1fr}
 }
+/* ---------- ABOUT (founder + why china) ---------- */
+.founder-body{display:grid;grid-template-columns:280px 1fr;gap:40px;max-width:1080px;margin:0 auto;align-items:start}
+.founder-portrait{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius);padding:28px 24px;text-align:center;position:sticky;top:88px}
+.portrait-avatar{width:84px;height:84px;border-radius:50%;background:var(--gold-light);display:flex;align-items:center;justify-content:center;font-size:40px;margin:0 auto 16px}
+.portrait-name{font-size:16px;font-weight:800;color:var(--ink);margin-bottom:6px}
+.portrait-tag{font-size:13px;color:var(--warm-500);line-height:1.5}
+.founder-prose p{font-size:15.5px;color:var(--warm-700);line-height:1.85;margin-bottom:18px}
+.founder-prose p:last-child{margin-bottom:0}
+.prose-block{max-width:1080px;margin:0 auto 36px}
+.prose-block p{font-size:15.5px;color:var(--warm-700);line-height:1.9;margin-bottom:18px}
+.mission-box{max-width:1080px;margin:40px auto 0;background:linear-gradient(135deg,var(--ink) 0%,#1c1c1c 100%);color:#fff;border-radius:var(--radius);padding:34px 32px;text-align:center}
+.mission-box p{font-size:16px;color:#e9e3da;line-height:1.85;max-width:840px;margin:0 auto}
