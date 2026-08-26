@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:ns0="http://www.w3.org/2005/Atom" version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ChinaMed Directory — Updates</title>
+    <link>https://cnhospitalmap.help/</link>
+    <description>Latest updates to the China public hospital directory for international patients. New hospital listings, city guides, and medical travel tips.</description>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Jun 2026 09:33:59 +0000</lastBuildDate>
+    <ns0:link href="https://cnhospitalmap.help/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>FAQ Added — Guide to Chinese Public Hospitals</title>
+      <link>https://cnhospitalmap.help/faq.html</link>
+      <description>Comprehensive FAQ covering visa requirements, medical costs, insurance acceptance, language support, and emergency services for international patients visiting Chinese hospitals.</description>
+      <pubDate>Wed, 10 Jun 2026 09:33:59 +0000</pubDate>
+      <guid>https://cnhospitalmap.help/faq.html</guid>
+    </item>
+    <item>
+      <title>Sitemap Updated — Now 82+ Hospital Pages</title>
+      <link>https://cnhospitalmap.help/</link>
+      <description>Our directory now includes 82 indexed pages covering 50 general hospitals, 30 specialty hospitals, and 24 city guides across China.</description>
+      <pubDate>Wed, 10 Jun 2026 09:33:59 +0000</pubDate>
+      <guid>https://cnhospitalmap.help/</guid>
+    </item>
+    <item>
+      <title>Structured Data Added for Better Search</title>
+      <link>https://cnhospitalmap.help/</link>
+      <description>Added Schema.org MedicalWebPage and WebSite structured data to improve visibility in Bing and Copilot search results.</description>
+      <pubDate>Wed, 10 Jun 2026 09:33:59 +0000</pubDate>
+      <guid>https://cnhospitalmap.help/</guid>
+    </item>
+  </channel>
+</rss>
