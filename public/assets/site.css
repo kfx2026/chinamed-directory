@@ -137,6 +137,9 @@ img{max-width:100%}
 .fm-callout p{font-size:14px;color:var(--warm-700);line-height:1.75}
 .fm-ico{font-size:20px}
 .fm-foot{margin-top:22px;text-align:center;font-size:13.5px;color:var(--warm-500);background:var(--white);border:1px dashed var(--warm-300);border-radius:var(--radius-sm);padding:16px 20px;line-height:1.7}
+.fm-measures{list-style:none;margin:16px 0 0;padding:14px 0 0;border-top:1px dashed var(--warm-200);text-align:left}
+.fm-measures li{position:relative;padding:0 0 10px 22px;font-size:13px;color:var(--warm-700);line-height:1.6}
+.fm-measures li::before{content:'✓';position:absolute;left:0;top:0;color:var(--gold);font-weight:800}
 /* ---------- TABLE ---------- */
 .tbl-wrap{max-width:1000px;margin:0 auto;overflow-x:auto;border:1px solid var(--warm-200);border-radius:var(--radius);background:var(--white)}
 table.tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:640px}
