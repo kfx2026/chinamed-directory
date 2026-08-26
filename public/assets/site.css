@@ -1,0 +1,165 @@
+/* ===== MediChina · 来华就医 共享设计系统 ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0f0f0f;--ink-light:#2a2a2a;--gold:#b8956a;--gold-dark:#9a7d52;--gold-light:#f5efe6;
+  --cream:#faf8f5;--warm-50:#f7f5f2;--warm-100:#efe8de;--warm-200:#e3d9cb;--warm-300:#d4c8b5;
+  --warm-500:#8b8176;--warm-700:#4a4540;--white:#fff;--radius:14px;--radius-sm:10px;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,"Helvetica Neue",Arial,sans-serif
+}
+body{font-family:var(--font);color:var(--ink);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%}
+/* ---------- NAV ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--warm-200);height:64px}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{font-size:19px;font-weight:800;color:var(--ink);text-decoration:none;letter-spacing:-.3px;display:flex;align-items:center;gap:9px;white-space:nowrap}
+.nav-logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--ink),#333);border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:800;font-size:14px}
+.nav-logo small{font-size:11px;font-weight:500;color:var(--gold);letter-spacing:.5px}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{text-decoration:none;color:var(--warm-700);font-size:13.5px;padding:8px 12px;border-radius:6px;transition:all .15s;white-space:nowrap}
+.nav-links a:hover{background:var(--warm-100);color:var(--ink)}
+.nav-links a.active{color:var(--ink);font-weight:700;background:var(--gold-light)}
+.lang-btn{background:var(--white);border:1px solid var(--warm-200);padding:6px 9px;border-radius:6px;font-size:12px;cursor:pointer;color:var(--warm-700);margin-left:3px;transition:all .15s}
+.lang-btn:hover{border-color:var(--ink);color:var(--ink)}
+.lang-btn.selected{background:var(--ink);color:var(--white);border-color:var(--ink);font-weight:700}
+.lang-bar{display:flex;gap:3px;align-items:center;flex-wrap:nowrap}
+.nav-cta{font-size:13px;padding:9px 16px;white-space:nowrap}
+/* ---------- HERO ---------- */
+.hero{margin-top:64px;padding:88px 24px 72px;text-align:center;background:linear-gradient(175deg,var(--gold-light) 0%,var(--cream) 55%,var(--warm-50) 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-140px;right:-90px;width:340px;height:340px;border-radius:50%;background:var(--gold-light);opacity:.6;z-index:0}
+.hero-badge{position:relative;display:inline-block;background:var(--ink);color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.6px;padding:7px 18px;border-radius:100px;margin-bottom:22px}
+.hero h1{position:relative;font-size:42px;font-weight:800;color:var(--ink);max-width:820px;margin:0 auto 18px;line-height:1.22;letter-spacing:-.6px}
+.hero p{position:relative;font-size:17px;color:var(--warm-700);max-width:640px;margin:0 auto 30px;line-height:1.7}
+.hero .btn-primary{position:relative}
+.btn-primary{display:inline-block;background:var(--ink);color:#fff;font-size:15px;font-weight:700;padding:14px 30px;border-radius:10px;text-decoration:none;transition:transform .15s,background .15s;border:none;cursor:pointer}
+.btn-primary:hover{background:#000;transform:translateY(-2px)}
+.btn-gold{display:inline-block;background:var(--gold);color:#fff;font-size:15px;font-weight:700;padding:14px 30px;border-radius:10px;text-decoration:none;transition:transform .15s;cursor:pointer}
+.btn-gold:hover{background:var(--gold-dark);transform:translateY(-2px)}
+.btn-ghost{display:inline-block;background:transparent;border:1.5px solid var(--ink);color:var(--ink);font-size:14px;font-weight:600;padding:12px 26px;border-radius:10px;text-decoration:none;transition:all .15s}
+.btn-ghost:hover{background:var(--ink);color:#fff}
+/* ---------- STATS ---------- */
+.stat-row{position:relative;display:flex;justify-content:center;flex-wrap:wrap;gap:18px 54px;margin-top:42px}
+.stat{text-align:center;min-width:120px}
+.stat-num{font-size:34px;font-weight:800;color:var(--ink);line-height:1.1}
+.stat-num .accent{color:var(--gold)}
+.stat-label{font-size:13px;color:var(--warm-500);margin-top:6px}
+/* ---------- SECTION ---------- */
+.section{max-width:1280px;margin:0 auto;padding:64px 24px}
+.section-header{text-align:center;margin-bottom:46px;max-width:760px;margin-left:auto;margin-right:auto}
+.section-label{font-size:12px;font-weight:800;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:12px}
+.section-title{font-size:30px;font-weight:800;color:var(--ink);margin-bottom:10px;letter-spacing:-.4px}
+.section-sub{font-size:15.5px;color:var(--warm-700)}
+/* ---------- WHY GRID ---------- */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.why-card{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius);padding:28px 26px;transition:border-color .15s,transform .15s}
+.why-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.why-ico{width:50px;height:50px;background:var(--gold-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px}
+.why-card h3{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.why-card p{font-size:14.5px;color:var(--warm-700);line-height:1.7}
+/* ---------- STEPS ---------- */
+.steps-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;max-width:1080px;margin:0 auto}
+.step{text-align:center;padding:30px 22px;background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius)}
+.step-num{width:50px;height:50px;background:var(--ink);color:var(--gold);border-radius:50%;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800}
+.step h3{font-size:16.5px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.step p{font-size:14px;color:var(--warm-700);line-height:1.7}
+/* ---------- SERVICE CARDS ---------- */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.svc-card{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius-sm);padding:26px 20px;text-align:center;transition:border-color .15s,transform .15s}
+.svc-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.svc-ico{width:54px;height:54px;background:var(--gold-light);border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:26px}
+.svc-card h3{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:7px}
+.svc-card p{font-size:13.5px;color:var(--warm-700);line-height:1.65}
+/* ---------- TREATMENT CARDS ---------- */
+.treat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.treat-card{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius);padding:24px;transition:border-color .15s,transform .15s;text-decoration:none;color:inherit;display:block}
+.treat-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.treat-ico{font-size:30px;margin-bottom:12px}
+.treat-card h3{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.treat-card p{font-size:14px;color:var(--warm-700);line-height:1.7}
+.treat-card .more{display:inline-block;margin-top:12px;font-size:13px;font-weight:700;color:var(--gold)}
+/* ---------- CTA BAND ---------- */
+.cta-band{background:linear-gradient(135deg,var(--ink) 0%,#1c1c1c 100%);color:#fff;text-align:center;padding:60px 24px;border-radius:var(--radius)}
+.cta-band h2{font-size:28px;font-weight:800;margin-bottom:12px;color:#fff}
+.cta-band p{font-size:16px;color:#cfc9c0;max-width:600px;margin:0 auto 26px;line-height:1.7}
+/* ---------- LINK ROW ---------- */
+.link-row{text-align:center;margin-top:30px}
+.link-row a{color:var(--gold);font-weight:700;text-decoration:none;font-size:15px}
+.link-row a:hover{text-decoration:underline}
+/* ---------- PROCESS TIMELINE ---------- */
+.timeline{max-width:860px;margin:0 auto;position:relative;padding-left:34px}
+.timeline::before{content:'';position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:var(--warm-200)}
+.tl-item{position:relative;padding:0 0 34px 14px}
+.tl-item::before{content:'';position:absolute;left:-28px;top:4px;width:22px;height:22px;background:var(--ink);border:3px solid var(--gold-light);border-radius:50%}
+.tl-item h3{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.tl-item p{font-size:14.5px;color:var(--warm-700);line-height:1.75}
+/* ---------- PACKAGE CARDS ---------- */
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;max-width:1000px;margin:0 auto}
+.pkg-card{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius);padding:30px 26px;position:relative;transition:border-color .15s,transform .15s}
+.pkg-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.pkg-card.featured{border:2px solid var(--gold);box-shadow:0 10px 30px rgba(184,149,106,.15)}
+.pkg-card .tag{position:absolute;top:-12px;left:26px;background:var(--gold);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px}
+.pkg-card h3{font-size:20px;font-weight:800;color:var(--ink);margin-bottom:8px}
+.pkg-card .price{font-size:15px;color:var(--gold);font-weight:700;margin-bottom:14px}
+.pkg-card p{font-size:14px;color:var(--warm-700);line-height:1.75}
+.pkg-card ul{list-style:none;margin-top:14px}
+.pkg-card li{font-size:13.5px;color:var(--warm-700);padding:6px 0 6px 22px;position:relative;border-top:1px solid var(--warm-100)}
+.pkg-card li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:700}
+/* ---------- TABLE ---------- */
+.tbl-wrap{max-width:1000px;margin:0 auto;overflow-x:auto;border:1px solid var(--warm-200);border-radius:var(--radius);background:var(--white)}
+table.tbl{width:100%;border-collapse:collapse;font-size:14px;min-width:640px}
+table.tbl th{background:var(--ink);color:#fff;text-align:left;padding:14px 16px;font-weight:700;font-size:13px}
+table.tbl td{padding:13px 16px;border-top:1px solid var(--warm-100);color:var(--warm-700)}
+table.tbl td:first-child{color:var(--ink);font-weight:600}
+table.tbl .save{color:#2e7d32;font-weight:700}
+.note{font-size:13px;color:var(--warm-500);max-width:1000px;margin:16px auto 0;text-align:center;line-height:1.7}
+/* ---------- CASES ---------- */
+.case-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.case-card{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius);padding:28px 26px}
+.case-card .flag{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:10px;letter-spacing:.5px}
+.case-card h3{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:10px}
+.case-card p{font-size:14px;color:var(--warm-700);line-height:1.75}
+/* ---------- CONSULT FORM ---------- */
+.consult-wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;max-width:1080px;margin:0 auto;align-items:start}
+.form-card{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius);padding:32px}
+.form-card h3{font-size:20px;font-weight:800;color:var(--ink);margin-bottom:22px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:13.5px;font-weight:600;color:var(--warm-700);margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;font-size:14.5px;font-family:var(--font);border:1px solid var(--warm-200);border-radius:9px;background:var(--cream);color:var(--ink);outline:none;transition:border-color .15s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+.field textarea{resize:vertical;min-height:110px}
+.form-card .btn-primary{width:100%;text-align:center;margin-top:6px}
+.form-success{display:none;background:#eafaf0;border:1px solid #b7e4c7;color:#1b7a3d;padding:14px 16px;border-radius:9px;font-size:14px;margin-bottom:18px}
+.contact-card{background:var(--gold-light);border:1px solid var(--warm-200);border-radius:var(--radius);padding:30px}
+.contact-card h3{font-size:19px;font-weight:800;color:var(--ink);margin-bottom:18px}
+.contact-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--warm-200)}
+.contact-item:first-of-type{border-top:none}
+.contact-item .ico{font-size:22px}
+.contact-item .lbl{font-size:12px;color:var(--warm-500)}
+.contact-item .val{font-size:15px;font-weight:700;color:var(--ink)}
+/* ---------- HOSPITAL STRIP ---------- */
+.hosp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.hosp-card{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius);padding:24px;transition:border-color .15s,transform .15s;text-decoration:none;color:inherit;display:block}
+.hosp-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.hosp-card h3{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:7px}
+.hosp-card p{font-size:13.5px;color:var(--warm-700);line-height:1.65}
+/* ---------- FOOTER ---------- */
+.footer{background:var(--ink);color:#cfc9c0;margin-top:40px;padding:54px 24px 30px}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;margin-bottom:30px}
+.footer h3{color:#fff;font-size:16px;font-weight:700;margin-bottom:14px}
+.footer p{font-size:13.5px;line-height:1.7;margin-bottom:8px}
+.footer a{color:#cfc9c0;text-decoration:none}
+.footer a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid #2c2c2c;padding-top:20px;font-size:12.5px;color:#8b857c;line-height:1.7}
+/* ---------- RTL (Arabic) ---------- */
+body.rtl{direction:rtl}
+body.rtl .nav-links,.body.rtl .lang-bar{/* keep bar order acceptable */}
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:860px){
+  .consult-wrap{grid-template-columns:1fr;gap:26px}
+  .footer-grid{grid-template-columns:1fr;gap:24px}
+  .hero h1{font-size:30px}
+  .section-title{font-size:24px}
+  .nav-logo small{display:none}
+}

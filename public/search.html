@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Search Results — ChinaMed Directory</title>
+<title>Search Results — MediChina · 来华就医</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--ink:#0f0f0f;--ink-light:#2a2a2a;--gold:#b8956a;--gold-dark:#9a7d52;--gold-light:#f5efe6;--cream:#faf8f5;--warm-50:#f7f5f2;--warm-100:#efe8de;--warm-200:#e3d9cb;--warm-300:#d4c8b5;--warm-500:#8b8176;--warm-700:#4a4540;--warm-900:#1a1816;--white:#fff;--radius:14px;--radius-sm:10px;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,"Helvetica Neue",Arial,sans-serif}
@@ -81,7 +81,7 @@ body{letter-spacing:.01em}
 </style>
 </head><body>
 <nav class="nav"><div class="nav-inner">
-<a href="./index.html" class="nav-logo"><span class="nav-logo-icon">CM</span>ChinaMed Directory</a>
+<a href="./index.html" class="nav-logo"><span class="nav-logo-icon">CM</span>MediChina · 来华就医</a>
 <ul class="nav-links">
 <li><a href="./index.html" id="navHome" data-key="nav_home">Home</a></li>
 <li><a href="./general-hospitals.html" id="navGeneral" data-key="nav_general">General Hospitals</a></li>
@@ -89,6 +89,12 @@ body{letter-spacing:.01em}
 <li><a href="./about.html" id="navAbout" data-key="nav_about">About Us</a></li>
 <li><a href="./contact.html" id="navContact" data-key="nav_contact">Contact</a></li>
 <li><a href="./legal-notice.html" id="navLegal" data-key="nav_legal">Legal Notice</a></li>
+
+<li><a href="./process.html">来华流程 · Process</a></li>
+<li><a href="./treatments.html">疗法专科 · Treatments</a></li>
+<li><a href="./fees.html">费用套餐 · Fees</a></li>
+<li><a href="./consult.html">中国就医咨询 · Consult</a></li>
+<li><a href="./cases.html">真实案例 · Cases</a></li>
 </ul>
 <div class="lang-bar" id="langBar"></div></div></nav>
 <header class="page-header">
@@ -115,28 +121,28 @@ body{letter-spacing:.01em}
 <script>
 var I18N={zh:{nav_home:"首页",nav_general:"综合医院",nav_specialty:"专科医院",nav_about:"关于我们",nav_contact:"联系我们",nav_legal:"法律声明",
   search_title:"搜索结果",search_sub:"",search_placeholder:"搜索医院名、专科、城市…",searching:"搜索中…",no_result:"未找到匹配的医院，请尝试其他关键词",footer_desc:"公益性信息平台 · 免费使用 · 无广告 · 无中介",
-  footer_disclaimer:'<strong>医疗免责声明：</strong>本站所有内容仅供参考，不构成医疗建议。就诊前请与医院核实。<br><br>&copy; 2026 ChinaMed Directory.'
+  footer_disclaimer:'<strong>医疗免责声明：</strong>本站所有内容仅供参考，不构成医疗建议。就诊前请与医院核实。<br><br>&copy; 2026 MediChina · 来华就医.'
 },en:{nav_home:"Home",nav_general:"General Hospitals",nav_specialty:"Specialty Hospitals",nav_about:"About Us",nav_contact:"Contact",nav_legal:"Legal Notice",
   search_title:"Search Results",search_sub:"",search_placeholder:"Search hospitals, specialties, cities…",searching:"Searching…",no_result:"No matching hospitals found. Try a different keyword.",footer_desc:"A public-service information platform. Free to use. No advertisements. No intermediaries.",
-  footer_disclaimer:'<strong>Medical Disclaimer:</strong> All content is for informational reference only. Not medical advice. Verify with hospital before visiting.<br><br>&copy; 2026 ChinaMed Directory.'
+  footer_disclaimer:'<strong>Medical Disclaimer:</strong> All content is for informational reference only. Not medical advice. Verify with hospital before visiting.<br><br>&copy; 2026 MediChina · 来华就医.'
 },fr:{nav_home:"Accueil",nav_general:"Hopitaux Generaux",nav_specialty:"Hopitaux Specialises",nav_about:"A propos",nav_contact:"Contact",nav_legal:"Mentions legales",
   search_title:"Resultats",search_placeholder:"Rechercher…",searching:"Recherche…",no_result:"Aucun hopital trouve. Essayez un autre mot-cle.",footer_desc:"Plateforme de service public. Gratuit.",
-  footer_disclaimer:'<strong>Avertissement:</strong> Contenu informatif uniquement.<br><br>&copy; 2026 ChinaMed Directory.'
+  footer_disclaimer:'<strong>Avertissement:</strong> Contenu informatif uniquement.<br><br>&copy; 2026 MediChina · 来华就医.'
 },de:{nav_home:"Startseite",nav_general:"Allg. Krankenhauser",nav_specialty:"Fachkrankenhauser",nav_about:"Uber uns",nav_contact:"Kontakt",nav_legal:"Rechtliches",
   search_title:"Suchergebnisse",search_placeholder:"Suchen…",searching:"Suche…",no_result:"Keine Krankenhauser gefunden.",footer_desc:"Offentliche Plattform. Kostenlos.",
-  footer_disclaimer:'<strong>Haftungsausschluss:</strong> Nur zu Informationszwecken.<br><br>&copy; 2026 ChinaMed Directory.'
+  footer_disclaimer:'<strong>Haftungsausschluss:</strong> Nur zu Informationszwecken.<br><br>&copy; 2026 MediChina · 来华就医.'
 },es:{nav_home:"Inicio",nav_general:"Hospitales Generales",nav_specialty:"Hospitales Especializados",nav_about:"Nosotros",nav_contact:"Contacto",nav_legal:"Legal",
   search_title:"Resultados",search_placeholder:"Buscar…",searching:"Buscando…",no_result:"No se encontraron hospitales.",footer_desc:"Plataforma publica. Gratis.",
-  footer_disclaimer:'<strong>Aviso:</strong> Solo fines informativos.<br><br>&copy; 2026 ChinaMed Directory.'
+  footer_disclaimer:'<strong>Aviso:</strong> Solo fines informativos.<br><br>&copy; 2026 MediChina · 来华就医.'
 },ru:{nav_home:"Glavnaya",nav_general:"Obshchie",nav_specialty:"Spetsial.",nav_about:"O nas",nav_contact:"Kontakty",nav_legal:"Yurid.",
   search_title:"Rezultaty",search_placeholder:"Poisk…",searching:"Poisk…",no_result:"Bolnitsy ne naideny.",footer_desc:"Obshchestvennaya platforma.",
-  footer_disclaimer:'<strong>Otvetstvennost:</strong> Tolko informatsionno.<br><br>&copy; 2026 ChinaMed Directory.'
+  footer_disclaimer:'<strong>Otvetstvennost:</strong> Tolko informatsionno.<br><br>&copy; 2026 MediChina · 来华就医.'
 },ko:{nav_home:"홈",nav_general:"종합병원",nav_specialty:"전문병원",nav_about:"소개",nav_contact:"연락처",nav_legal:"법적 고지",
   search_title:"검색 결과",search_placeholder:"검색…",searching:"검색 중…",no_result:"일치하는 병원이 없습니다.",footer_desc:"공공 서비스 플랫폼. 무료.",
-  footer_disclaimer:'<strong>면책 조항:</strong> 정보 제공 목적으로만 사용됩니다.<br><br>&copy; 2026 ChinaMed Directory.'
+  footer_disclaimer:'<strong>면책 조항:</strong> 정보 제공 목적으로만 사용됩니다.<br><br>&copy; 2026 MediChina · 来华就医.'
 },ar:{nav_home:"الرئيسية",nav_general:"مستشفيات عامة",nav_specialty:"مستشفيات تخصصية",nav_about:"من نحن",nav_contact:"اتصل بنا",nav_legal:"قانوني",
   search_title:"نتائج البحث",search_placeholder:"ابحث…",searching:"جاري البحث…",no_result:"لم يتم العثور على مستشفيات.",footer_desc:"منصة خدمة عامة. مجانية.",
-  footer_disclaimer:'<strong>اخطار:</strong> للمعلومات فقط.<br><br>&copy; 2026 ChinaMed Directory.'
+  footer_disclaimer:'<strong>اخطار:</strong> للمعلومات فقط.<br><br>&copy; 2026 MediChina · 来华就医.'
 }};
 var LANG_LABELS={zh:"中",en:"EN",fr:"FR",de:"DE",es:"ES",ru:"RU",ko:"KO",ar:"AR"};
 
@@ -156,7 +162,7 @@ function switchLang(lang){
   document.documentElement.lang=isRTL?"ar":lang;
   document.documentElement.dir=isRTL?"rtl":"ltr";
   document.body.style.direction=isRTL?"rtl":"";
-  document.title=(d.search_title||"Search")+" — ChinaMed Directory";
+  document.title=(d.search_title||"Search")+" — MediChina · 来华就医";
   document.querySelectorAll("[data-key]").forEach(function(el){
     var k=el.dataset.key;if(d[k])el.innerHTML=d[k];
   });
@@ -165,7 +171,7 @@ function switchLang(lang){
     var m={navHome:"./index.html",navGeneral:"./general-hospitals.html",navSpecialty:"./specialty-hospitals.html",navAbout:"./about.html",navContact:"./contact.html",navLegal:"./legal-notice.html"};
     var p=m[a.id];if(p)a.href=p+"?lang="+lang;
   });
-  var fh="<h3>ChinaMed Directory</h3><p style='margin-bottom:16px'>"+d.footer_desc+"</p>";
+  var fh="<h3>MediChina · 来华就医</h3><p style='margin-bottom:16px'>"+d.footer_desc+"</p>";
   fh+="<div style='display:flex;gap:24px;flex-wrap:wrap'>";
   fh+="<a href='./general-hospitals.html?lang="+lang+"'>"+d.nav_general+"</a>";
   fh+="<a href='./specialty-hospitals.html?lang="+lang+"'>"+d.nav_specialty+"</a>";
