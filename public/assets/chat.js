@@ -131,7 +131,8 @@
         var specs = (l === "zh") ? h.specs_zh : h.specs_en;
         html += '<div class="mc-hosp-item">' +
           '<div class="mc-hname">' + esc(main) + '<span class="en">' + esc(sub) + '</span></div>' +
-          '<div class="mc-hmeta">' + esc(city) + ' · ' + esc(tl) + '</div>' +
+          '<div class="mc-hmeta">' + esc(city) + ' · ' + esc(tl) + ' · ' + esc((l === "zh" ? h.tier_zh : h.tier_en) || "") + '</div>' +
+          '<div class="mc-hintro">' + esc((l === "zh" ? h.intro_zh : h.intro_en) || "") + '</div>' +
           '<div>' + (specs || []).map(function (s) { return '<span class="mc-htag">' + esc(s) + '</span>'; }).join("") + '</div>' +
           '</div>';
       });
@@ -148,7 +149,7 @@
       if (!toks.length || !H.length) return [];
       var hits = [];
       H.forEach(function (h) {
-        var hay = (h.specs_zh.join(" ") + " " + h.specs_en.join(" ") + " " + h.city_zh + " " + h.city_en + " " + h.name_zh + " " + h.name_en).toLowerCase();
+        var hay = (h.specs_zh.join(" ") + " " + h.specs_en.join(" ") + " " + (h.tags_zh || []).join(" ") + " " + (h.tags_en || []).join(" ") + " " + h.city_zh + " " + h.city_en + " " + h.name_zh + " " + h.name_en).toLowerCase();
         var score = 0;
         toks.forEach(function (t) { if (hay.indexOf(t) >= 0) score++; });
         if (score > 0) hits.push({ h: h, score: score });
@@ -161,7 +162,7 @@
       var l = curLang();
       var low = text.toLowerCase();
       var ks = KB.keywords || {};
-      var order = ["process", "services", "fees", "hospital", "travel", "tcm", "cases", "contact", "disclaimer"];
+      var order = ["process", "services", "fees", "chinaHospital", "hospital", "travel", "tcm", "cases", "contact", "disclaimer"];
       for (var i = 0; i < order.length; i++) {
         var k = order[i];
         if (!ks[k]) continue;

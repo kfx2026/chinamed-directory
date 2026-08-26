@@ -47,6 +47,7 @@
 .mc-hosp-item .mc-hname{font-weight:700;color:#0f0f0f}
 .mc-hosp-item .mc-hname .en{font-weight:400;color:#8b8176;font-size:11.5px;margin-left:5px}
 .mc-hosp-item .mc-hmeta{color:#8b8176;margin-top:2px}
+.mc-hosp-item .mc-hintro{color:#5b5147;margin-top:3px;font-style:italic}
 .mc-hosp-item .mc-htag{display:inline-block;background:#f5efe6;color:#9a7d52;font-size:11px;padding:1px 8px;border-radius:4px;margin:3px 4px 0 0}
 .mc-link{display:inline-block;margin-top:8px;color:#9a7d52;font-weight:700;font-size:12.5px;text-decoration:none;border-bottom:1px solid #cbb89a}
 .mc-link:hover{color:#7a6240}
