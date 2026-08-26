@@ -64,12 +64,15 @@ img{max-width:100%}
 .step h3{font-size:16.5px;font-weight:700;color:var(--ink);margin-bottom:8px}
 .step p{font-size:14px;color:var(--warm-700);line-height:1.7}
 /* ---------- SERVICE CARDS ---------- */
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
-.svc-card{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius-sm);padding:26px 20px;text-align:center;transition:border-color .15s,transform .15s}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.svc-card{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius-sm);padding:24px 22px;text-align:left;transition:border-color .15s,transform .15s;display:flex;flex-direction:column}
 .svc-card:hover{border-color:var(--gold);transform:translateY(-3px)}
-.svc-ico{width:54px;height:54px;background:var(--gold-light);border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:26px}
-.svc-card h3{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:7px}
-.svc-card p{font-size:13.5px;color:var(--warm-700);line-height:1.65}
+.svc-ico{width:54px;height:54px;background:var(--gold-light);border-radius:50%;margin:0 0 14px;display:flex;align-items:center;justify-content:center;font-size:26px}
+.svc-card h3{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:7px}
+.svc-card p{font-size:13.5px;color:var(--warm-700);line-height:1.65;margin-bottom:12px}
+.svc-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.svc-list li{position:relative;padding-left:20px;font-size:13px;line-height:1.55;color:var(--warm-700)}
+.svc-list li::before{content:"✓";position:absolute;left:0;top:0;color:var(--gold-deep);font-weight:800}
 /* ---------- TREATMENT CARDS ---------- */
 .treat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
 .treat-card{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius);padding:24px;transition:border-color .15s,transform .15s;text-decoration:none;color:inherit;display:block}
