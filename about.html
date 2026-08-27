@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title data-key="title">About Us — ChinaMed Directory</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0f0f0f;--ink-light:#2a2a2a;--gold:#b8956a;--gold-dark:#9a7d52;--gold-light:#f5efe6;--cream:#faf8f5;--warm-50:#f7f5f2;--warm-100:#efe8de;--warm-200:#e3d9cb;--warm-300:#d4c8b5;--warm-500:#8b8176;--warm-700:#4a4540;--warm-900:#1a1816;--white:#fff;--radius:14px;--radius-sm:10px;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{font-family:var(--font);color:var(--ink);background:var(--cream);line-height:1.6}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--warm-200);height:64px}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:18px;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px}
+.nav-logo-icon{width:32px;height:32px;background:var(--ink);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--warm-700);font-size:13px;padding:8px 12px;border-radius:6px;white-space:nowrap}
+.nav-links a:hover{background:var(--warm-100)}
+.nav-links a.active{color:var(--ink);font-weight:600;background:var(--gold-light)}
+.lang-bar{display:flex;gap:3px;align-items:center;flex-wrap:wrap}
+.lang-btn{background:var(--white);border:1px solid var(--warm-200);padding:4px 8px;border-radius:5px;font-size:11px;cursor:pointer;color:var(--warm-700);min-width:28px;text-align:center}
+.lang-btn:hover{border-color:var(--ink);color:var(--ink)}
+.lang-btn.selected{border-color:var(--ink);background:var(--gold-light);color:var(--ink);font-weight:600}
+.page-header{margin-top:64px;padding:56px 24px 40px;text-align:center;background:linear-gradient(180deg,var(--gold-light),var(--cream))}
+.page-header h1{font-size:34px;font-weight:800;color:var(--ink)}
+.page-header p{font-size:15px;color:var(--cream0);margin-top:6px}
+.content{max-width:720px;margin:0 auto;padding:0 24px 64px}
+.content h2{font-size:20px;font-weight:700;color:var(--ink);margin:32px 0 12px}
+.content p,.content li{font-size:15px;color:var(--warm-700);line-height:1.8;margin-bottom:16px}
+.content ul{padding-left:24px;margin-bottom:16px}
+.content a{color:var(--gold);text-decoration:none}
+.content a:hover{text-decoration:underline}
+.notice-box{background:var(--gold-light);border:1px solid var(--warm-200);border-radius:var(--radius);padding:24px;margin:24px 0}
+.notice-box strong{color:var(--ink)}
+.footer{background:var(--ink);color:rgba(255,255,255,.85);padding:48px 24px 32px;margin-top:48px}
+.footer-inner{max-width:960px;margin:0 auto}
+.footer h3{font-size:14px;font-weight:700;color:white;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.footer a{font-size:13px;line-height:1.8;color:rgba(255,255,255,.7);text-decoration:none}
+.footer a:hover{color:white;text-decoration:underline}
+.footer-divider{border:0;border-top:1px solid rgba(255,255,255,.15);margin:24px 0}
+.footer-legal{font-size:12px;color:rgba(255,255,255,.5);line-height:1.8}
+.lang-show{display:none}
+@media(max-width:768px){.nav-links{display:none}.page-header h1{font-size:26px}.lang-bar{display:none}}
+
+/* premium refinement */
+body{letter-spacing:.01em}
+.nav{border-bottom:1px solid var(--warm-100);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:rgba(255,255,255,.92)}
+.nav-logo{font-weight:600;letter-spacing:-.2px}
+.nav-logo-icon{font-weight:500;font-size:15px}
+.nav-links a{font-size:13px;font-weight:500;padding:8px 16px;letter-spacing:.3px}
+.nav-links a:hover{background:var(--gold-light);color:var(--ink)}
+.nav-links a.active{background:var(--gold-light);color:var(--ink);font-weight:600}
+.lang-btn{font-size:12px;padding:5px 10px;border-radius:6px;font-weight:500;letter-spacing:.2px}
+.lang-btn:hover{background:var(--gold-light);border-color:var(--gold)}
+.lang-btn.selected{background:var(--ink);color:var(--white);border-color:var(--ink);font-weight:600}
+
+.page-header{padding:72px 24px 48px;background:linear-gradient(175deg,var(--warm-50) 0%,var(--cream) 50%,var(--warm-50) 100%)}
+.page-header h1{font-size:34px;font-weight:300;color:var(--ink);letter-spacing:-.5px}
+.page-header p{font-size:15px;color:var(--warm-500)}
+.content h2{font-size:19px;font-weight:600;color:var(--ink);margin:36px 0 14px;letter-spacing:-.2px}
+.content p,.content li{font-size:15px;color:var(--warm-700);line-height:1.9;margin-bottom:18px;font-weight:400}
+.module{background:var(--white);border:1px solid var(--warm-100);border-radius:var(--radius);padding:32px 36px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,.02)}
+.module-header{border-bottom:1px solid var(--warm-100);padding-bottom:18px;margin-bottom:22px}
+.module-icon{background:var(--warm-50);border-radius:10px}
+.module-title{font-size:17px;font-weight:600;color:var(--ink)}
+.info-row{border-bottom:1px solid var(--warm-50)}
+.info-label{color:var(--warm-500);font-weight:500}
+.contact-highlight{background:var(--ink);border-radius:var(--radius);padding:32px 36px}
+.notice-box{background:var(--warm-50);border:1px solid var(--warm-200);border-radius:var(--radius);padding:28px 32px}
+.note{background:#fefdf9;border:1px solid #e8e0c8;border-radius:var(--radius);padding:28px 32px}
+.email-box{background:var(--warm-50);border:1px solid var(--warm-200);border-radius:var(--radius)}
+.footer{margin-top:64px}
+@media(max-width:768px){.page-header h1{font-size:26px}.module{padding:24px}}
+
+</style>
+</head><body>
+
+<nav class="nav"><div class="nav-inner">
+<a href="./index.html" id="homeLink" class="nav-logo"><span class="nav-logo-icon">CM</span>ChinaMed Directory</a>
+<ul class="nav-links">
+<li><a href="./index.html" id="navHome" data-key="nav_home"></a></li>
+<li><a href="./general-hospitals.html" id="navGeneral" data-key="nav_general"></a></li>
+<li><a href="./specialty-hospitals.html" id="navSpecialty" data-key="nav_specialty"></a></li>
+<li><a href="./about.html" id="navAbout" data-key="nav_about" class="active"></a></li>
+<li><a href="./contact.html" id="navContact" data-key="nav_contact"></a></li>
+<li><a href="./legal-notice.html" id="navLegal" data-key="nav_legal"></a></li>
+</ul>
+<div class="lang-bar" id="langBar"></div></div></nav>
+
+<header class="page-header"><h1 data-key="page_title_about"></h1></header>
+
+<div style="max-width:960px;margin:0 auto;padding:0 24px 20px;text-align:center">
+<div style="background:var(--white,#fff);border:1px solid var(--warm-200,#e2e8f0);border-radius:12px;padding:16px 20px;display:inline-block;min-width:300px;max-width:728px;width:100%">
+<div style="font-size:10px;font-weight:600;color:var(--cream0,#718096);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Sponsored</div>
+<div style="background:linear-gradient(135deg,var(--gold-light,#ebf4fb),var(--cream,#f7f9fb));border-radius:8px;padding:14px;text-align:center;color:var(--cream0,#718096);font-size:13px;font-weight:500">📢 Ad Space Available — Contact for Placement</div>
+</div></div><div class="content">
+<div class="notice-box" data-key="about_notice"></div>
+
+<h2 data-key="about_h2_1"></h2>
+<div class="lang-show" data-lang="zh"><p>为国际患者提供一个可靠、简洁的中国公立医院名录，帮助他们找到有外籍患者接待能力的医院。我们通过整合已核实的联系方式、服务描述和实用指南来弥合信息鸿沟——全部免费提供。</p></div>
+<div class="lang-show" data-lang="fr"><p>Fournir aux patients internationaux un repertoire fiable des hopitaux publics chinois. Nous comblons le fosse d'information en regroupant contacts verifies, descriptions et conseils pratiques gratuitement.</p></div>
+<div class="lang-show" data-lang="de"><p>Internationalen Patienten ein verlassliches Verzeichnis chinesischer Krankenhauser bieten. Wir schlieSSen die Informationslucke durch verifizierte Kontakte und praktische Leitfaden - kostenlos.</p></div>
+<div class="lang-show" data-lang="es"><p>Proporcionar a pacientes internacionales un directorio confiable de hospitales publicos chinos. Cubrimos la brecha de informacion con contactos verificados y guias practicas - gratis.</p></div>
+<div class="lang-show" data-lang="ru"><p>Predostavit mezhdunarodnym patsientam nadezhnyi spravochnik kitaiskikh bolnits. My zapolnyaem informatsionnyi probel, ob"edinyaya proverennye kontakty i prakticheskie rukovodstva.</p></div>
+<div class="lang-show" data-lang="ko"><p>국제 환자들에게 신뢰할 수 있는 중국 공립 병원 디렉토리를 제공합니다. 검증된 연락처와 실용적인 가이드로 정보 격차를 해소합니다.</p></div>
+<div class="lang-show" data-lang="ar"><p>توفير دليل موثوق للمرضى الدوليين عن المستشفيات الحكومية الصينية. نسد فجوة المعلومات من خلال جهات الاتصال الموثقة والارشادات العملية.</p></div>
+<div class="lang-show" data-lang="en"><p>To provide international patients with a reliable, straightforward directory of Chinese public hospitals equipped to serve foreign visitors. We bridge the information gap by consolidating verified contact details, service descriptions, and practical guidance — all in one place, free of charge.</p></div>
+
+<h2 data-key="about_h2_2"></h2>
+<ul data-key="about_what_we_do"></ul>
+
+<h2 data-key="about_h2_3"></h2>
+<ul data-key="about_dont_do"></ul>
+
+<h2 data-key="about_h2_beware"></h2>
+<div data-key="about_beware" class="notice-box"></div>
+
+<h2 data-key="about_h2_4"></h2>
+<div class="lang-show" data-lang="zh"><p>所有医院信息均来源于公开渠道，包括医院官方网站、卫健委公告及医学文献。我们不生成原创医疗内容。每个页面均标注信息来源和最后更新日期。</p></div>
+<div class="lang-show" data-lang="fr"><p>Toutes les informations hospitalieres proviennent de sources officielles publiques. Nous ne generons pas de contenu medical original. Chaque page indique une note de source et la date de mise a jour.</p></div>
+<div class="lang-show" data-lang="de"><p>Alle Krankenhausinformationen stammen aus offentlich zuganglichen offiziellen Quellen. Wir erstellen keine medizinischen Originalinhalte. Jede Seite enthalt Quellenangabe und Aktualisierungsdatum.</p></div>
+<div class="lang-show" data-lang="es"><p>Toda la informacion hospitalaria se recopila de fuentes oficiales publicas. No generamos contenido medico original. Cada pagina incluye nota de fuente y fecha de actualizacion.</p></div>
+<div class="lang-show" data-lang="ru"><p>Vsya informatsiya o bolnitsakh sobrana iz otkrytykh ofitsialnykh istochnikov. My ne sozdaem originalnyi meditsinskii kontent. Na kazhdoi stranitse ukazany istochnik i data obnovleniya.</p></div>
+<div class="lang-show" data-lang="ko"><p>모든 병원 정보는 공개된 공식 출처에서 수집됩니다. 원본 의료 콘텐츠를 생성하지 않습니다. 각 페이지에는 출처 및 업데이트 날짜가 표시됩니다.</p></div>
+<div class="lang-show" data-lang="ar"><p>يتم جمع جميع معلومات المستشفى من مصادر رسمية متاحة للجمهور. لا ننتج محتوى طبيا اصليا. تتضمن كل صفحة ملاحظة المصدر وتاريخ التحديث.</p></div>
+<div class="lang-show" data-lang="en"><p>All hospital information is collected from publicly available official sources, including hospital websites, health authority announcements, and published medical literature. We do not generate original medical content. Every page includes a source note and last-updated date.</p></div>
+
+<h2 data-key="about_h2_5"></h2>
+<div class="lang-show" data-lang="zh"><p>如有问题、更正或建议，请访问我们的 <a href="./contact.html">联系页面</a>。</p></div>
+<div class="lang-show" data-lang="fr"><p>Pour toute question, correction ou suggestion, visitez notre <a href="./contact.html">page de contact</a>.</p></div>
+<div class="lang-show" data-lang="de"><p>Bei Fragen, Korrekturen oder Anregungen besuchen Sie unsere <a href="./contact.html">Kontaktseite</a>.</p></div>
+<div class="lang-show" data-lang="es"><p>Para preguntas, correcciones o sugerencias, visite nuestra <a href="./contact.html">pagina de contacto</a>.</p></div>
+<div class="lang-show" data-lang="ru"><p>Po voprosam, ispravleniyam ili predlozheniyam posetite nashu <a href="./contact.html">stranitsu kontaktov</a>.</p></div>
+<div class="lang-show" data-lang="ko"><p>문의사항, 수정 또는 제안이 있으시면 <a href="./contact.html">연락처 페이지</a>를 방문해 주세요.</p></div>
+<div class="lang-show" data-lang="ar"><p>للاسئلة او التصحيحات او الاقتراحات، يرجى زيارة <a href="./contact.html">صفحة الاتصال</a>.</p></div>
+<div class="lang-show" data-lang="en"><p>For questions, corrections, or suggestions, please visit our <a href="./contact.html">Contact page</a>.</p></div>
+</div>
+
+<div style="max-width:960px;margin:28px auto;padding:0 24px">
+<div style="background:var(--white,#fff);border:1px solid var(--warm-200,#e2e8f0);border-radius:12px;padding:18px 22px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
+<div style="font-size:10px;font-weight:600;color:var(--cream0,#718096);text-transform:uppercase;letter-spacing:1px;white-space:nowrap">Sponsored</div>
+<div style="text-align:center;color:var(--cream0,#718096);font-size:13px">📢 Your Ad Here — Reach International Patients</div>
+<div style="background:var(--ink,#1a365d);color:white;font-size:12px;font-weight:600;padding:6px 14px;border-radius:6px;white-space:nowrap">Inquire →</div>
+</div></div><footer class="footer"><div class="footer-inner" id="footerContent"></div></footer>
+
+<script>
+var I18N={zh:{nav_home:"首页",nav_general:"综合医院",nav_specialty:"专科医院",nav_about:"关于我们",nav_contact:"联系我们",nav_legal:"法律声明",
+  page_title_about:"关于我们",about_notice:"<strong>我们是什么：</strong>ChinaMed Directory 是一个公益性信息平台。我们整理和编排具有国际医疗服务的中国顶级公立医院的公开信息。我们<strong>不是</strong>医疗机构、医疗中介、预约机构或医疗服务提供者。",
+  about_h2_1:"我们的使命",about_h2_2:"我们做什么",about_h2_3:"我们不做什么",about_h2_4:"信息来源",about_h2_5:"联系我们",
+  about_what_we_do:"<li>收录全国80家设有国际医疗中心的三甲公立医院</li><li>提供经核实的国际部电话、邮箱和服务信息</li><li>提供实用的就诊指南——签证贴士、导航链接、流程概览</li><li>维护来自医院官网和公共渠道的信息</li>",
+  about_dont_do:"<li><strong>不</strong>提供医疗诊断、治疗建议或健康推荐</li><li><strong>不</strong>对医院排名或评估医疗质量</li><li><strong>不</strong>提供预约挂号、陪同或中介服务</li><li><strong>不</strong>列出医生姓名或个人身份信息</li><li><strong>不</strong>向患者或医院收取上架费用</li><li><strong>不</strong>收录民营医院或军队相关医院</li>",
+  about_h2_beware:"⛔ 警惕不正规中介",
+  about_beware:"<strong>重要提醒：中国公立医院不通过中介收费预约。</strong>所有三甲公立医院的国际医疗中心均接受患者直接联系——通过电话或官网即可预约，无需支付任何中介费用。<br><br><strong>如何识别不正规中介：</strong>① 声称有“内部渠道”或“优先挂号”并收取高额费用；② 要求预付定金或全款才能“安排就医”；③ 冒充医院工作人员通过微信/WhatsApp联系；④ 承诺100%治愈或夸大治疗效果。<br><br><strong>正确做法：</strong>使用本目录中的电话和官网直接联系医院国际医疗中心。拒绝任何声称是医院“官方合作中介”的第三方。如果遇到可疑中介，可通过本目录的邮箱向我们举报。",
+  footer_desc:"公益性信息平台 · 免费使用 · 无广告 · 无中介",footer_links:"快速链接",footer_legal:"法律声明",
+  footer_disclaimer:'<strong>医疗免责声明：</strong>本站所有内容仅供参考，不构成医疗建议。就诊前请与医院核实。<br><br>&copy; 2026 ChinaMed Directory.'
+},en:{nav_home:"Home",nav_general:"General Hospitals",nav_specialty:"Specialty Hospitals",nav_about:"About Us",nav_contact:"Contact",nav_legal:"Legal Notice",
+  page_title_about:"About Us",about_notice:"<strong>What We Are:</strong> ChinaMed Directory is a public-service information platform. We curate and organize publicly available information about China's top public hospitals that offer international medical services. We are <strong>not</strong> a medical institution, medical intermediary, booking agency, or healthcare provider.",
+  about_h2_1:"Our Mission",about_h2_2:"What We Do",about_h2_3:"What We Don't Do",about_h2_4:"Information Sources",about_h2_5:"Contact",
+  about_what_we_do:"<li>List 80 tertiary public hospitals across China that have dedicated international medical centers</li><li>Provide verified international department phone numbers, email addresses, and service information</li><li>Offer practical visit guidance — visa tips, navigation links, and process overviews</li><li>Maintain information sourced from official hospital websites and public channels</li>",
+  about_dont_do:"<li>We do <strong>not</strong> provide medical diagnosis, treatment advice, or healthcare recommendations</li><li>We do <strong>not</strong> rank hospitals or evaluate quality of care</li><li>We do <strong>not</strong> offer appointment booking, escort, or intermediary services</li><li>We do <strong>not</strong> list individual doctor names or personal information</li><li>We do <strong>not</strong> charge patients or hospitals for listings</li><li>We do <strong>not</strong> list private hospitals or military-affiliated hospitals</li>",
+  about_h2_beware:"⛔ Beware of Unverified Intermediaries",
+  about_beware:"<strong>Important: Chinese public hospitals do NOT charge fees for appointments through middlemen.</strong> All Grade 3A public hospital international medical centers accept direct patient contact — you can schedule appointments by phone or through their official website at no intermediary cost.<br><br><strong>Red flags of bogus intermediaries:</strong> ① Claiming 'inside connections' or 'priority appointments' for a fee; ② Demanding upfront deposits to 'arrange' medical visits; ③ Posing as hospital staff via WeChat/WhatsApp; ④ Promising guaranteed cures or exaggerating treatment outcomes.<br><br><strong>What to do:</strong> Use the phone numbers and websites on this directory to contact hospitals directly. Reject any third-party claiming to be an 'official partner' of a hospital. Report suspicious intermediaries to us via the contact email on this site.",
+  footer_desc:"A public-service information platform. Free to use. No advertisements. No intermediaries.",footer_links:"Quick Links",footer_legal:"Legal",
+  footer_disclaimer:'<strong>Medical Disclaimer:</strong> All content is for informational reference only. Not medical advice. Verify with hospital before visiting.<br><br>&copy; 2026 ChinaMed Directory.'
+},fr:{nav_home:"Accueil",nav_general:"Hopitaux Generaux",nav_specialty:"Hopitaux Specialises",nav_about:"A propos",nav_contact:"Contact",nav_legal:"Mentions legales",
+  page_title_about:"A propos",about_notice:'<strong>Ce que nous sommes:</strong> ChinaMed Directory est une plateforme d\'information publique. Nous organisons les informations publiques sur les meilleurs hopitaux publics chinois offrant des services medicaux internationaux. Nous ne sommes <strong>pas</strong> un etablissement medical, un intermediaire ou un prestataire de soins.',
+  about_h2_1:"Notre Mission",about_h2_2:"Ce que nous faisons",about_h2_3:"Ce que nous ne faisons pas",about_h2_4:"Sources",about_h2_5:"Contact",
+  about_what_we_do:"<li>80 hopitaux publics tertiaires avec centres medicaux internationaux</li><li>Coordonnees verifiees des departements internationaux</li><li>Guide pratique de visite</li><li>Informations issues de sources officielles</li>",
+  about_h2_beware:"⛔ Attention aux Intermediaires Non Verifies",about_beware:'<strong>Important : Les hopitaux publics chinois ne facturent PAS de frais via des intermediaires.</strong> Contactez directement les hopitaux par telephone ou site officiel. <strong>Signaux d\'alarme :</strong> ① Frais eleves pour "acces prioritaire" ; ② Paiement anticipe exige ; ③ Faux personnel hospitalier sur WhatsApp ; ④ Promesses de guerison garantie.<br><br><strong>A faire :</strong> Utilisez les numeros de ce site pour contacter directement les hopitaux.',
+  about_dont_do:"<li><strong>Pas</strong> de diagnostic medical</li><li><strong>Pas</strong> de classement</li><li><strong>Pas</strong> de reservation</li><li><strong>Pas</strong> de noms de medecins</li><li><strong>Pas</strong> de frais</li><li><strong>Pas</strong> d'hopitaux prives</li>",
+  footer_desc:"Plateforme de service public. Gratuit. Sans pub.",footer_links:"Liens Rapides",footer_legal:"Mentions Legales",
+  footer_disclaimer:'<strong>Avertissement:</strong> Contenu informatif uniquement.<br><br>&copy; 2026 ChinaMed Directory.'
+},de:{nav_home:"Startseite",nav_general:"Allg. Krankenhauser",nav_specialty:"Fachkrankenhauser",nav_about:"Uber uns",nav_contact:"Kontakt",nav_legal:"Rechtliches",
+  page_title_about:"Uber uns",about_notice:'<strong>Was wir sind:</strong> ChinaMed Directory ist eine offentliche Informationsplattform. Wir kuratieren offentliche Informationen uber chinesische Spitzenkrankenhauser mit internationalen medizinischen Dienstleistungen.',
+  about_h2_1:"Unsere Mission",about_h2_2:"Unsere Arbeit",about_h2_3:"Was wir nicht tun",about_h2_4:"Quellen",about_h2_5:"Kontakt",
+  about_what_we_do:"<li>80 tertiare Krankenhauser mit internationalen Zentren</li><li>Verifizierte Kontaktdaten</li><li>Praktische Besuchshilfe</li><li>Offizielle Quellen</li>",
+  about_h2_beware:"⛔ Vorsicht vor ungepruften Vermittlern",about_beware:'<strong>Wichtig: Chinesische Krankenhauser berechnen KEINE Vermittlungsgebuhren.</strong> Kontaktieren Sie Krankenhauser direkt per Telefon oder Website. <strong>Warnsignale:</strong> ① Hohe Gebuhren fur "Prioritatszugang"; ② Vorauszahlung verlangt; ③ Falsches Krankenhauspersonal auf WhatsApp; ④ Heilungsversprechen.<br><br><strong>So geht\'s:</strong> Nutzen Sie die Nummern auf dieser Website fur direkten Kontakt.',
+  about_dont_do:"<li><strong>Keine</strong> medizinische Diagnose</li><li><strong>Keine</strong> Bewertung</li><li><strong>Keine</strong> Terminbuchung</li><li><strong>Keine</strong> Arztenamen</li><li><strong>Keine</strong> Gebuhren</li><li><strong>Keine</strong> Privatkliniken</li>",
+  footer_desc:"Offentliche Plattform. Kostenlos.",footer_links:"Schnelllinks",footer_legal:"Rechtliches",
+  footer_disclaimer:'<strong>Haftungsausschluss:</strong> Nur zu Informationszwecken.<br><br>&copy; 2026 ChinaMed Directory.'
+},es:{nav_home:"Inicio",nav_general:"Hospitales Generales",nav_specialty:"Hospitales Especializados",nav_about:"Nosotros",nav_contact:"Contacto",nav_legal:"Legal",
+  page_title_about:"Nosotros",about_notice:'<strong>Que somos:</strong> ChinaMed Directory es una plataforma de informacion publica. Organizamos informacion publica sobre los mejores hospitales publicos chinos con servicios medicos internacionales.',
+  about_h2_1:"Nuestra Mision",about_h2_2:"Que hacemos",about_h2_3:"Que no hacemos",about_h2_4:"Fuentes",about_h2_5:"Contacto",
+  about_what_we_do:"<li>80 hospitales publicos terciarios</li><li>Contactos verificados</li><li>Guia practica de visita</li><li>Fuentes oficiales</li>",
+  about_h2_beware:"⛔ Cuidado con Intermediarios No Verificados",about_beware:'<strong>Importante: Los hospitales publicos chinos NO cobran por citas a traves de intermediarios.</strong> Contacte directamente por telefono o web oficial. <strong>Senales de alerta:</strong> ① Tarifas altas por "acceso prioritario"; ② Pago por adelantado; ③ Falso personal hospitalario en WhatsApp; ④ Promesas de curacion.<br><br><strong>Que hacer:</strong> Use los numeros de este sitio para contacto directo.',
+  about_dont_do:"<li><strong>No</strong> damos diagnostico</li><li><strong>No</strong> clasificamos</li><li><strong>No</strong> reservamos citas</li><li><strong>No</strong> publicamos medicos</li><li><strong>No</strong> cobramos</li><li><strong>No</strong> clinicas privadas</li>",
+  footer_desc:"Plataforma publica. Gratis.",footer_links:"Enlaces",footer_legal:"Legal",
+  footer_disclaimer:'<strong>Aviso:</strong> Solo fines informativos.<br><br>&copy; 2026 ChinaMed Directory.'
+},ru:{nav_home:"Glavnaya",nav_general:"Obshchie",nav_specialty:"Spetsial.",nav_about:"O nas",nav_contact:"Kontakty",nav_legal:"Yurid.",
+  page_title_about:"O nas",about_notice:'<strong>Chto my:</strong> ChinaMed Directory — eto obshchestvennaya platforma. My sobiraem informatsiyu o vedushchikh gosudarstvennykh bolnitsakh Kitaya s mezhdunarodnymi uslugami.',
+  about_h2_1:"Missiya",about_h2_2:"Chto my delaem",about_h2_3:"Chego my ne delaem",about_h2_4:"Istochniki",about_h2_5:"Kontakty",
+  about_what_we_do:"<li>80 gosudarstvennykh bolnits</li><li>Proverennye kontakty</li><li>Prakticheskoe rukovodstvo</li><li>Ofitsialnye istochniki</li>",
+  about_h2_beware:"⛔ Ostorozhno: neproverennye posredniki",about_beware:'<strong>Vazhno: Kitaiskie gosudarstvennye bolnitsy NE berut platu za zapis cherez posrednikov.</strong> Svyazhites s bolnitsei napryamuyu po telefonu ili cherez sait. <strong>Krasnye flagi:</strong> ① Vysokie sbory za "prioritetnyi dostup"; ② Trebovanie predoplaty; ③ Lozhnyi personal v WhatsApp; ④ Obeshchanie garantirovannogo izlecheniya.<br><br><strong>Chto delat:</strong> Ispolzuite nomera na etom saite dlya pryamogo kontakta.',
+  about_dont_do:"<li><strong>Ne</strong> stavim diagnoz</li><li><strong>Ne</strong> otsenivaem</li><li><strong>Ne</strong> zapisyvaem</li><li><strong>Ne</strong> publikuem vrachei</li><li><strong>Ne</strong> berem platu</li><li><strong>Ne</strong> chastnye kliniki</li>",
+  footer_desc:"Obshchestvennaya platforma.",footer_links:"Ssylki",footer_legal:"Yurid.",
+  footer_disclaimer:'<strong>Otvetstvennost:</strong> Tolko informatsionno.<br><br>&copy; 2026 ChinaMed Directory.'
+},ko:{nav_home:"홈",nav_general:"종합병원",nav_specialty:"전문병원",nav_about:"소개",nav_contact:"연락처",nav_legal:"법적 고지",
+  page_title_about:"소개",about_notice:'<strong>우리는:</strong> ChinaMed Directory는 공공 정보 플랫폼입니다. 국제 의료 서비스를 제공하는 중국 최고의 공립 병원에 대한 공개 정보를 정리합니다.',
+  about_h2_1:"우리의 사명",about_h2_2:"하는 일",about_h2_3:"하지 않는 일",about_h2_4:"정보 출처",about_h2_5:"연락처",
+  about_what_we_do:"<li>80개 3차 공립 병원</li><li>검증된 연락처</li><li>실용적인 방문 안내</li><li>공식 출처 정보</li>",
+  about_h2_beware:"⛔ 검증되지 않은 중개인 주의",about_beware:'<strong>중요: 중국 공립 병원은 중개인을 통한 예약에 수수료를 부과하지 않습니다.</strong> 전화나 공식 웹사이트를 통해 직접 연락하세요. <strong>경고 신호:</strong> ① "우선 접근"에 대한 높은 수수료; ② 선불 요구; ③ WhatsApp에서 병원 직원 사칭; ④ 완치 보장 약속.<br><br><strong>해야 할 일:</strong> 이 사이트의 전화번호를 사용하여 직접 연락하세요.',
+  about_dont_do:"<li><strong>진단 불가</strong></li><li><strong>평가 불가</strong></li><li><strong>예약 불가</strong></li><li><strong>의사 비공개</strong></li><li><strong>수수료 없음</strong></li><li><strong>사립 제외</strong></li>",
+  footer_desc:"공공 서비스 플랫폼. 무료.",footer_links:"바로가기",footer_legal:"법적 고지",
+  footer_disclaimer:'<strong>면책 조항:</strong> 정보 제공 목적으로만 사용됩니다.<br><br>&copy; 2026 ChinaMed Directory.'
+},ar:{nav_home:"الرئيسية",nav_general:"مستشفيات عامة",nav_specialty:"مستشفيات تخصصية",nav_about:"من نحن",nav_contact:"اتصل بنا",nav_legal:"قانوني",
+  page_title_about:"من نحن",about_notice:'<strong>ما نحن:</strong> ChinaMed Directory هي منصة معلومات عامة. ننظم المعلومات المتاحة للجمهور عن افضل المستشفيات الحكومية الصينية التي تقدم خدمات طبية دولية.',
+  about_h2_1:"مهمتنا",about_h2_2:"ما نفعله",about_h2_3:"ما لا نفعله",about_h2_4:"المصادر",about_h2_5:"اتصل بنا",
+  about_what_we_do:"<li>80 مستشفى حكومي</li><li>جهات اتصال موثقة</li><li>دليل زيارة عملي</li><li>مصادر رسمية</li>",
+  about_h2_beware:"⛔ احذر الوسطاء غير الموثقين",about_beware:'<strong>مهم: المستشفيات الحكومية الصينية لا تفرض رسوما عبر الوسطاء.</strong> اتصل مباشرة بالمستشفى عبر الهاتف او الموقع الرسمي. <strong>علامات تحذيرية:</strong> ① رسوم عالية مقابل "اولوية الوصول"؛ ② طلب دفعة مقدمة؛ ③ انتحال شخصية موظفي المستشفى على واتساب؛ ④ وعود بالشفاء المضمون.<br><br><strong>ما يجب فعله:</strong> استخدم الارقام على هذا الموقع للاتصال المباشر.',
+  about_dont_do:"<li><strong>لا</strong> نقدم تشخيصا</li><li><strong>لا</strong> نقيم</li><li><strong>لا</strong> نحجز</li><li><strong>لا</strong> ننشر اسماء</li><li><strong>لا</strong> نفرض رسوما</li><li><strong>لا</strong> مستشفيات خاصة</li>",
+  footer_desc:"منصة خدمة عامة. مجانية.",footer_links:"روابط",footer_legal:"قانوني",
+  footer_disclaimer:'<strong>اخطار:</strong> للمعلومات فقط.<br><br>&copy; 2026 ChinaMed Directory.'
+}};
+var LANG_LABELS={zh:"中",en:"EN",fr:"FR",de:"DE",es:"ES",ru:"RU",ko:"KO",ar:"AR"};
+var PAGE_BASE="./about.html";
+
+function render(lang){
+  var d=I18N[lang]||I18N["en"];
+  var isRTL=lang==="ar";
+  document.documentElement.lang=lang;document.documentElement.dir=isRTL?"rtl":"ltr";document.body.style.direction=isRTL?"rtl":"";
+  document.title=(d.page_title_about||"About Us")+" — ChinaMed Directory";
+  document.querySelectorAll("[data-key]").forEach(function(el){
+    var k=el.dataset.key;if(d[k])el.innerHTML=d[k];
+  });
+  // Show/hide lang-specific content blocks
+  document.querySelectorAll(".lang-show").forEach(function(el){
+    el.style.display=el.dataset.lang===lang?"block":"none";
+  });
+  // Update nav links
+  document.querySelectorAll("a[id^='nav']").forEach(function(a){
+    var pgs={navHome:"./index.html",navGeneral:"./general-hospitals.html",navSpecialty:"./specialty-hospitals.html",navAbout:"./about.html",navContact:"./contact.html",navLegal:"./legal-notice.html"};
+    var pg=pgs[a.id];if(pg)a.href=pg+"?lang="+lang;
+  });
+  document.getElementById("homeLink").href="./index.html?lang="+lang;
+  // Footer
+  var fh="<h3>ChinaMed Directory</h3><p style='margin-bottom:16px'>"+d.footer_desc+"</p>";
+  fh+="<div style='display:flex;gap:24px;flex-wrap:wrap'>";
+  fh+="<a href='./general-hospitals.html?lang="+lang+"'>"+d.nav_general+"</a>";
+  fh+="<a href='./specialty-hospitals.html?lang="+lang+"'>"+d.nav_specialty+"</a>";
+  fh+="<a href='./contact.html?lang="+lang+"'>"+d.nav_contact+"</a>";
+  fh+="<a href='./legal-notice.html?lang="+lang+"'>"+d.nav_legal+"</a>";
+  fh+="</div><hr class='footer-divider'><div class='footer-legal'>"+d.footer_disclaimer+"</div>";
+  document.getElementById("footerContent").innerHTML=fh;
+}
+
+function buildLangBar(cur){
+  var h="";Object.keys(LANG_LABELS).forEach(function(l){
+    h+='<button class="lang-btn'+(l===cur?' selected':'')+'" onclick="switchLang(\''+l+'\')">'+LANG_LABELS[l]+'</button>';
+  });document.getElementById("langBar").innerHTML=h;
+}
+
+function switchLang(lang){localStorage.setItem("chinamed_lang",lang);render(lang);buildLangBar(lang);}
+(function(){
+  var lang=localStorage.getItem("chinamed_lang")||new URLSearchParams(location.search).get("lang")||"zh";
+  if(!I18N[lang])lang="zh";buildLangBar(lang);render(lang);
+})();
+</script></body></html>

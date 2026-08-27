@@ -780,13 +780,13 @@ function buildLangBar(curLang) {
 }
 
 function switchLang(lang) {
-  localStorage.setItem("chinamed_lang", lang);
+  localStorage.setItem("mc_lang", lang);
   render(lang);
   buildLangBar(lang);
 }
 
 (function() {
-  var lang = localStorage.getItem("chinamed_lang") || (new URLSearchParams(location.search)).get("lang") || "zh";
+  var lang = localStorage.getItem("mc_lang") || (new URLSearchParams(location.search)).get("lang") || "zh";
   if (!I[lang]) lang = "zh";
   buildLangBar(lang);
   render(lang);

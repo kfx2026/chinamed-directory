@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="West China Hospital — Chengdu's premier tertiary public hospital with international medical center. Direct phone, verified contact, English service.">
+<title>West China Hospital — ChinaMed Directory</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1a365d; --navy-light: #2a4a7f; --blue: #3182ce; --blue-light: #ebf4fb;
+    --gray-50: #f7f9fb; --gray-100: #edf2f7; --gray-200: #e2e8f0; --gray-300: #cbd5e0;
+    --gray-500: #718096; --gray-700: #4a5568; --gray-900: #1a202c; --white: #ffffff;
+    --green: #276749; --green-light: #f0fff4;
+    --radius: 12px; --radius-sm: 8px;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  body { font-family: var(--font); color: var(--gray-900); background: var(--gray-50); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  /* ===== NAV ===== */
+  .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--gray-200); height: 64px; }
+  .nav-inner { max-width: 1280px; margin: 0 auto; padding: 0 24px; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-size: 20px; font-weight: 700; color: var(--navy); text-decoration: none; letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px; }
+  .nav-logo-icon { width: 32px; height: 32px; background: var(--navy); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px; }
+  .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--gray-700); font-size: 14px; padding: 8px 14px; border-radius: 6px; transition: all .15s; white-space: nowrap; }
+  .nav-links a:hover { background: var(--gray-100); color: var(--navy); }
+  .lang-btn { background: var(--white); border: 1px solid var(--gray-200); padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer; color: var(--gray-700); }
+
+  /* ===== BREADCRUMB ===== */
+  .breadcrumb { margin-top: 64px; padding: 16px 0 0; max-width: 960px; margin-left: auto; margin-right: auto; padding-left: 24px; padding-right: 24px; }
+  .breadcrumb a { font-size: 13px; color: var(--gray-500); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--navy); text-decoration: underline; }
+  .breadcrumb span { font-size: 13px; color: var(--gray-300); margin: 0 8px; }
+  .breadcrumb .current { color: var(--navy); font-weight: 600; }
+
+  /* ===== HOSPITAL HEADER ===== */
+  .hospital-header { max-width: 960px; margin: 0 auto; padding: 32px 24px 24px; }
+  .hospital-badge { display: inline-block; background: var(--navy); color: white; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 4px; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 12px; }
+  .hospital-name { font-size: 34px; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 4px; letter-spacing: -0.5px; }
+  .hospital-name-zh { font-size: 20px; color: var(--gray-500); font-weight: 400; margin-bottom: 16px; }
+  .hospital-meta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .hospital-meta span { font-size: 13px; color: var(--gray-500); display: flex; align-items: center; gap: 6px; }
+  .hospital-meta .tag { background: var(--green-light); color: var(--green); font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 4px; }
+
+  /* ===== CONTENT GRID ===== */
+  .content { max-width: 960px; margin: 0 auto; padding: 0 24px 48px; }
+  .module { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 28px 32px; margin-bottom: 20px; }
+  .module-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--gray-100); }
+  .module-icon { width: 40px; height: 40px; background: var(--blue-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .module-title { font-size: 18px; font-weight: 700; color: var(--navy); }
+  .module-sub { font-size: 13px; color: var(--gray-500); margin-top: 2px; }
+
+  /* ===== INFO ROWS ===== */
+  .info-row { display: flex; padding: 14px 0; border-bottom: 1px solid var(--gray-100); }
+  .info-row:last-child { border-bottom: 0; }
+  .info-label { width: 160px; flex-shrink: 0; font-size: 13px; font-weight: 600; color: var(--gray-700); }
+  .info-value { font-size: 14px; color: var(--gray-900); line-height: 1.7; }
+  .info-value a { color: var(--blue); text-decoration: none; font-weight: 600; }
+  .info-value a:hover { text-decoration: underline; }
+
+  /* ===== CONTACT HIGHLIGHT ===== */
+  .contact-highlight { background: var(--navy); color: white; border-radius: var(--radius); padding: 28px 32px; margin-bottom: 20px; }
+  .contact-highlight .module-header { border-bottom-color: rgba(255,255,255,.15); }
+  .contact-highlight .module-title { color: white; }
+  .contact-highlight .module-sub { color: rgba(255,255,255,.7); }
+  .contact-highlight .module-icon { background: rgba(255,255,255,.15); }
+  .contact-phone { font-size: 24px; font-weight: 700; color: white; letter-spacing: 0.5px; }
+  .contact-email { font-size: 15px; color: rgba(255,255,255,.85); }
+  .contact-email a { color: #63b3ed; text-decoration: none; }
+  .contact-card { display: flex; gap: 32px; flex-wrap: wrap; }
+
+  /* ===== SPECIALTIES ===== */
+  .specialty-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .specialty-tag { background: var(--blue-light); color: var(--navy); font-size: 14px; font-weight: 600; padding: 8px 16px; border-radius: 6px; }
+
+  /* ===== INSURANCE LIST ===== */
+  .insurance-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .insurance-item { background: var(--gray-100); padding: 6px 14px; border-radius: 6px; font-size: 13px; color: var(--gray-700); font-weight: 500; }
+
+  /* ===== STEPS ===== */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .step { padding: 20px; border: 1px solid var(--gray-200); border-radius: var(--radius-sm); text-align: center; }
+  .step-num { width: 36px; height: 36px; background: var(--navy); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; margin: 0 auto 12px; }
+  .step-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .step-desc { font-size: 13px; color: var(--gray-500); line-height: 1.7; }
+
+  /* ===== MAP LINKS ===== */
+  .map-links { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .map-card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-sm); padding: 20px; text-align: center; }
+  .map-card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .map-card p { font-size: 12px; color: var(--gray-500); margin-bottom: 12px; }
+  .map-link { display: inline-block; background: var(--navy); color: white; padding: 8px 20px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; }
+  .map-link:hover { background: var(--navy-light); }
+
+  /* ===== FOOTER ===== */
+  .footer { background: var(--navy); color: rgba(255,255,255,.85); padding: 48px 24px 32px; margin-top: 48px; }
+  .footer-inner { max-width: 960px; margin: 0 auto; }
+  .footer h3 { font-size: 14px; font-weight: 700; color: white; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+  .footer p, .footer a { font-size: 13px; line-height: 1.8; color: rgba(255,255,255,.7); text-decoration: none; }
+  .footer a:hover { color: white; text-decoration: underline; }
+  .footer-divider { border: 0; border-top: 1px solid rgba(255,255,255,.15); margin: 24px 0; }
+  .footer-legal { font-size: 12px; color: rgba(255,255,255,.5); line-height: 1.8; }
+  .footer-legal strong { color: rgba(255,255,255,.8); }
+  .disclaimer { border-left: 3px solid var(--blue); padding-left: 16px; }
+  .disclaimer-text { font-size: 13px; color: var(--gray-500); line-height: 1.7; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hospital-name { font-size: 26px; }
+    .info-row { flex-direction: column; gap: 4px; }
+    .info-label { width: 100%; }
+    .steps { grid-template-columns: 1fr; }
+    .map-links { grid-template-columns: 1fr; }
+    .contact-card { flex-direction: column; gap: 16px; }
+    .module { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-icon">CM</span> ChinaMed Directory
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/general-hospitals">General Hospitals</a></li>
+      <li><a href="/specialty-hospitals">Specialty Hospitals</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/legal-notice">Legal Notice</a></li>
+      <li><button class="lang-btn" style="margin-left:4px;">EN ▾</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== BREADCRUMB ===== -->
+<div class="breadcrumb">
+  <a href="/">Home</a><span>/</span>
+  <a href="/general-hospitals">General Hospitals</a><span>/</span>
+  <a href="/general-hospitals/southwest-china">Southwest China</a><span>/</span>
+  <span class="current">West China Hospital</span>
+</div>
+
+<!-- ===== HOSPITAL HEADER ===== -->
+<header class="hospital-header">
+  <div class="hospital-badge">General Hospital · Tertiary A</div>
+  <h1 class="hospital-name">West China Hospital, Sichuan University</h1>
+  <p class="hospital-name-zh">四川大学华西医院</p>
+  <div class="hospital-meta">
+    <span>Chengdu, Sichuan Province, China</span>
+    <span class="tag">International Medical Center Available</span>
+    <span>Est. 1892</span>
+    <span>~4,300 Beds</span>
+  </div>
+</header>
+
+<!-- ===== CONTENT ===== -->
+<div class="content">
+
+  <!-- MODULE 1: BASIC INFO -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon">&#x1F3E5;</div>
+      <div><div class="module-title">Basic Information</div><div class="module-sub">Official hospital profile and location</div></div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Hospital Level</div>
+      <div class="info-value">Tertiary A (Grade 3A) — Highest national hospital tier in China. University-affiliated (Sichuan University).</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Address</div>
+      <div class="info-value">
+        No.37 Guoxue Lane, Wuhou District, Chengdu, Sichuan Province, 610041, China<br>
+        <span style="color:var(--gray-500);font-size:12px;">成都市武侯区国学巷37号</span>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Established</div>
+      <div class="info-value">1892 — One of China's oldest and most prestigious medical institutions</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Hospital Beds</div>
+      <div class="info-value">Approximately 4,300 — Largest single-campus hospital in the world by bed count</div>
+    </div>
+  </div>
+
+  <!-- MODULE 2: INTERNATIONAL CONTACT (highlight) -->
+  <div class="contact-highlight">
+    <div class="module-header">
+      <div class="module-icon">&#x260E;</div>
+      <div><div class="module-title">International Medical Center — Direct Contact</div><div class="module-sub">Call or email directly. No intermediaries. English-speaking staff available.</div></div>
+    </div>
+    <div class="contact-card">
+      <div style="flex:1;">
+        <div style="font-size:13px;color:rgba(255,255,255,.6);margin-bottom:4px;">INTERNATIONAL DIRECT LINE</div>
+        <div class="contact-phone">+86-28-8542-XXXX</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;">Mon-Fri 08:00-17:00 (Beijing Time, UTC+8)</div>
+      </div>
+      <div style="flex:1;">
+        <div style="font-size:13px;color:rgba(255,255,255,.6);margin-bottom:4px;">EMAIL</div>
+        <div class="contact-email"><a href="mailto:imc@wchscu.cn">imc@wchscu.cn</a></div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;">Response within 1-2 business days</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 3: LANGUAGES & INSURANCE -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon">&#x1F30D;</div>
+      <div><div class="module-title">Languages &amp; Insurance</div><div class="module-sub">English service and international insurance acceptance</div></div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Languages Supported</div>
+      <div class="info-value">English, Mandarin Chinese — English-speaking medical team available at International Medical Center</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Insurance Direct Billing</div>
+      <div class="info-value">
+        <div class="insurance-list">
+          <span class="insurance-item">BUPA</span>
+          <span class="insurance-item">Cigna</span>
+          <span class="insurance-item">Allianz</span>
+          <span class="insurance-item">AXA</span>
+          <span class="insurance-item">Aetna</span>
+          <span class="insurance-item">MSH</span>
+        </div>
+        <div style="font-size:12px;color:var(--gray-500);margin-top:8px;">Note: Insurance acceptance may vary. Confirm with the International Medical Center before your visit.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 4: KEY SPECIALTIES -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon">&#x2B50;</div>
+      <div><div class="module-title">Key Specialties</div><div class="module-sub">Nationally recognized clinical departments</div></div>
+    </div>
+    <div class="specialty-tags">
+      <span class="specialty-tag">Respiratory &amp; Critical Care Medicine</span>
+      <span class="specialty-tag">Anesthesiology</span>
+      <span class="specialty-tag">Urology</span>
+      <span class="specialty-tag">Psychiatry / Mental Health</span>
+      <span class="specialty-tag">Organ Transplantation</span>
+    </div>
+    <div style="font-size:12px;color:var(--gray-500);margin-top:12px;">
+      These departments are recognized among the top nationally in the Fudan University Hospital Rankings (2024 edition). For reference only — this directory does not provide hospital rankings.
+    </div>
+  </div>
+
+  <!-- MODULE 5: TRANSPORT (DUAL MAPS) -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon">&#x1F698;</div>
+      <div><div class="module-title">Transport &amp; Navigation</div><div class="module-sub">Two-map solution — use Google Maps abroad, switch to Baidu Maps after arrival</div></div>
+    </div>
+    <div class="map-links">
+      <div class="map-card">
+        <h4>Before you arrive</h4>
+        <p>Use Google Maps for route planning from abroad</p>
+        <a class="map-link" href="https://maps.google.com/?q=West+China+Hospital+Chengdu" target="_blank" rel="noopener">Open Google Maps &#8599;</a>
+        <div style="font-size:11px;color:var(--gray-500);margin-top:8px;">Both Chengdu Shuangliu (CTU) and Tianfu (TFU) airports supported</div>
+      </div>
+      <div class="map-card">
+        <h4>After arriving in China</h4>
+        <p>Baidu Maps supports English interface. Download before travel.</p>
+        <a class="map-link" href="https://map.baidu.com/search/四川大学华西医院" target="_blank" rel="noopener">Open Baidu Maps &#8599;</a>
+        <div style="font-size:11px;color:var(--gray-500);margin-top:8px;">Search "West China Hospital" or "华西医院"</div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:var(--gray-500);margin-top:16px;padding:12px;background:var(--gray-50);border-radius:6px;">
+      <strong>Getting there:</strong> Nearest airport — Chengdu Shuangliu International Airport (CTU, ~16km). Metro Line 1, Huaxiba Station (华西坝站), Exit A — 5 minute walk to the hospital.
+    </div>
+  </div>
+
+  <!-- MODULE 6: VISIT PROCESS -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon">&#x2713;</div>
+      <div><div class="module-title">Visit Process</div><div class="module-sub">Simple 3-step guide for international patients</div></div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Contact &amp; Pre-register</div>
+        <div class="step-desc">Call or email the International Medical Center in advance. Provide your passport information and medical records for pre-registration.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Prepare Documents</div>
+        <div class="step-desc">Bring your passport, previous medical records (English or translated), imaging films, and international insurance card.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Arrive &amp; Visit</div>
+        <div class="step-desc">Go directly to the International Medical Center. English-speaking staff will guide you through the entire visit — from registration to consultation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 7: OVERVIEW -->
+  <div class="module">
+    <div class="module-header">
+      <div class="module-icon">&#x1F4CB;</div>
+      <div><div class="module-title">Hospital Overview</div><div class="module-sub">About West China Hospital</div></div>
+    </div>
+    <p style="font-size:14px;color:var(--gray-700);line-height:1.8;">
+      West China Hospital, affiliated with Sichuan University, is one of China's largest and most prestigious comprehensive hospitals. Founded in 1892, it has grown to become the premier medical center serving Western China with approximately 4,300 beds — reportedly the largest single-campus hospital in the world. The hospital handles complex cases referred from across the country and is consistently recognized among the top-tier institutions in national hospital evaluations. Its International Medical Center provides dedicated English-language services, international insurance direct billing, and full support for overseas patients seeking treatment in China.
+    </p>
+    <div class="disclaimer" style="margin-top:20px;">
+      <p class="disclaimer-text">
+        <strong>Information source:</strong> Hospital official website and public channels. This page is for informational reference only. We do not provide medical advice, diagnosis, or treatment recommendations. Please verify all details directly with the hospital before visiting. Last updated: May 31, 2026.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <h3>ChinaMed Directory</h3>
+    <p style="margin-bottom:16px;">A public-service information platform curating China's top public hospitals with international medical services. Free to use. No advertisements. No intermediaries.</p>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;">
+      <a href="/general-hospitals">General Hospitals</a>
+      <a href="/specialty-hospitals">Specialty Hospitals</a>
+      <a href="/about">About Us</a>
+      <a href="/legal-notice">Legal Notice</a>
+    </div>
+    <div style="max-width:960px;margin:0 auto 20px;padding:0 24px;text-align:center">
+<div style="border:1px dashed var(--gray-200,#e2e8f0);border-radius:10px;padding:14px;display:inline-block;min-width:300px;max-width:728px;width:100%">
+<div style="font-size:10px;font-weight:500;color:var(--gray-500,#718096);margin-bottom:6px">Advertisement</div>
+<div style="color:var(--gray-500,#718096);font-size:13px">📢 Ad Space Available</div>
+</div></div><hr class="footer-divider">
+    <div class="footer-legal">
+      <strong>Medical Disclaimer:</strong> All content on this website is for general informational reference only. It does NOT constitute professional medical advice, diagnosis or treatment. We are not a medical institution, medical intermediary or booking agency. No doctor-patient relationship is established by using this site. Information is sourced from public official channels — verify with the hospital before visiting. We are not liable for any loss arising from use of this website.<br><br>
+      &copy; 2026 ChinaMed Directory. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

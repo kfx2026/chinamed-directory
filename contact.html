@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title data-key="title">Contact — ChinaMed Directory</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0f0f0f;--ink-light:#2a2a2a;--gold:#b8956a;--gold-dark:#9a7d52;--gold-light:#f5efe6;--cream:#faf8f5;--warm-50:#f7f5f2;--warm-100:#efe8de;--warm-200:#e3d9cb;--warm-300:#d4c8b5;--warm-500:#8b8176;--warm-700:#4a4540;--warm-900:#1a1816;--white:#fff;--radius:14px;--radius-sm:10px;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{font-family:var(--font);color:var(--ink);background:var(--cream);line-height:1.6}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--warm-200);height:64px}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:18px;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px}
+.nav-logo-icon{width:32px;height:32px;background:var(--ink);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--warm-700);font-size:13px;padding:8px 12px;border-radius:6px;white-space:nowrap}
+.nav-links a:hover{background:var(--warm-100)}
+.nav-links a.active{color:var(--ink);font-weight:600;background:var(--gold-light)}
+.lang-bar{display:flex;gap:3px;align-items:center;flex-wrap:wrap}
+.lang-btn{background:var(--white);border:1px solid var(--warm-200);padding:4px 8px;border-radius:5px;font-size:11px;cursor:pointer;color:var(--warm-700);min-width:28px;text-align:center}
+.lang-btn:hover{border-color:var(--ink);color:var(--ink)}
+.lang-btn.selected{border-color:var(--ink);background:var(--gold-light);color:var(--ink);font-weight:600}
+.page-header{margin-top:64px;padding:56px 24px 40px;text-align:center;background:linear-gradient(180deg,var(--gold-light),var(--cream))}
+.page-header h1{font-size:34px;font-weight:800;color:var(--ink)}
+.content{max-width:640px;margin:0 auto;padding:0 24px 64px}
+.content p{font-size:15px;color:var(--warm-700);line-height:1.8;margin-bottom:16px}
+.email-box{background:var(--gold-light);border:1px solid var(--warm-200);border-radius:var(--radius);padding:24px;text-align:center;margin:24px 0}
+.email-box a{font-size:18px;font-weight:700;color:var(--ink);text-decoration:none;word-break:break-all}
+.email-box a:hover{text-decoration:underline}
+.note{background:#fffdf0;border:1px solid #e2d867;border-radius:var(--radius);padding:24px;font-size:14px;color:var(--warm-700);line-height:1.8;margin-top:24px}
+.note strong{color:var(--ink)}
+.footer{background:var(--ink);color:rgba(255,255,255,.85);padding:48px 24px 32px;margin-top:48px}
+.footer-inner{max-width:960px;margin:0 auto}
+.footer h3{font-size:14px;font-weight:700;color:white;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.footer a{font-size:13px;line-height:1.8;color:rgba(255,255,255,.7);text-decoration:none}
+.footer a:hover{color:white;text-decoration:underline}
+.footer-divider{border:0;border-top:1px solid rgba(255,255,255,.15);margin:24px 0}
+.footer-legal{font-size:12px;color:rgba(255,255,255,.5);line-height:1.8}
+@media(max-width:768px){.nav-links{display:none}.page-header h1{font-size:26px}.lang-bar{display:none}}
+
+/* premium refinement */
+body{letter-spacing:.01em}
+.nav{border-bottom:1px solid var(--warm-100);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:rgba(255,255,255,.92)}
+.nav-logo{font-weight:600;letter-spacing:-.2px}
+.nav-logo-icon{font-weight:500;font-size:15px}
+.nav-links a{font-size:13px;font-weight:500;padding:8px 16px;letter-spacing:.3px}
+.nav-links a:hover{background:var(--gold-light);color:var(--ink)}
+.nav-links a.active{background:var(--gold-light);color:var(--ink);font-weight:600}
+.lang-btn{font-size:12px;padding:5px 10px;border-radius:6px;font-weight:500;letter-spacing:.2px}
+.lang-btn:hover{background:var(--gold-light);border-color:var(--gold)}
+.lang-btn.selected{background:var(--ink);color:var(--white);border-color:var(--ink);font-weight:600}
+
+.page-header{padding:72px 24px 48px;background:linear-gradient(175deg,var(--warm-50) 0%,var(--cream) 50%,var(--warm-50) 100%)}
+.page-header h1{font-size:34px;font-weight:300;color:var(--ink);letter-spacing:-.5px}
+.page-header p{font-size:15px;color:var(--warm-500)}
+.content h2{font-size:19px;font-weight:600;color:var(--ink);margin:36px 0 14px;letter-spacing:-.2px}
+.content p,.content li{font-size:15px;color:var(--warm-700);line-height:1.9;margin-bottom:18px;font-weight:400}
+.module{background:var(--white);border:1px solid var(--warm-100);border-radius:var(--radius);padding:32px 36px;margin-bottom:24px;box-shadow:0 1px 3px rgba(0,0,0,.02)}
+.module-header{border-bottom:1px solid var(--warm-100);padding-bottom:18px;margin-bottom:22px}
+.module-icon{background:var(--warm-50);border-radius:10px}
+.module-title{font-size:17px;font-weight:600;color:var(--ink)}
+.info-row{border-bottom:1px solid var(--warm-50)}
+.info-label{color:var(--warm-500);font-weight:500}
+.contact-highlight{background:var(--ink);border-radius:var(--radius);padding:32px 36px}
+.notice-box{background:var(--warm-50);border:1px solid var(--warm-200);border-radius:var(--radius);padding:28px 32px}
+.note{background:#fefdf9;border:1px solid #e8e0c8;border-radius:var(--radius);padding:28px 32px}
+.email-box{background:var(--warm-50);border:1px solid var(--warm-200);border-radius:var(--radius)}
+.footer{margin-top:64px}
+@media(max-width:768px){.page-header h1{font-size:26px}.module{padding:24px}}
+
+</style>
+</head><body>
+<nav class="nav"><div class="nav-inner">
+<a href="./index.html" id="homeLink" class="nav-logo"><span class="nav-logo-icon">CM</span>ChinaMed Directory</a>
+<ul class="nav-links">
+<li><a href="./index.html" id="navHome" data-key="nav_home"></a></li>
+<li><a href="./general-hospitals.html" id="navGeneral" data-key="nav_general"></a></li>
+<li><a href="./specialty-hospitals.html" id="navSpecialty" data-key="nav_specialty"></a></li>
+<li><a href="./about.html" id="navAbout" data-key="nav_about"></a></li>
+<li><a href="./contact.html" id="navContact" data-key="nav_contact" class="active"></a></li>
+<li><a href="./legal-notice.html" id="navLegal" data-key="nav_legal"></a></li>
+</ul>
+<div class="lang-bar" id="langBar"></div></div></nav>
+<header class="page-header"><h1 data-key="page_title_contact"></h1></header>
+<div style="max-width:960px;margin:0 auto;padding:0 24px 20px;text-align:center">
+<div style="background:var(--white,#fff);border:1px solid var(--warm-200,#e2e8f0);border-radius:12px;padding:16px 20px;display:inline-block;min-width:300px;max-width:728px;width:100%">
+<div style="font-size:10px;font-weight:600;color:var(--cream0,#718096);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Sponsored</div>
+<div style="background:linear-gradient(135deg,var(--gold-light,#ebf4fb),var(--cream,#f7f9fb));border-radius:8px;padding:14px;text-align:center;color:var(--cream0,#718096);font-size:13px;font-weight:500">📢 Ad Space Available — Contact for Placement</div>
+</div></div><div class="content">
+<p data-key="contact_intro"></p>
+<div class="email-box"><a href="mailto:contact@chinamed.directory">contact@chinamed.directory</a></div>
+<div class="email-box" style="margin-top:12px"><span data-key="contact_phone_label">Phone Support: +86-28-XXXX-XXXX (Chengdu, China) — Mon-Fri, 9:00-17:00 CST</span></div>
+<div class="note" data-key="contact_note"></div>
+</div>
+<div style="max-width:960px;margin:28px auto;padding:0 24px">
+<div style="background:var(--white,#fff);border:1px solid var(--warm-200,#e2e8f0);border-radius:12px;padding:18px 22px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
+<div style="font-size:10px;font-weight:600;color:var(--cream0,#718096);text-transform:uppercase;letter-spacing:1px;white-space:nowrap">Sponsored</div>
+<div style="text-align:center;color:var(--cream0,#718096);font-size:13px">📢 Your Ad Here — Reach International Patients</div>
+<div style="background:var(--ink,#1a365d);color:white;font-size:12px;font-weight:600;padding:6px 14px;border-radius:6px;white-space:nowrap">Inquire →</div>
+</div></div><footer class="footer"><div class="footer-inner" id="footerContent"></div></footer>
+<script>
+var I18N={zh:{nav_home:"首页",nav_general:"综合医院",nav_specialty:"专科医院",nav_about:"关于我们",nav_contact:"联系我们",nav_legal:"法律声明",
+  page_title_contact:"联系我们",contact_intro:"有关于本目录的问题、医院信息更正或其他一般性问题，请通过以下邮箱联系我们：",
+  contact_note:'<strong>请注意：</strong><br><br><strong>我们不是医疗机构。</strong>我们不能也不会提供医疗建议、治疗推荐、预约挂号或医院转诊服务。<br><br><strong>如需医疗咨询或预约，</strong>请直接联系各医院国际医疗中心。您可以在每家医院的详情页找到电话和邮箱。<br><br><strong>回复时间：</strong>我们力争在2-3个工作日内回复目录相关问题。',
+  footer_desc:"公益性信息平台 · 免费使用 · 无广告 · 无中介",footer_links:"快速链接",footer_legal:"法律声明",
+  footer_disclaimer:'<strong>医疗免责声明：</strong>本站所有内容仅供参考，不构成医疗建议。就诊前请与医院核实。<br><br>&copy; 2026 ChinaMed Directory.'
+},en:{nav_home:"Home",nav_general:"General Hospitals",nav_specialty:"Specialty Hospitals",nav_about:"About Us",nav_contact:"Contact",nav_legal:"Legal Notice",
+  page_title_contact:"Contact",contact_intro:"For inquiries about this directory, corrections to hospital information, or general questions, please contact us at:",
+  contact_note:'<strong>Please Note:</strong><br><br><strong>We are not a medical institution.</strong> We cannot and do not provide medical advice, treatment recommendations, appointment bookings, or hospital referrals.<br><br><strong>For medical inquiries or appointments,</strong> please contact the hospital\'s International Medical Center directly. You can find phone numbers and email addresses on each hospital\'s detail page.<br><br><strong>Response time:</strong> We aim to respond to directory-related inquiries within 2-3 business days.',
+  footer_desc:"A public-service information platform. Free to use. No advertisements. No intermediaries.",footer_links:"Quick Links",footer_legal:"Legal",
+  footer_disclaimer:'<strong>Medical Disclaimer:</strong> All content is for informational reference only. Not medical advice. Verify with hospital before visiting.<br><br>&copy; 2026 ChinaMed Directory.'
+},fr:{nav_home:"Accueil",nav_general:"Hopitaux Generaux",nav_specialty:"Hopitaux Specialises",nav_about:"A propos",nav_contact:"Contact",nav_legal:"Mentions legales",
+  page_title_contact:"Contact",contact_intro:"Pour toute question concernant ce repertoire, des corrections ou des questions generales, contactez-nous a:",
+  contact_note:'<strong>Remarque:</strong><br><br><strong>Nous ne sommes pas une institution medicale.</strong> Nous ne fournissons pas de conseils medicaux, de recommandations de traitement ou de reservation de rendez-vous.<br><br><strong>Pour des questions medicales,</strong> veuillez contacter directement le centre medical international de l\'hopital.<br><br><strong>Delai:</strong> Nous repondons dans un delai de 2-3 jours ouvres.',
+  footer_desc:"Plateforme de service public. Gratuit.",footer_links:"Liens Rapides",footer_legal:"Mentions Legales",
+  footer_disclaimer:'<strong>Avertissement:</strong> Contenu informatif uniquement.<br><br>&copy; 2026 ChinaMed Directory.'
+},de:{nav_home:"Startseite",nav_general:"Allg. Krankenhauser",nav_specialty:"Fachkrankenhauser",nav_about:"Uber uns",nav_contact:"Kontakt",nav_legal:"Rechtliches",
+  page_title_contact:"Kontakt",contact_intro:"Bei Fragen zu diesem Verzeichnis, Korrekturen oder allgemeinen Anfragen, kontaktieren Sie uns unter:",
+  contact_note:'<strong>Hinweis:</strong><br><br><strong>Wir sind keine medizinische Einrichtung.</strong><br><br><strong>Fur medizinische Anfragen</strong> wenden Sie sich bitte direkt an das International Medical Center des Krankenhauses.<br><br><strong>Reaktionszeit:</strong> 2-3 Werktage.',
+  footer_desc:"Offentliche Plattform. Kostenlos.",footer_links:"Schnelllinks",footer_legal:"Rechtliches",
+  footer_disclaimer:'<strong>Haftungsausschluss:</strong> Nur zu Informationszwecken.<br><br>&copy; 2026 ChinaMed Directory.'
+},es:{nav_home:"Inicio",nav_general:"Hospitales Generales",nav_specialty:"Hospitales Especializados",nav_about:"Nosotros",nav_contact:"Contacto",nav_legal:"Legal",
+  page_title_contact:"Contacto",contact_intro:"Para consultas sobre este directorio, correcciones o preguntas generales, contactenos en:",
+  contact_note:'<strong>Nota:</strong><br><br><strong>No somos una institucion medica.</strong><br><br><strong>Para consultas medicas,</strong> contacte directamente al Centro Medico Internacional del hospital.<br><br><strong>Tiempo de respuesta:</strong> 2-3 dias habiles.',
+  footer_desc:"Plataforma publica. Gratis.",footer_links:"Enlaces",footer_legal:"Legal",
+  footer_disclaimer:'<strong>Aviso:</strong> Solo fines informativos.<br><br>&copy; 2026 ChinaMed Directory.'
+},ru:{nav_home:"Glavnaya",nav_general:"Obshchie",nav_specialty:"Spetsial.",nav_about:"O nas",nav_contact:"Kontakty",nav_legal:"Yurid.",
+  page_title_contact:"Kontakty",contact_intro:"Po voprosam o kataloge, ispravleniyam ili drugim voprosam, pishite na:",
+  contact_note:'<strong>Vnimanie:</strong><br><br><strong>My ne yavlyaemsya meditsinskim uchrezhdeniem.</strong><br><br><strong>Po meditsinskim voprosam</strong> obrashchaites neposredstvenno v Mezhdunarodnyi tsentr bolnitsy.<br><br><strong>Vremya otveta:</strong> 2-3 rabochikh dnya.',
+  footer_desc:"Obshchestvennaya platforma.",footer_links:"Ssylki",footer_legal:"Yurid.",
+  footer_disclaimer:'<strong>Otvetstvennost:</strong> Tolko informatsionno.<br><br>&copy; 2026 ChinaMed Directory.'
+},ko:{nav_home:"홈",nav_general:"종합병원",nav_specialty:"전문병원",nav_about:"소개",nav_contact:"연락처",nav_legal:"법적 고지",
+  page_title_contact:"연락처",contact_intro:"디렉토리 관련 문의, 병원 정보 수정 또는 일반 질문은 다음 이메일로 연락해 주세요:",
+  contact_note:'<strong>참고:</strong><br><br><strong>저희는 의료 기관이 아닙니다.</strong><br><br><strong>의료 관련 문의는</strong> 각 병원의 국제진료센터로 직접 연락해 주세요.<br><br><strong>응답 시간:</strong> 영업일 기준 2-3일.',
+  footer_desc:"공공 서비스 플랫폼. 무료.",footer_links:"바로가기",footer_legal:"법적 고지",
+  footer_disclaimer:'<strong>면책 조항:</strong> 정보 제공 목적으로만 사용됩니다.<br><br>&copy; 2026 ChinaMed Directory.'
+},ar:{nav_home:"الرئيسية",nav_general:"مستشفيات عامة",nav_specialty:"مستشفيات تخصصية",nav_about:"من نحن",nav_contact:"اتصل بنا",nav_legal:"قانوني",
+  page_title_contact:"اتصل بنا",contact_intro:"للاستفسارات حول هذا الدليل او تصحيحات معلومات المستشفى او اسئلة عامة، يرجى الاتصال بنا على:",
+  contact_note:'<strong>يرجى الملاحظة:</strong><br><br><strong>نحن لسنا مؤسسة طبية.</strong><br><br><strong>للاستفسارات الطبية،</strong> يرجى الاتصال بالمركز الطبي الدولي للمستشفى مباشرة.<br><br><strong>وقت الرد:</strong> 2-3 ايام عمل.',
+  footer_desc:"منصة خدمة عامة. مجانية.",footer_links:"روابط",footer_legal:"قانوني",
+  footer_disclaimer:'<strong>اخطار:</strong> للمعلومات فقط.<br><br>&copy; 2026 ChinaMed Directory.'
+}};
+var LANG_LABELS={zh:"中",en:"EN",fr:"FR",de:"DE",es:"ES",ru:"RU",ko:"KO",ar:"AR"};
+function render(lang){
+  var d=I18N[lang]||I18N["en"];
+  var isRTL=lang==="ar";
+  document.documentElement.lang=lang;document.documentElement.dir=isRTL?"rtl":"ltr";document.body.style.direction=isRTL?"rtl":"";
+  document.title=(d.page_title_contact||"Contact")+" — ChinaMed Directory";
+  document.querySelectorAll("[data-key]").forEach(function(el){
+    var k=el.dataset.key;if(d[k])el.innerHTML=d[k];
+  });
+  document.querySelectorAll("[id^='nav']:not([id='navHome'])").forEach(function(a){
+    var pgs={navHome:"./index.html",navGeneral:"./general-hospitals.html",navSpecialty:"./specialty-hospitals.html",navAbout:"./about.html",navContact:"./contact.html",navLegal:"./legal-notice.html"};
+    var pg=pgs[a.id];if(pg)a.href=pg+"?lang="+lang;
+  });
+  document.getElementById("homeLink").href="./index.html?lang="+lang;
+  var fh="<h3>ChinaMed Directory</h3><p style='margin-bottom:16px'>"+d.footer_desc+"</p>";
+  fh+="<div style='display:flex;gap:24px;flex-wrap:wrap'>";
+  fh+="<a href='./general-hospitals.html?lang="+lang+"'>"+d.nav_general+"</a>";
+  fh+="<a href='./specialty-hospitals.html?lang="+lang+"'>"+d.nav_specialty+"</a>";
+  fh+="<a href='./about.html?lang="+lang+"'>"+d.nav_about+"</a>";
+  fh+="<a href='./legal-notice.html?lang="+lang+"'>"+d.nav_legal+"</a>";
+  fh+="</div><hr class='footer-divider'><div class='footer-legal'>"+d.footer_disclaimer+"</div>";
+  document.getElementById("footerContent").innerHTML=fh;
+}
+function buildLangBar(cur){
+  var h="";Object.keys(LANG_LABELS).forEach(function(l){
+    h+='<button class="lang-btn'+(l===cur?' selected':'')+'" onclick="switchLang(\''+l+'\')">'+LANG_LABELS[l]+'</button>';
+  });document.getElementById("langBar").innerHTML=h;
+}
+function switchLang(lang){localStorage.setItem("chinamed_lang",lang);render(lang);buildLangBar(lang);}
+(function(){
+  var lang=localStorage.getItem("chinamed_lang")||new URLSearchParams(location.search).get("lang")||"zh";
+  if(!I18N[lang])lang="zh";buildLangBar(lang);render(lang);
+})();
+</script></body></html>

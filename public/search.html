@@ -121,28 +121,28 @@ body{letter-spacing:.01em}
 <script>
 var I18N={zh:{nav_home:"首页",nav_general:"综合医院",nav_specialty:"专科医院",nav_about:"关于我们",nav_contact:"联系我们",nav_legal:"法律声明",
   search_title:"搜索结果",search_sub:"",search_placeholder:"搜索医院名、专科、城市…",searching:"搜索中…",no_result:"未找到匹配的医院，请尝试其他关键词",footer_desc:"公益性信息平台 · 免费使用 · 无广告 · 无中介",
-  footer_disclaimer:'<strong>医疗免责声明：</strong>本站所有内容仅供参考，不构成医疗建议。就诊前请与医院核实。<br><br>&copy; 2026 MediChina · 来华就医.'
+  footer_disclaimer:'<strong>医疗免责声明：</strong>本站所有内容仅供参考，不构成医疗建议。就诊前请与医院核实。<br><br>&copy; 2026 MediChina .'
 },en:{nav_home:"Home",nav_general:"General Hospitals",nav_specialty:"Specialty Hospitals",nav_about:"About Us",nav_contact:"Contact",nav_legal:"Legal Notice",
   search_title:"Search Results",search_sub:"",search_placeholder:"Search hospitals, specialties, cities…",searching:"Searching…",no_result:"No matching hospitals found. Try a different keyword.",footer_desc:"A public-service information platform. Free to use. No advertisements. No intermediaries.",
-  footer_disclaimer:'<strong>Medical Disclaimer:</strong> All content is for informational reference only. Not medical advice. Verify with hospital before visiting.<br><br>&copy; 2026 MediChina · 来华就医.'
+  footer_disclaimer:'<strong>Medical Disclaimer:</strong> All content is for informational reference only. Not medical advice. Verify with hospital before visiting.<br><br>&copy; 2026 MediChina .'
 },fr:{nav_home:"Accueil",nav_general:"Hopitaux Generaux",nav_specialty:"Hopitaux Specialises",nav_about:"A propos",nav_contact:"Contact",nav_legal:"Mentions legales",
   search_title:"Resultats",search_placeholder:"Rechercher…",searching:"Recherche…",no_result:"Aucun hopital trouve. Essayez un autre mot-cle.",footer_desc:"Plateforme de service public. Gratuit.",
-  footer_disclaimer:'<strong>Avertissement:</strong> Contenu informatif uniquement.<br><br>&copy; 2026 MediChina · 来华就医.'
+  footer_disclaimer:'<strong>Avertissement:</strong> Contenu informatif uniquement.<br><br>&copy; 2026 MediChina .'
 },de:{nav_home:"Startseite",nav_general:"Allg. Krankenhauser",nav_specialty:"Fachkrankenhauser",nav_about:"Uber uns",nav_contact:"Kontakt",nav_legal:"Rechtliches",
   search_title:"Suchergebnisse",search_placeholder:"Suchen…",searching:"Suche…",no_result:"Keine Krankenhauser gefunden.",footer_desc:"Offentliche Plattform. Kostenlos.",
-  footer_disclaimer:'<strong>Haftungsausschluss:</strong> Nur zu Informationszwecken.<br><br>&copy; 2026 MediChina · 来华就医.'
+  footer_disclaimer:'<strong>Haftungsausschluss:</strong> Nur zu Informationszwecken.<br><br>&copy; 2026 MediChina .'
 },es:{nav_home:"Inicio",nav_general:"Hospitales Generales",nav_specialty:"Hospitales Especializados",nav_about:"Nosotros",nav_contact:"Contacto",nav_legal:"Legal",
   search_title:"Resultados",search_placeholder:"Buscar…",searching:"Buscando…",no_result:"No se encontraron hospitales.",footer_desc:"Plataforma publica. Gratis.",
-  footer_disclaimer:'<strong>Aviso:</strong> Solo fines informativos.<br><br>&copy; 2026 MediChina · 来华就医.'
+  footer_disclaimer:'<strong>Aviso:</strong> Solo fines informativos.<br><br>&copy; 2026 MediChina .'
 },ru:{nav_home:"Glavnaya",nav_general:"Obshchie",nav_specialty:"Spetsial.",nav_about:"O nas",nav_contact:"Kontakty",nav_legal:"Yurid.",
   search_title:"Rezultaty",search_placeholder:"Poisk…",searching:"Poisk…",no_result:"Bolnitsy ne naideny.",footer_desc:"Obshchestvennaya platforma.",
-  footer_disclaimer:'<strong>Otvetstvennost:</strong> Tolko informatsionno.<br><br>&copy; 2026 MediChina · 来华就医.'
+  footer_disclaimer:'<strong>Otvetstvennost:</strong> Tolko informatsionno.<br><br>&copy; 2026 MediChina .'
 },ko:{nav_home:"홈",nav_general:"종합병원",nav_specialty:"전문병원",nav_about:"소개",nav_contact:"연락처",nav_legal:"법적 고지",
   search_title:"검색 결과",search_placeholder:"검색…",searching:"검색 중…",no_result:"일치하는 병원이 없습니다.",footer_desc:"공공 서비스 플랫폼. 무료.",
-  footer_disclaimer:'<strong>면책 조항:</strong> 정보 제공 목적으로만 사용됩니다.<br><br>&copy; 2026 MediChina · 来华就医.'
+  footer_disclaimer:'<strong>면책 조항:</strong> 정보 제공 목적으로만 사용됩니다.<br><br>&copy; 2026 MediChina .'
 },ar:{nav_home:"الرئيسية",nav_general:"مستشفيات عامة",nav_specialty:"مستشفيات تخصصية",nav_about:"من نحن",nav_contact:"اتصل بنا",nav_legal:"قانوني",
   search_title:"نتائج البحث",search_placeholder:"ابحث…",searching:"جاري البحث…",no_result:"لم يتم العثور على مستشفيات.",footer_desc:"منصة خدمة عامة. مجانية.",
-  footer_disclaimer:'<strong>اخطار:</strong> للمعلومات فقط.<br><br>&copy; 2026 MediChina · 来华就医.'
+  footer_disclaimer:'<strong>اخطار:</strong> للمعلومات فقط.<br><br>&copy; 2026 MediChina .'
 }};
 var LANG_LABELS={zh:"中",en:"EN",fr:"FR",de:"DE",es:"ES",ru:"RU",ko:"KO",ar:"AR"};
 
@@ -156,7 +156,7 @@ function buildLangBar(cur){
 }
 
 function switchLang(lang){
-  curLang=lang;localStorage.setItem("chinamed_lang",lang);
+  curLang=lang;localStorage.setItem("mc_lang",lang);
   var d=I18N[lang]||I18N["en"];
   var isRTL=lang==="ar";
   document.documentElement.lang=isRTL?"ar":lang;
@@ -291,7 +291,7 @@ function doSearchInternal(q,lang){
 
 (function(){
   var params=new URLSearchParams(location.search);
-  var lang=params.get("lang")||localStorage.getItem("chinamed_lang")||"zh";
+  var lang=params.get("lang")||localStorage.getItem("mc_lang")||"zh";
   if(!I18N[lang])lang="zh";curLang=lang;
   switchLang(lang);
   fetch("./search-index.json").then(function(r){return r.json();}).then(function(data){
@@ -303,4 +303,7 @@ function doSearchInternal(q,lang){
 <script src="assets/chat-hospitals.js"></script>
 <script src="assets/chat-kb.js"></script>
 <script src="assets/chat.js"></script>
+
+<script src="assets/site-i18n.js"></script>
+<script src="assets/site-lang.js"></script>
 </body></html>

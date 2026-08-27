@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title data-key="title">ChinaMed Directory</title><style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0f0f0f;--ink-light:#2a2a2a;--gold:#b8956a;--gold-dark:#9a7d52;--gold-light:#f5efe6;--cream:#faf8f5;--warm-50:#f7f5f2;--warm-100:#efe8de;--warm-200:#e3d9cb;--warm-300:#d4c8b5;--warm-500:#8b8176;--warm-700:#4a4540;--warm-900:#1a1816;--white:#fff;--radius:14px;--radius-sm:10px;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Roboto,"Helvetica Neue",Arial,sans-serif}
+body{font-family:var(--font);color:var(--warm-700);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--white);border-bottom:1px solid var(--warm-200);height:64px}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:18px;font-weight:700;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:8px}
+.nav-logo-icon{width:32px;height:32px;background:var(--ink);border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;flex-shrink:0}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--warm-700);font-size:13px;padding:8px 12px;border-radius:6px;white-space:nowrap}
+.nav-links a:hover{background:var(--warm-100)}
+.nav-links a.active{color:var(--ink);font-weight:600;background:var(--gold-light)}
+.lang-bar{display:flex;gap:3px;align-items:center;flex-wrap:wrap}
+.lang-btn{background:var(--white);border:1px solid var(--warm-200);padding:4px 8px;border-radius:5px;font-size:11px;cursor:pointer;color:var(--warm-700);min-width:28px;text-align:center}
+.lang-btn:hover{border-color:var(--ink);color:var(--ink)}
+.lang-btn.selected{border-color:var(--ink);background:var(--gold-light);color:var(--ink);font-weight:600}
+.page-header{margin-top:64px;padding:40px 24px 28px;text-align:center;background:linear-gradient(180deg,var(--gold-light),var(--cream))}
+.page-header h1{font-size:30px;font-weight:800;color:var(--ink)}
+.page-header p{font-size:15px;color:var(--cream0);margin-top:6px}
+.content{max-width:960px;margin:0 auto;padding:0 24px 64px}
+.region{margin-bottom:36px}
+.region-title{font-size:19px;font-weight:700;color:var(--ink);border-bottom:2px solid var(--gold);padding-bottom:10px;margin-bottom:14px}
+.region-count{font-size:13px;font-weight:400;color:var(--cream0);margin-left:8px}
+.hcard{background:var(--white);border:1px solid var(--warm-200);border-radius:var(--radius);padding:18px 22px;margin-bottom:10px;transition:border-color .15s}
+.hcard:hover{border-color:var(--ink)}
+.hcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.hcard-name{font-size:16px;font-weight:700;color:var(--ink)}
+.hcard-name a{color:inherit;text-decoration:none}
+.hcard-name a:hover{text-decoration:underline}
+.hcard-info{font-size:12px;color:var(--cream0);margin-top:2px}
+.hcard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.hcard-tag{background:var(--gold-light);color:var(--ink);font-size:12px;font-weight:600;padding:3px 10px;border-radius:4px}
+.hcard-arrow{font-size:13px;color:var(--gold);font-weight:600;white-space:nowrap;margin-left:12px}
+.footer{background:var(--ink);color:rgba(255,255,255,.85);padding:48px 24px 32px;margin-top:48px}
+.footer-inner{max-width:960px;margin:0 auto}
+.footer h3{font-size:14px;font-weight:700;color:white;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.footer p,.footer a{font-size:13px;line-height:1.8;color:rgba(255,255,255,.7);text-decoration:none}
+.footer a:hover{color:white;text-decoration:underline}
+.footer-divider{border:0;border-top:1px solid rgba(255,255,255,.15);margin:24px 0}
+.footer-legal{font-size:12px;color:rgba(255,255,255,.5);line-height:1.8}
+@media(max-width:768px){.nav-links{display:none}.page-header h1{font-size:24px}.lang-bar{display:none}}
+
+/* premium refinement */
+body{letter-spacing:.01em}
+.nav{border-bottom:1px solid var(--warm-100);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);background:rgba(255,255,255,.92)}
+.nav-logo{font-weight:600;letter-spacing:-.2px}
+.nav-logo-icon{font-weight:500;font-size:15px}
+.nav-links a{font-size:13px;font-weight:500;padding:8px 16px;letter-spacing:.3px}
+.nav-links a:hover{background:var(--gold-light);color:var(--ink)}
+.nav-links a.active{background:var(--gold-light);color:var(--ink);font-weight:600}
+.lang-btn{font-size:12px;padding:5px 10px;border-radius:6px;font-weight:500;letter-spacing:.2px}
+.lang-btn:hover{background:var(--gold-light);border-color:var(--gold)}
+.lang-btn.selected{background:var(--ink);color:var(--white);border-color:var(--ink);font-weight:600}
+
+.page-header{padding:72px 24px 48px;background:linear-gradient(175deg,var(--warm-50) 0%,var(--cream) 50%,var(--warm-50) 100%)}
+.page-header h1{font-size:34px;font-weight:300;color:var(--ink);letter-spacing:-.5px}
+.page-header p{font-size:15px;color:var(--warm-500)}
+.region-title{font-size:18px;font-weight:600;color:var(--ink);margin:24px 0 16px;letter-spacing:-.2px;padding-bottom:12px;border-bottom:1px solid var(--warm-100)}
+.hcard{background:var(--white);border:1px solid var(--warm-100);border-radius:var(--radius);padding:22px 28px;margin-bottom:14px;transition:all .2s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 2px rgba(0,0,0,.015)}
+.hcard:hover{border-color:var(--gold);box-shadow:0 6px 20px rgba(0,0,0,.04);transform:translateY(-1px)}
+.hcard-name a{font-size:16px;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-.2px}
+.hcard-name a:hover{color:var(--gold)}
+.hcard-info{font-size:13px;color:var(--warm-500);margin-top:4px;font-weight:500}
+.hcard-arrow a{font-size:13px;font-weight:600;color:var(--ink);text-decoration:none}
+.hcard-arrow a:hover{color:var(--gold)}
+.tag{background:var(--gold-light);color:var(--gold-dark);font-size:11px;font-weight:600;padding:3px 12px;border-radius:6px;letter-spacing:.3px}
+.tag-spec{background:var(--warm-50);color:var(--warm-700);font-size:11px;padding:3px 12px;border-radius:6px;cursor:pointer;transition:all .15s}
+.tag-spec:hover{background:var(--gold-light);color:var(--gold-dark)}
+.spec-panel{background:var(--warm-50);border:1px solid var(--warm-200);border-radius:var(--radius);padding:20px 24px;margin:8px 0 16px;font-size:13px;color:var(--warm-700)}
+@media(max-width:768px){.page-header h1{font-size:26px}.hcard{padding:18px 20px}}
+
+</style></head><body>
+
+<nav class="nav"><div class="nav-inner">
+<a href="./index.html" id="homeLink" class="nav-logo"><span class="nav-logo-icon">CM</span>ChinaMed Directory</a>
+<ul class="nav-links">
+<li><a href="./index.html" id="navHome" data-key="nav_home"></a></li>
+<li><a href="./general-hospitals.html" id="navGeneral" data-key="nav_general"></a></li>
+<li><a href="./specialty-hospitals.html" id="navSpecialty" data-key="nav_specialty" class="active"></a></li>
+<li><a href="./about.html" id="navAbout" data-key="nav_about"></a></li>
+<li><a href="./contact.html" id="navContact" data-key="nav_contact"></a></li>
+<li><a href="./legal-notice.html" id="navLegal" data-key="nav_legal"></a></li>
+</ul>
+<div class="lang-bar" id="langBar"></div></div></nav>
+
+<header class="page-header"><h1 data-key="page_title_specialty"></h1><p data-key="page_sub_specialty"></p></header>
+<div style="max-width:960px;margin:0 auto;padding:0 24px 20px;text-align:center">
+<div style="background:var(--white,#fff);border:1px solid var(--warm-200,#e2e8f0);border-radius:12px;padding:16px 20px;display:inline-block;min-width:300px;max-width:728px;width:100%">
+<div style="font-size:10px;font-weight:600;color:var(--cream0,#718096);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Sponsored</div>
+<div style="background:linear-gradient(135deg,var(--gold-light,#ebf4fb),var(--cream,#f7f9fb));border-radius:8px;padding:14px;text-align:center;color:var(--cream0,#718096);font-size:13px;font-weight:500">📢 Ad Space Available — Contact for Placement</div>
+</div></div><div class="content" id="hospitalList"></div>
+<div style="max-width:960px;margin:28px auto;padding:0 24px">
+<div style="background:var(--white,#fff);border:1px solid var(--warm-200,#e2e8f0);border-radius:12px;padding:18px 22px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
+<div style="font-size:10px;font-weight:600;color:var(--cream0,#718096);text-transform:uppercase;letter-spacing:1px;white-space:nowrap">Sponsored</div>
+<div style="text-align:center;color:var(--cream0,#718096);font-size:13px">📢 Your Ad Here — Reach International Patients</div>
+<div style="background:var(--ink,#1a365d);color:white;font-size:12px;font-weight:600;padding:6px 14px;border-radius:6px;white-space:nowrap">Inquire →</div>
+</div></div><footer class="footer"><div class="footer-inner" id="footerContent"></div></footer>
+
+<script>
+var HOSP_DATA_ZH = [{"title": "骨科", "title_en": "Orthopedics", "count": 5, "count_label": "家医院", "cards": [{"id": "jishuitan", "name_zh": "北京积水潭医院", "name_en": "Beijing Jishuitan Hospital", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["骨科"], "specs_en": ["Orthopedic Surgery"], "subdir": "specialty"}, {"id": "shanghai-6th", "name_zh": "上海市第六人民医院", "name_en": "Shanghai Sixth People's Hospital", "city_zh": "上海", "city_en": "Shanghai", "specs_zh": ["骨科"], "specs_en": ["Orthopedic Surgery"], "subdir": "specialty"}, {"id": "gz-tcm-ortho", "name_zh": "广州中医药大学第一附属医院", "name_en": "First Affiliated Hospital of Guangzhou University of Chinese Medicine", "city_zh": "广州", "city_en": "Guangzhou", "specs_zh": ["骨科(中西医结合)"], "specs_en": ["Orthopedic Surgery (TCM Integrated)"], "subdir": "specialty"}, {"id": "cd-sport-ortho", "name_zh": "成都体育学院附属体育医院", "name_en": "Affiliated Sport Hospital of Chengdu Sport University", "city_zh": "成都", "city_en": "Chengdu", "specs_zh": ["运动骨科与康复"], "specs_en": ["Sports Orthopedics & Rehabilitation"], "subdir": "specialty"}, {"id": "shandong-2nd", "name_zh": "山东大学第二医院", "name_en": "Second Hospital of Shandong University", "city_zh": "济南", "city_en": "Jinan", "specs_zh": ["骨科"], "specs_en": ["Orthopedic Surgery"], "subdir": "specialty"}]}, {"title": "神经科", "title_en": "Neurology", "count": 4, "count_label": "家医院", "cards": [{"id": "xuanwu-hospital", "name_zh": "首都医科大学宣武医院", "name_en": "Xuanwu Hospital, Capital Medical University", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["神经内科与神经外科"], "specs_en": ["Neurology & Neurosurgery"], "subdir": "specialty"}, {"id": "tiantan-hospital", "name_zh": "北京天坛医院", "name_en": "Beijing Tiantan Hospital", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["神经外科与神经内科"], "specs_en": ["Neurosurgery & Neurology"], "subdir": "specialty"}, {"id": "huashan-hospital", "name_zh": "复旦大学附属华山医院", "name_en": "Huashan Hospital, Fudan University", "city_zh": "上海", "city_en": "Shanghai", "specs_zh": ["神经外科"], "specs_en": ["Neurosurgery"], "subdir": "specialty"}, {"id": "xiangya-hospital", "name_zh": "中南大学湘雅医院", "name_en": "Xiangya Hospital, Central South University", "city_zh": "长沙", "city_en": "Changsha", "specs_zh": ["神经内科"], "specs_en": ["Neurology"], "subdir": "specialty"}]}, {"title": "眼科", "title_en": "Ophthalmology", "count": 4, "count_label": "家医院", "cards": [{"id": "tongren-hospital", "name_zh": "北京同仁医院", "name_en": "Beijing Tongren Hospital", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["眼科与耳鼻喉科"], "specs_en": ["Ophthalmology & Otolaryngology"], "subdir": "specialty"}, {"id": "sysu-eye", "name_zh": "中山大学中山眼科中心", "name_en": "Zhongshan Ophthalmic Center, Sun Yat-sen University", "city_zh": "广州", "city_en": "Guangzhou", "specs_zh": ["眼科"], "specs_en": ["Ophthalmology"], "subdir": "specialty"}, {"id": "wmu-eye", "name_zh": "温州医科大学附属眼视光医院", "name_en": "Eye Hospital of Wenzhou Medical University", "city_zh": "Wenzhou", "city_en": "Wenzhou", "specs_zh": ["眼科与视光学"], "specs_en": ["Ophthalmology & Optometry"], "subdir": "specialty"}, {"id": "huaxi-eye", "name_zh": "四川大学华西眼科中心", "name_en": "West China Eye Center, Sichuan University", "city_zh": "成都", "city_en": "Chengdu", "specs_zh": ["眼科"], "specs_en": ["Ophthalmology"], "subdir": "specialty"}]}, {"title": "口腔/整形", "title_en": "Dental & Maxillofacial", "count": 4, "count_label": "家医院", "cards": [{"id": "shanghai-9th", "name_zh": "上海交通大学医学院附属第九人民医院", "name_en": "Shanghai Ninth People's Hospital", "city_zh": "上海", "city_en": "Shanghai", "specs_zh": ["口腔颌面外科与整形外科"], "specs_en": ["Oral & Maxillofacial Surgery, Plastic Surgery"], "subdir": "specialty"}, {"id": "pku-stomatology", "name_zh": "北京大学口腔医院", "name_en": "Peking University Hospital of Stomatology", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["口腔医学"], "specs_en": ["Dentistry & Oral Surgery"], "subdir": "specialty"}, {"id": "huaxi-stomatology", "name_zh": "四川大学华西口腔医院", "name_en": "West China Hospital of Stomatology, Sichuan University", "city_zh": "成都", "city_en": "Chengdu", "specs_zh": ["口腔医学"], "specs_en": ["Dentistry & Oral Surgery"], "subdir": "specialty"}, {"id": "guangdong-stomatology", "name_zh": "广东省口腔医院", "name_en": "Guangdong Provincial Stomatological Hospital", "city_zh": "广州", "city_en": "Guangzhou", "specs_zh": ["口腔医学"], "specs_en": ["Dentistry & Oral Surgery"], "subdir": "specialty"}]}, {"title": "呼吸科", "title_en": "Respiratory", "count": 3, "count_label": "家医院", "cards": [{"id": "gzhmu-1st", "name_zh": "广州医科大学附属第一医院", "name_en": "First Affiliated Hospital of Guangzhou Medical University", "city_zh": "广州", "city_en": "Guangzhou", "specs_zh": ["呼吸与危重症医学科"], "specs_en": ["Respiratory & Critical Care Medicine"], "subdir": "specialty"}, {"id": "zhongri-youhao", "name_zh": "中日友好医院", "name_en": "China-Japan Friendship Hospital", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["呼吸与危重症医学科"], "specs_en": ["Respiratory & Critical Care Medicine"], "subdir": "specialty"}, {"id": "tongji-hospital", "name_zh": "华中科技大学同济医学院附属同济医院", "name_en": "Tongji Hospital, HUST", "city_zh": "武汉", "city_en": "Wuhan", "specs_zh": ["呼吸与危重症医学科"], "specs_en": ["Respiratory & Critical Care Medicine"], "subdir": "specialty"}]}, {"title": "肿瘤科", "title_en": "Oncology", "count": 3, "count_label": "家医院", "cards": [{"id": "cicams-cancer", "name_zh": "中国医学科学院肿瘤医院", "name_en": "Cancer Hospital, Chinese Academy of Medical Sciences", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["肿瘤科"], "specs_en": ["Oncology"], "subdir": "specialty"}, {"id": "fudan-cancer", "name_zh": "复旦大学附属肿瘤医院", "name_en": "Fudan University Shanghai Cancer Center", "city_zh": "上海", "city_en": "Shanghai", "specs_zh": ["肿瘤科"], "specs_en": ["Oncology"], "subdir": "specialty"}, {"id": "sysu-cancer", "name_zh": "中山大学肿瘤防治中心", "name_en": "Sun Yat-sen University Cancer Center", "city_zh": "广州", "city_en": "Guangzhou", "specs_zh": ["肿瘤科"], "specs_en": ["Oncology"], "subdir": "specialty"}]}, {"title": "心血管", "title_en": "Cardiovascular", "count": 3, "count_label": "家医院", "cards": [{"id": "anzhen-hospital", "name_zh": "北京安贞医院", "name_en": "Beijing Anzhen Hospital", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["心血管内科与心脏外科"], "specs_en": ["Cardiovascular Medicine & Surgery"], "subdir": "specialty"}, {"id": "zhongshan-hospital", "name_zh": "复旦大学附属中山医院", "name_en": "Zhongshan Hospital, Fudan University", "city_zh": "上海", "city_en": "Shanghai", "specs_zh": ["心血管内科与心脏外科"], "specs_en": ["Cardiovascular Medicine & Surgery"], "subdir": "specialty"}, {"id": "guangdong-prov", "name_zh": "广东省人民医院", "name_en": "Guangdong Provincial People's Hospital", "city_zh": "广州", "city_en": "Guangzhou", "specs_zh": ["心血管内科与心脏外科"], "specs_en": ["Cardiovascular Medicine & Surgery"], "subdir": "specialty"}]}, {"title": "器官移植", "title_en": "Organ Transplant", "count": 2, "count_label": "家医院", "cards": [{"id": "zzu-1st", "name_zh": "郑州大学第一附属医院", "name_en": "First Affiliated Hospital of Zhengzhou University", "city_zh": "郑州", "city_en": "Zhengzhou", "specs_zh": ["器官移植"], "specs_en": ["Organ Transplantation"], "subdir": "specialty"}, {"id": "sysu-1st", "name_zh": "中山大学附属第一医院", "name_en": "First Affiliated Hospital, Sun Yat-sen University", "city_zh": "广州", "city_en": "Guangzhou", "specs_zh": ["器官移植"], "specs_en": ["Organ Transplantation"], "subdir": "specialty"}]}, {"title": "中医", "title_en": "TCM", "count": 2, "count_label": "家医院", "cards": [{"id": "guanganmen-tcm", "name_zh": "中国中医科学院广安门医院", "name_en": "Guang'anmen Hospital, China Academy of Chinese Medical Sciences", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["中医综合"], "specs_en": ["Traditional Chinese Medicine"], "subdir": "specialty"}, {"id": "cdutcm-affiliated", "name_zh": "成都中医药大学附属医院", "name_en": "Affiliated Hospital of Chengdu University of Traditional Chinese Medicine", "city_zh": "成都", "city_en": "Chengdu", "specs_zh": ["中医综合"], "specs_en": ["Traditional Chinese Medicine"], "subdir": "specialty"}]}];
+var HOSP_DATA_EN = [{"title": "Orthopedics", "title_en": "骨科", "count": 5, "count_label": "hospitals", "cards": [{"id": "jishuitan", "name_zh": "北京积水潭医院", "name_en": "Beijing Jishuitan Hospital", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["骨科"], "specs_en": ["Orthopedic Surgery"], "subdir": "specialty"}, {"id": "shanghai-6th", "name_zh": "上海市第六人民医院", "name_en": "Shanghai Sixth People's Hospital", "city_zh": "上海", "city_en": "Shanghai", "specs_zh": ["骨科"], "specs_en": ["Orthopedic Surgery"], "subdir": "specialty"}, {"id": "gz-tcm-ortho", "name_zh": "广州中医药大学第一附属医院", "name_en": "First Affiliated Hospital of Guangzhou University of Chinese Medicine", "city_zh": "广州", "city_en": "Guangzhou", "specs_zh": ["骨科(中西医结合)"], "specs_en": ["Orthopedic Surgery (TCM Integrated)"], "subdir": "specialty"}, {"id": "cd-sport-ortho", "name_zh": "成都体育学院附属体育医院", "name_en": "Affiliated Sport Hospital of Chengdu Sport University", "city_zh": "成都", "city_en": "Chengdu", "specs_zh": ["运动骨科与康复"], "specs_en": ["Sports Orthopedics & Rehabilitation"], "subdir": "specialty"}, {"id": "shandong-2nd", "name_zh": "山东大学第二医院", "name_en": "Second Hospital of Shandong University", "city_zh": "济南", "city_en": "Jinan", "specs_zh": ["骨科"], "specs_en": ["Orthopedic Surgery"], "subdir": "specialty"}]}, {"title": "Neurology", "title_en": "神经科", "count": 4, "count_label": "hospitals", "cards": [{"id": "xuanwu-hospital", "name_zh": "首都医科大学宣武医院", "name_en": "Xuanwu Hospital, Capital Medical University", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["神经内科与神经外科"], "specs_en": ["Neurology & Neurosurgery"], "subdir": "specialty"}, {"id": "tiantan-hospital", "name_zh": "北京天坛医院", "name_en": "Beijing Tiantan Hospital", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["神经外科与神经内科"], "specs_en": ["Neurosurgery & Neurology"], "subdir": "specialty"}, {"id": "huashan-hospital", "name_zh": "复旦大学附属华山医院", "name_en": "Huashan Hospital, Fudan University", "city_zh": "上海", "city_en": "Shanghai", "specs_zh": ["神经外科"], "specs_en": ["Neurosurgery"], "subdir": "specialty"}, {"id": "xiangya-hospital", "name_zh": "中南大学湘雅医院", "name_en": "Xiangya Hospital, Central South University", "city_zh": "长沙", "city_en": "Changsha", "specs_zh": ["神经内科"], "specs_en": ["Neurology"], "subdir": "specialty"}]}, {"title": "Ophthalmology", "title_en": "眼科", "count": 4, "count_label": "hospitals", "cards": [{"id": "tongren-hospital", "name_zh": "北京同仁医院", "name_en": "Beijing Tongren Hospital", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["眼科与耳鼻喉科"], "specs_en": ["Ophthalmology & Otolaryngology"], "subdir": "specialty"}, {"id": "sysu-eye", "name_zh": "中山大学中山眼科中心", "name_en": "Zhongshan Ophthalmic Center, Sun Yat-sen University", "city_zh": "广州", "city_en": "Guangzhou", "specs_zh": ["眼科"], "specs_en": ["Ophthalmology"], "subdir": "specialty"}, {"id": "wmu-eye", "name_zh": "温州医科大学附属眼视光医院", "name_en": "Eye Hospital of Wenzhou Medical University", "city_zh": "Wenzhou", "city_en": "Wenzhou", "specs_zh": ["眼科与视光学"], "specs_en": ["Ophthalmology & Optometry"], "subdir": "specialty"}, {"id": "huaxi-eye", "name_zh": "四川大学华西眼科中心", "name_en": "West China Eye Center, Sichuan University", "city_zh": "成都", "city_en": "Chengdu", "specs_zh": ["眼科"], "specs_en": ["Ophthalmology"], "subdir": "specialty"}]}, {"title": "Dental & Maxillofacial", "title_en": "口腔/整形", "count": 4, "count_label": "hospitals", "cards": [{"id": "shanghai-9th", "name_zh": "上海交通大学医学院附属第九人民医院", "name_en": "Shanghai Ninth People's Hospital", "city_zh": "上海", "city_en": "Shanghai", "specs_zh": ["口腔颌面外科与整形外科"], "specs_en": ["Oral & Maxillofacial Surgery, Plastic Surgery"], "subdir": "specialty"}, {"id": "pku-stomatology", "name_zh": "北京大学口腔医院", "name_en": "Peking University Hospital of Stomatology", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["口腔医学"], "specs_en": ["Dentistry & Oral Surgery"], "subdir": "specialty"}, {"id": "huaxi-stomatology", "name_zh": "四川大学华西口腔医院", "name_en": "West China Hospital of Stomatology, Sichuan University", "city_zh": "成都", "city_en": "Chengdu", "specs_zh": ["口腔医学"], "specs_en": ["Dentistry & Oral Surgery"], "subdir": "specialty"}, {"id": "guangdong-stomatology", "name_zh": "广东省口腔医院", "name_en": "Guangdong Provincial Stomatological Hospital", "city_zh": "广州", "city_en": "Guangzhou", "specs_zh": ["口腔医学"], "specs_en": ["Dentistry & Oral Surgery"], "subdir": "specialty"}]}, {"title": "Respiratory", "title_en": "呼吸科", "count": 3, "count_label": "hospitals", "cards": [{"id": "gzhmu-1st", "name_zh": "广州医科大学附属第一医院", "name_en": "First Affiliated Hospital of Guangzhou Medical University", "city_zh": "广州", "city_en": "Guangzhou", "specs_zh": ["呼吸与危重症医学科"], "specs_en": ["Respiratory & Critical Care Medicine"], "subdir": "specialty"}, {"id": "zhongri-youhao", "name_zh": "中日友好医院", "name_en": "China-Japan Friendship Hospital", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["呼吸与危重症医学科"], "specs_en": ["Respiratory & Critical Care Medicine"], "subdir": "specialty"}, {"id": "tongji-hospital", "name_zh": "华中科技大学同济医学院附属同济医院", "name_en": "Tongji Hospital, HUST", "city_zh": "武汉", "city_en": "Wuhan", "specs_zh": ["呼吸与危重症医学科"], "specs_en": ["Respiratory & Critical Care Medicine"], "subdir": "specialty"}]}, {"title": "Oncology", "title_en": "肿瘤科", "count": 3, "count_label": "hospitals", "cards": [{"id": "cicams-cancer", "name_zh": "中国医学科学院肿瘤医院", "name_en": "Cancer Hospital, Chinese Academy of Medical Sciences", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["肿瘤科"], "specs_en": ["Oncology"], "subdir": "specialty"}, {"id": "fudan-cancer", "name_zh": "复旦大学附属肿瘤医院", "name_en": "Fudan University Shanghai Cancer Center", "city_zh": "上海", "city_en": "Shanghai", "specs_zh": ["肿瘤科"], "specs_en": ["Oncology"], "subdir": "specialty"}, {"id": "sysu-cancer", "name_zh": "中山大学肿瘤防治中心", "name_en": "Sun Yat-sen University Cancer Center", "city_zh": "广州", "city_en": "Guangzhou", "specs_zh": ["肿瘤科"], "specs_en": ["Oncology"], "subdir": "specialty"}]}, {"title": "Cardiovascular", "title_en": "心血管", "count": 3, "count_label": "hospitals", "cards": [{"id": "anzhen-hospital", "name_zh": "北京安贞医院", "name_en": "Beijing Anzhen Hospital", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["心血管内科与心脏外科"], "specs_en": ["Cardiovascular Medicine & Surgery"], "subdir": "specialty"}, {"id": "zhongshan-hospital", "name_zh": "复旦大学附属中山医院", "name_en": "Zhongshan Hospital, Fudan University", "city_zh": "上海", "city_en": "Shanghai", "specs_zh": ["心血管内科与心脏外科"], "specs_en": ["Cardiovascular Medicine & Surgery"], "subdir": "specialty"}, {"id": "guangdong-prov", "name_zh": "广东省人民医院", "name_en": "Guangdong Provincial People's Hospital", "city_zh": "广州", "city_en": "Guangzhou", "specs_zh": ["心血管内科与心脏外科"], "specs_en": ["Cardiovascular Medicine & Surgery"], "subdir": "specialty"}]}, {"title": "Organ Transplant", "title_en": "器官移植", "count": 2, "count_label": "hospitals", "cards": [{"id": "zzu-1st", "name_zh": "郑州大学第一附属医院", "name_en": "First Affiliated Hospital of Zhengzhou University", "city_zh": "郑州", "city_en": "Zhengzhou", "specs_zh": ["器官移植"], "specs_en": ["Organ Transplantation"], "subdir": "specialty"}, {"id": "sysu-1st", "name_zh": "中山大学附属第一医院", "name_en": "First Affiliated Hospital, Sun Yat-sen University", "city_zh": "广州", "city_en": "Guangzhou", "specs_zh": ["器官移植"], "specs_en": ["Organ Transplantation"], "subdir": "specialty"}]}, {"title": "TCM", "title_en": "中医", "count": 2, "count_label": "hospitals", "cards": [{"id": "guanganmen-tcm", "name_zh": "中国中医科学院广安门医院", "name_en": "Guang'anmen Hospital, China Academy of Chinese Medical Sciences", "city_zh": "北京", "city_en": "Beijing", "specs_zh": ["中医综合"], "specs_en": ["Traditional Chinese Medicine"], "subdir": "specialty"}, {"id": "cdutcm-affiliated", "name_zh": "成都中医药大学附属医院", "name_en": "Affiliated Hospital of Chengdu University of Traditional Chinese Medicine", "city_zh": "成都", "city_en": "Chengdu", "specs_zh": ["中医综合"], "specs_en": ["Traditional Chinese Medicine"], "subdir": "specialty"}]}];
+var I18N = {"zh": {"nav_home": "首页", "nav_general": "综合医院", "nav_specialty": "专科医院", "nav_about": "关于我们", "nav_contact": "联系我们", "nav_legal": "法律声明", "page_title_general": "综合三甲医院", "page_sub_general": "50家设有国际医疗中心的全国头部综合三甲公立医院，按地理分区分组展示。", "page_title_specialty": "特色专科医院", "page_sub_specialty": "30家全国知名专科强院，具备国际医疗服务能力，按专科分类展示。", "hospitals_count": "家医院", "back_all": "← 查看全部专科", "view_detail": "查看详情 →", "footer_desc": "公益性信息平台 · 免费使用 · 无广告 · 无中介", "footer_links": "快速链接", "footer_legal": "法律声明", "footer_disclaimer": "<strong>医疗免责声明：</strong>本站所有内容仅供参考，不构成医疗建议。就诊前请与医院核实。<br><br>&copy; 2026 ChinaMed Directory."}, "en": {"nav_home": "Home", "nav_general": "General Hospitals", "nav_specialty": "Specialty Hospitals", "nav_about": "About Us", "nav_contact": "Contact", "nav_legal": "Legal Notice", "page_title_general": "Top General Hospitals", "page_sub_general": "50 leading comprehensive tertiary public hospitals with international medical centers, grouped by geographic region.", "page_title_specialty": "Top Specialty Hospitals", "page_sub_specialty": "30 nationally recognized specialty hospitals with international services, grouped by clinical specialty.", "hospitals_count": "hospitals", "back_all": "← Show All Specialties", "view_detail": "View details →", "footer_desc": "A public-service information platform. Free to use. No advertisements. No intermediaries.", "footer_links": "Quick Links", "footer_legal": "Legal", "footer_disclaimer": "<strong>Medical Disclaimer:</strong> All content is for informational reference only. Not medical advice. Verify with hospital before visiting.<br><br>&copy; 2026 ChinaMed Directory."}, "fr": {"nav_home": "Accueil", "nav_general": "Hopitaux Generaux", "nav_specialty": "Hopitaux Specialises", "nav_about": "A propos", "nav_contact": "Contact", "nav_legal": "Mentions legales", "page_title_general": "Meilleurs Hopitaux Generaux", "page_sub_general": "50 hopitaux publics tertiaires avec centres medicaux internationaux, groupes par region.", "page_title_specialty": "Meilleurs Hopitaux Specialises", "page_sub_specialty": "30 hopitaux specialises avec services internationaux, groupes par specialite.", "hospitals_count": "hopitaux", "back_all": "← Voir tout", "view_detail": "Voir details →", "footer_desc": "Plateforme de service public. Gratuit. Sans pub. Sans intermediaire.", "footer_links": "Liens Rapides", "footer_legal": "Mentions Legales", "footer_disclaimer": "<strong>Avertissement:</strong> Contenu informatif uniquement. Verifiez aupres de l'hopital.<br><br>&copy; 2026 ChinaMed Directory."}, "de": {"nav_home": "Startseite", "nav_general": "Allg. Krankenhauser", "nav_specialty": "Fachkrankenhauser", "nav_about": "Uber uns", "nav_contact": "Kontakt", "nav_legal": "Rechtliches", "page_title_general": "Top Allgemeinkrankenhauser", "page_sub_general": "50 fuhrende tertiare Krankenhauser mit internationalen Zentren, nach Region gruppiert.", "page_title_specialty": "Top Fachkrankenhauser", "page_sub_specialty": "30 anerkannte Fachkrankenhauser mit internationalen Diensten, nach Fachgebiet gruppiert.", "hospitals_count": "Krankenhauser", "back_all": "← Alle anzeigen", "view_detail": "Details →", "footer_desc": "Offentliche Plattform. Kostenlos. Keine Werbung. Keine Vermittler.", "footer_links": "Schnelllinks", "footer_legal": "Rechtliches", "footer_disclaimer": "<strong>Haftungsausschluss:</strong> Nur zu Informationszwecken. Vor Besuch uberprufen.<br><br>&copy; 2026 ChinaMed Directory."}, "es": {"nav_home": "Inicio", "nav_general": "Hospitales Generales", "nav_specialty": "Hospitales Especializados", "nav_about": "Nosotros", "nav_contact": "Contacto", "nav_legal": "Legal", "page_title_general": "Mejores Hospitales Generales", "page_sub_general": "50 hospitales publicos terciarios con centros internacionales, agrupados por region.", "page_title_specialty": "Mejores Hospitales Especializados", "page_sub_specialty": "30 hospitales especializados con servicios internacionales, agrupados por especialidad.", "hospitals_count": "hospitales", "back_all": "← Ver todas", "view_detail": "Ver detalles →", "footer_desc": "Plataforma de servicio publico. Gratis. Sin anuncios. Sin intermediarios.", "footer_links": "Enlaces", "footer_legal": "Legal", "footer_disclaimer": "<strong>Aviso:</strong> Solo fines informativos. Verifique con el hospital.<br><br>&copy; 2026 ChinaMed Directory."}, "ru": {"nav_home": "Glavnaya", "nav_general": "Obshchie", "nav_specialty": "Spetsial.", "nav_about": "O nas", "nav_contact": "Kontakty", "nav_legal": "Yurid.", "page_title_general": "Luchshie obshchie bolnitsy", "page_sub_general": "50 vedushchikh bolnits s mezhdunarodnymi tsentrami, po regionam.", "page_title_specialty": "Luchshie spetsial. bolnitsy", "page_sub_specialty": "30 priznannykh spetsializirovannykh bolnits, po spetsialnostyam.", "hospitals_count": "bolnits", "back_all": "← Vse spetsial", "view_detail": "Podrobnee →", "footer_desc": "Obshchestvennaya platforma. Besplatno. Bez reklamy. Bez posrednikov.", "footer_links": "Ssylki", "footer_legal": "Yurid.", "footer_disclaimer": "<strong>Otvetstvennost:</strong> Tolko informatsionno. Proverte v bolnitse.<br><br>&copy; 2026 ChinaMed Directory."}, "ko": {"nav_home": "홈", "nav_general": "종합병원", "nav_specialty": "전문병원", "nav_about": "소개", "nav_contact": "연락처", "nav_legal": "법적 고지", "page_title_general": "주요 종합병원", "page_sub_general": "국제의료센터가 있는 50개 주요 3차 종합병원, 지역별 분류.", "page_title_specialty": "주요 전문병원", "page_sub_specialty": "국제 서비스를 갖춘 30개 전문병원, 진료과별 분류.", "hospitals_count": "병원", "back_all": "← 모든 진료과", "view_detail": "자세히 보기 →", "footer_desc": "공공 서비스 플랫폼. 무료. 광고 없음. 중개인 없음.", "footer_links": "바로가기", "footer_legal": "법적 고지", "footer_disclaimer": "<strong>면책 조항:</strong> 정보 제공 목적으로만 사용됩니다. 병원에 확인하세요.<br><br>&copy; 2026 ChinaMed Directory."}, "ar": {"nav_home": "الرئيسية", "nav_general": "مستشفيات عامة", "nav_specialty": "مستشفيات تخصصية", "nav_about": "من نحن", "nav_contact": "اتصل بنا", "nav_legal": "قانوني", "page_title_general": "افضل المستشفيات العامة", "page_sub_general": "50 مستشفى عام رئيسي مع مراكز طبية دولية، مصنفة حسب المنطقة.", "page_title_specialty": "افضل المستشفيات التخصصية", "page_sub_specialty": "30 مستشفى تخصصي مع خدمات دولية، مصنفة حسب التخصص.", "hospitals_count": "مستشفى", "back_all": "← عرض الكل", "view_detail": "عرض التفاصيل →", "footer_desc": "منصة خدمة عامة. مجانية. بدون اعلانات. بدون وسطاء.", "footer_links": "روابط", "footer_legal": "قانوني", "footer_disclaimer": "<strong>اخطار:</strong> للمعلومات فقط. تحقق مع المستشفى قبل الزيارة.<br><br>&copy; 2026 ChinaMed Directory."}};
+var LANG_LABELS = {zh:"中",en:"EN",fr:"FR",de:"DE",es:"ES",ru:"RU",ko:"KO",ar:"AR"};
+var PAGE_TYPE = "specialty";
+var PAGE_FILTER_DISABLED = false;
+var pageBase = "./specialty-hospitals.html";
+var SPEC_GROUPS = {
+  zh: ["骨科", "神经科", "眼科", "口腔/整形", "呼吸科", "肿瘤科", "心血管", "器官移植", "中医"],
+  en: ["Orthopedics", "Neurology", "Ophthalmology", "Dental & Maxillofacial", "Respiratory", "Oncology", "Cardiovascular", "Organ Transplant", "TCM"],
+  fr: ["Orthopedie", "Neurologie", "Ophtalmologie", "Dentaire", "Respiratoire", "Oncologie", "Cardiovasculaire", "Greffe", "MTC"],
+  de: ["Orthopadie", "Neurologie", "Augenheilkunde", "Zahnmedizin", "Atemwege", "Onkologie", "Kardiovaskular", "Transplantation", "TCM"],
+  es: ["Ortopedia", "Neurologia", "Oftalmologia", "Dental", "Respiratorio", "Oncologia", "Cardiovascular", "Trasplante", "MTC"],
+  ru: ["Ortopediya", "Nevrologiya", "Oftalmologiya", "Stomatologiya", "Pulmonologiya", "Onkologiya", "Kardiologiya", "Transplantatsiya", "TKM"],
+  ko: ["정형외과", "신경과", "안과", "치과", "호흡기내과", "종양내과", "심혈관", "장기이식", "한의학"],
+  ar: ["جراحة العظام", "طب الاعصاب", "طب العيون", "طب الاسنان", "الجهاز التنفسي", "الاورام", "القلب", "زراعة الاعضاء", "الطب الصيني"]
+};
+
+function getData(lang) {
+  return lang === "zh" ? HOSP_DATA_ZH : HOSP_DATA_EN;
+}
+
+function render(lang) {
+  var d = I18N[lang] || I18N["en"];
+  var data = getData(lang);
+  var isRTL = lang === "ar";
+
+  document.documentElement.lang = isRTL ? "ar" : lang;
+  document.documentElement.dir = isRTL ? "rtl" : "ltr";
+  document.body.style.direction = isRTL ? "rtl" : "";
+
+  // Page title
+  var tk = "page_title_" + PAGE_TYPE;
+  var sk = "page_sub_" + PAGE_TYPE;
+  document.title = (d[tk] || "") + " — ChinaMed Directory";
+
+  // Data-key elements
+  document.querySelectorAll("[data-key]").forEach(function(el) {
+    var k = el.dataset.key;
+    if (d[k]) el.innerHTML = d[k];
+  });
+
+  // Update nav links
+  var pages = {
+    navHome:"./index.html", navGeneral:"./general-hospitals.html",
+    navSpecialty:"./specialty-hospitals.html", navAbout:"./about.html",
+    navContact:"./contact.html", navLegal:"./legal-notice.html"
+  };
+  for (var id in pages) {
+    var a = document.getElementById(id);
+    if (a) a.href = pages[id] + "?lang=" + lang;
+  }
+  document.getElementById("homeLink").href = "./index.html?lang=" + lang;
+
+  // Footer
+  var fh = "<h3>ChinaMed Directory</h3><p style='margin-bottom:16px'>" + d.footer_desc + "</p>";
+  fh += "<div style='display:flex;gap:24px;flex-wrap:wrap'>";
+  fh += "<a href='./general-hospitals.html?lang=" + lang + "'>" + d.nav_general + "</a>";
+  fh += "<a href='./specialty-hospitals.html?lang=" + lang + "'>" + d.nav_specialty + "</a>";
+  fh += "<a href='./about.html?lang=" + lang + "'>" + d.nav_about + "</a>";
+  fh += "<a href='./legal-notice.html?lang=" + lang + "'>" + d.nav_legal + "</a>";
+  fh += "</div><hr class='footer-divider'><div class='footer-legal'>" + d.footer_disclaimer + "</div>";
+  document.getElementById("footerContent").innerHTML = fh;
+
+  // Check for specialty filter
+  var specIndex = null;
+  if (!PAGE_FILTER_DISABLED) {
+    var hash = location.hash;
+    var m = hash && hash.match(/^#(spec)-(\d+)$/);
+    if (m) specIndex = parseInt(m[2]);
+  }
+
+  var html = "";
+  if (specIndex !== null && data[specIndex]) {
+    html += '<div style="margin-bottom:20px"><a href="' + pageBase + '?lang=' + lang + '" style="display:inline-flex;align-items:center;gap:4px;color:var(--gold);text-decoration:none;font-size:14px;font-weight:600;padding:8px 0">← ' + (d.back_all || 'Show All Specialties') + '</a></div>';
+  }
+
+  var start = specIndex !== null && data[specIndex] ? specIndex : 0;
+  var end = specIndex !== null ? (start + 1) : data.length;
+
+  for (var i = start; i < end && i < data.length; i++) {
+    var r = data[i];
+    var title = r.title;
+    var anchorPrefix = "spec";
+    if (PAGE_TYPE === "specialty" && SPEC_GROUPS && SPEC_GROUPS[lang]) {
+      title = SPEC_GROUPS[lang][i] || r.title;
+    }
+    html += '<div class="region" id="' + anchorPrefix + '-' + i + '"><div class="region-title">' + title + '<span class="region-count">' + r.count + " " + d.hospitals_count + '</span></div>';
+    for (var j = 0; j < r.cards.length; j++) {
+      var c = r.cards[j];
+      var name = lang === "zh" ? c.name_zh : c.name_en;
+      var city = lang === "zh" ? c.city_zh : c.city_en;
+      var specs = lang === "zh" ? c.specs_zh : c.specs_en;
+      html += '<div class="hcard"><div class="hcard-top"><div><div class="hcard-name"><a href="./hospitals/' + c.subdir + '/' + c.id + '.html?lang=' + lang + '">' + name + '</a></div><div class="hcard-info">' + city + '</div></div><div class="hcard-arrow"><a href="./hospitals/' + c.subdir + '/' + c.id + '.html?lang=' + lang + '">' + d.view_detail + '</a></div></div>';
+      if (specs && specs.length > 0) {
+        html += '<div class="hcard-tags">';
+        for (var k = 0; k < specs.length; k++) {
+          html += '<span class="hcard-tag">' + specs[k] + '</span>';
+        }
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+  document.getElementById("hospitalList").innerHTML = html;
+  setTimeout(function() {
+    window.scrollTo({top: 0, behavior: 'instant'});
+  }, 10);
+}
+
+function buildLangBar(cur) {
+  var html = "";
+  Object.keys(LANG_LABELS).forEach(function(l) {
+    html += '<button class="lang-btn' + (l === cur ? ' selected' : '') + '" onclick="switchLang(\'' + l + '\')">' + LANG_LABELS[l] + '</button>';
+  });
+  document.getElementById("langBar").innerHTML = html;
+}
+
+function switchLang(lang) {
+  var hash = location.hash;
+  localStorage.setItem("chinamed_lang", lang);
+  render(lang);
+  buildLangBar(lang);
+  // Restore hash after lang switch
+  if (hash) {
+    location.hash = hash;
+  }
+}
+
+(function() {
+  var lang = localStorage.getItem("chinamed_lang") || new URLSearchParams(location.search).get("lang") || "zh";
+  if (!I18N[lang]) lang = "zh";
+  buildLangBar(lang);
+  render(lang);
+})();
+</script></body></html>

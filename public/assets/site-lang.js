@@ -45,8 +45,15 @@
     document.querySelectorAll('a[href]').forEach(function(a){
       var h = a.getAttribute('href') || '';
       if(/^(https?:|mailto:|tel:|#|javascript:)/i.test(h)) return;
-      if(h.indexOf('lang=') >= 0) return;
-      a.setAttribute('href', h + (h.indexOf('?') >= 0 ? '&' : '?') + 'lang=' + lang);
+      try{
+        var u = new URL(h, location.href);
+        if(u.origin !== location.origin) return;
+        u.searchParams.set('lang', lang);
+        a.setAttribute('href', u.pathname + u.search + (u.hash || ''));
+      }catch(e){
+        h = h.replace(/[?&]lang=[a-z]{2}/i, '').replace(/\?$/, '');
+        a.setAttribute('href', h + (h.indexOf('?') >= 0 ? '&' : '?') + 'lang=' + lang);
+      }
     });
   }
 
